@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="about-hero">
+
+  <!-- BACKGROUND -->
+  <div class="hero-bg"></div>
+
+  <!-- CONTENT -->
+  <div class="hero-content">
+
+    <h1>
+      Why <span>Choose Us</span>
+    </h1>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/about">About</a>
+      <span>/</span>
+      <span class="active">Why Choose Us</span>
+    </div>
+
+    <p class="hero-subtitle">
+      Why Thakre & Associates is the right choice for your legal and taxation needs.
+    </p>
+
+  </div>
+
+</section>
+<!-- ===== WHY US SECTION =====  -->
+<section class="why-section">
+
+  <div class="why-wrapper"> <!-- 🔥 CENTER BLOCK -->
+
+    <!-- HEADER -->
+    <div class="why-header">
+      <p class="why-tag">Why Choose Us</p>
+      <h2>What Makes Us <span>Different</span></h2>
+      <p>
+        Delivering reliable legal and taxation solutions with trust, precision, and excellence.
+      </p>
+    </div>
+
+    <!-- CARDS -->
+    <div class="why-grid">
+
+      <div class="why-card">
+        <i class="fas fa-scale-balanced"></i>
+        <h3>Expert Legal Knowledge</h3>
+        <p>Deep expertise in tax law, compliance, and litigation.</p>
+      </div>
+
+      <div class="why-card offset">
+        <i class="fas fa-file-contract"></i>
+        <h3>Accurate Compliance</h3>
+        <p>Ensuring 100% compliance with government regulations.</p>
+      </div>
+
+      <div class="why-card">
+        <i class="fas fa-user-shield"></i>
+        <h3>Trusted by Institutions</h3>
+        <p>Serving government offices, schools, and organizations.</p>
+      </div>
+
+      <div class="why-card offset">
+        <i class="fas fa-chart-line"></i>
+        <h3>Growth-Oriented Approach</h3>
+        <p>Helping clients grow with strategic legal solutions.</p>
+      </div>
+
+      <div class="why-card">
+        <i class="fas fa-clock"></i>
+        <h3>Fast & Reliable</h3>
+        <p>Quick turnaround with high accuracy and professionalism.</p>
+      </div>
+
+      <div class="why-card offset">
+        <i class="fas fa-handshake"></i>
+        <h3>Client-Centric Service</h3>
+        <p>Focused on long-term relationships and trust.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="stats-section">
+
+  <div class="stats-wrapper"> <!-- 🔥 CENTER BLOCK -->
+
+    <!-- HEADER -->
+    <div class="stats-header">
+      <p class="stats-tag">Our Achievements</p>
+      <h2>Numbers That <span>Define Us</span></h2>
+      <p>Delivering excellence with trust and experience</p>
+    </div>
+
+    <!-- STATS GRID -->
+    <div class="stats-grid">
+
+      <div class="stat-card">
+        <h3><span class="counter" data-target="12000">0</span>+</h3>
+        <p>Clients Served</p>
+      </div>
+
+      <div class="stat-card">
+        <h3><span class="counter" data-target="25">0</span>+</h3>
+        <p>Years Experience</p>
+      </div>
+
+      <div class="stat-card">
+        <h3><span class="counter" data-target="14000">0</span>+</h3>
+        <p>Cases Handled</p>
+      </div>
+
+      <div class="stat-card">
+        <h3><span class="counter" data-target="250">0</span>+</h3>
+        <p>Trusted Institutions</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+  const counters = document.querySelectorAll(".counter");
+
+  counters.forEach(counter => {
+    counter.innerText = "0";
+
+    const updateCounter = () => {
+      const target = +counter.getAttribute("data-target");
+      const count = +counter.innerText;
+
+      const increment = target / 100;
+
+      if (count < target) {
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(updateCounter, 20);
+      } else {
+        counter.innerText = target;
+      }
+    };
+
+    updateCounter();
+  });
+
+});
+</script>
+
+{% endblock %}

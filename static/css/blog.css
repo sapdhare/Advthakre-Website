@@ -1,0 +1,132 @@
+/* ===== BLOG HERO SECTION ===== */
+.blog-hero-section {
+  position: relative;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  margin-bottom: 120px;
+}
+
+/* BACKGROUND IMAGE */
+.blog-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('../images/hero.png') center/cover no-repeat;
+  filter: brightness(0.35);
+  z-index: 1;
+}
+
+/* GRADIENT OVERLAY */
+.blog-hero-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.5), #000);
+  z-index: 2;
+}
+
+/* CONTENT BOX */
+.blog-hero-content {
+  position: relative;
+  z-index: 3;
+  padding: 40px 50px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  max-width: 700px;
+  animation: blogFadeUp 1s ease;
+}
+
+/* HEADING */
+.blog-hero-content h1 {
+  font-size: 48px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.blog-hero-content span {
+  color: #d4af37;
+}
+
+/* SUBTEXT */
+.blog-hero-subtitle {
+  color: #ccc;
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+/* BREADCRUMB */
+.blog-breadcrumb {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.blog-breadcrumb a {
+  color: #aaa;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.blog-breadcrumb a:hover {
+  color: #d4af37;
+}
+
+.blog-breadcrumb span {
+  margin: 0 6px;
+  color: #666;
+}
+
+.blog-breadcrumb .active {
+  color: #d4af37;
+}
+
+/* ANIMATION */
+@keyframes blogFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.blog-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.blog-hero-section {
+  margin-bottom: 60px;
+}
+
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .blog-hero-section {
+    height: 45vh;
+    padding: 20px;
+  }
+
+  .blog-hero-content {
+    padding: 25px;
+  }
+
+  .blog-hero-content h1 {
+    font-size: 28px;
+  }
+
+  .blog-hero-subtitle {
+    font-size: 13px;
+  }
+
+  .blog-breadcrumb {
+    font-size: 12px;
+  }
+}

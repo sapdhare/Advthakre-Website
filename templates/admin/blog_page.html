@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/css/blog.css">
+
+<!-- HERO SECTION -->
+<section class="blog-hero-section">
+  <div class="blog-hero-bg"></div>
+
+  <div class="blog-hero-content">
+    <h1>Our <span>Legal Insights</span></h1>
+
+    <div class="blog-breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <span class="active">Blog</span>
+    </div>
+
+    <p class="blog-hero-subtitle">
+      Stay informed with expert insights on legal matters, taxation updates, and compliance strategies.
+    </p>
+  </div>
+</section>
+
+<!-- BLOG SECTION -->
+<section class="blog-section">
+<div class="blog-wrapper">
+
+  <div class="blog-header">
+    <p class="blog-tag">Our Blogs</p>
+    <h2>Latest <span>Insights &</span> Updates</h2>
+    <p class="blog-subtitle">
+      Stay updated with taxation, GST, and legal knowledge.
+    </p>
+  </div>
+
+  <div class="blog-grid">
+  {% for blog in blogs %}
+    <a href="/blog/{{ blog[0] }}" class="blog-link">
+      <div class="blog-card">
+
+        {% if blog[3] %}
+        <img src="{{ url_for('static', filename='uploads/' + blog[3]) }}">
+        {% endif %}
+
+        <div class="blog-content">
+          <h3>{{ blog[1] }}</h3>
+          <p>
+            {{ blog[2]|striptags|truncate(120) }}
+          </p>
+        </div>
+
+      </div>
+    </a>
+  {% endfor %}
+  </div>
+
+</div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/css/gallery.css">
+
+<section class="gallery-hero">
+
+  <!-- BACKGROUND -->
+  <div class="hero-bg"></div>
+
+  <!-- CONTENT -->
+  <div class="gallery-hero-content">
+
+    <h1>Our <span>Gallery</span></h1>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <span class="active">Gallery</span>
+    </div>
+
+    <p class="hero-subtitle">
+      A glimpse into our professional journey, achievements, and legal excellence.
+    </p>
+
+  </div>
+
+</section>
+
+<!-- GALLERY SECTION  -->
+
+<section class="gallery-section">
+
+  <!-- HEADER -->
+  <div class="gallery-header">
+    <p class="gallery-tag">Our Work</p>
+    <h2>Explore Our <span>Gallery</span></h2>
+    <p>Moments, achievements, and professional highlights.</p>
+  </div>
+
+  <!-- FILTER BUTTONS -->
+  <div class="gallery-filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="office">Office</button>
+    <button class="filter-btn" data-filter="events">Events</button>
+    <button class="filter-btn" data-filter="clients">Clients</button>
+  </div>
+
+  <!-- GALLERY GRID -->
+  <div class="gallery-grid">
+
+   <div class="gallery-item" data-category="events">
+      <img src="static/images/gallery/event4.png" />
+      <div class="overlay"><span>View</span></div>
+    </div>
+
+    <div class="gallery-item" data-category="events">
+      <img src="static/images/gallery/event1.png" />
+      <div class="overlay"><span>View</span></div>
+    </div>
+
+      <div class="gallery-item" data-category="office">
+      <img src="static/images/gallery/office_mam.png" />
+      <div class="overlay"><span>View</span></div>
+    </div>
+
+
+    <div class="gallery-item" data-category="office">
+      <img src="static/images/gallery/office.png" />
+      <div class="overlay"><span>View</span></div>
+    </div>
+
+      <div class="gallery-item" data-category="office">
+      <img src="static/images/gallery/office_front.png" />
+      <div class="overlay"><span>View</span></div>
+    </div>
+
+        <div class="gallery-item" data-category="office">
+      <img src="static/images/gallery/office_grp.png" />
+      <div class="overlay"><span>View</span></div>
+    </div>
+    
+    <div class="gallery-item" data-category="events">
+      <img src="static/images/gallery/event2.png" />
+      <div class="overlay"><span>View</span></div>
+    </div>
+
+      <div class="gallery-item" data-category="events">
+      <img src="static/images/gallery/event5.png" />
+      <div class="overlay"><span>View</span></div>
+    </div>
+
+
+
+          <div class="gallery-item" data-category="clients">
+      <img src="static/images/gallery/client1.png" />
+      <div class="overlay"><span>View</span></div>
+    </div>
+
+          <div class="gallery-item" data-category="clients">
+      <img src="static/images/gallery/client2.png" />
+      <div class="overlay"><span>View</span></div>
+    </div>
+
+      <div class="gallery-item" data-category="clients">
+      <img src="static/images/gallery/client3.png" />
+      <div class="overlay"><span>View</span></div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Gllery MODAL -->
+<div class="gallery-modall" id="galleryModall">
+  <span class="close-modall">&times;</span>
+  <img class="modal-imgg" id="modalImage">
+</div>
+
+ 
+
+<!-- FEATURE MOMENT SECTION -->
+
+<section class="featured-gallery">
+
+  <!-- HEADER -->
+  <div class="featured-header">
+    <p class="featured-tag">Highlights</p>
+    <h2>Our <span>Featured Moments</span></h2>
+    <p>Capturing meaningful interactions, milestones, and professional excellence.</p>
+  </div>
+
+  <!-- SCROLLER -->
+  <div class="featured-wrapper">
+    <div class="featured-track">
+
+      <!-- IMAGES -->
+      <div class="featured-item">
+        <img src="/static/images/feature/president_2.jpg">
+      </div>
+
+      <div class="featured-item">
+        <img src="/static/images/feature/sharad_pawar.jpg">
+      </div>
+
+      <div class="featured-item">
+        <img src="/static/images/feature/president_1.jpg">
+      </div>
+
+      <div class="featured-item">
+        <img src="/static/images/feature/rss_image.jpg">
+      </div>
+
+      <div class="featured-item">
+        <img src="/static/images/feature/president_2.jpg">
+      </div>
+
+      <!-- DUPLICATE FOR SMOOTH LOOP -->
+      <div class="featured-item">
+        <img src="/static/images/feature/president_1.jpg">
+      </div>
+
+      <div class="featured-item">
+        <img src="/static/images/feature/sharad_pawar.jpg">
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- FULLSCREEN MODAL -->
+<div class="gallery-modall" id="featuredModal">
+  <span class="close-modall">&times;</span>
+  <img class="modal-imgg" id="featuredModalImg">
+</div>
+
+
+<!--  Image Modal + Filter Script -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  // FILTER
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const items = document.querySelectorAll(".gallery-item");
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+
+      document.querySelector(".filter-btn.active").classList.remove("active");
+      btn.classList.add("active");
+
+      const filter = btn.getAttribute("data-filter");
+
+      items.forEach(item => {
+        if (filter === "all" || item.dataset.category === filter) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+
+    });
+  });
+
+  /* =========================
+     GALLERY MODAL
+  ========================= */
+  const galleryImages = document.querySelectorAll(".gallery-item img");
+  const galleryModal = document.getElementById("galleryModall");
+  const galleryModalImg = document.getElementById("modalImage");
+
+  galleryImages.forEach(img => {
+    img.addEventListener("click", () => {
+      galleryModal.style.display = "flex";
+      galleryModalImg.src = img.src;
+    });
+  });
+
+  /* =========================
+     FEATURED MODAL
+  ========================= */
+  const featuredImages = document.querySelectorAll(".featured-item img");
+  const featuredModal = document.getElementById("featuredModal");
+  const featuredModalImg = document.getElementById("featuredModalImg");
+
+  featuredImages.forEach(img => {
+    img.addEventListener("click", () => {
+      featuredModal.style.display = "flex";
+      featuredModalImg.src = img.src;
+    });
+  });
+
+  /* =========================
+     CLOSE BUTTONS
+  ========================= */
+document.querySelectorAll(".close-modall").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".gallery-modall").forEach(m => {
+        m.style.display = "none";
+      });
+    });
+  });
+
+  /* =========================
+     CLICK OUTSIDE CLOSE
+  ========================= */
+  document.querySelectorAll(".gallery-modall").forEach(modal => {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  });
+
+});
+</script>
+{% endblock %}

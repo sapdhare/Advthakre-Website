@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<he<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--  PRIMARY SEO -->
+    <title>Advocate Thakre & Associates | Best Lawyer in Amravati | Tax & Legal Services</title>
+
+    <meta name="description" content="Advocate Thakre & Associates provides expert legal and tax services in Amravati including Income Tax, GST, Civil, Criminal, Family Law & Legal Documentation. Trusted legal solutions with 15+ years experience.">
+
+    <meta name="keywords" content="
+    Advocate in Amravati,
+    Best Lawyer in Amravati,
+    Tax Consultant Amravati,
+    GST Consultant Amravati,
+    Income Tax Lawyer India,
+    Civil Lawyer Amravati,
+    Criminal Lawyer Amravati,
+    Family Lawyer Amravati,
+    Divorce Lawyer Amravati,
+    Legal Services Maharashtra,
+    Tax Planning Experts India,
+    Legal Documentation Services,
+    EPF ESIC Consultant,
+    Advocate Thakre and Associates
+    ">
+
+    <meta name="author" content="Advocate Thakre & Associates">
+
+    <!--  GOOGLE -->
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://advthakre.com/">
+
+    <!--  OPEN GRAPH (WHATSAPP / FACEBOOK) -->
+    <meta property="og:title" content="Advocate Thakre & Associates | Legal & Tax Experts">
+    <meta property="og:description" content="Expert legal and taxation services in Amravati. Income Tax, GST, Civil, Criminal & Family Law specialists.">
+    <meta property="og:image" content="{{ url_for('static', filename='images/logo1.png') }}">
+    <meta property="og:url" content="https://advthakre.com/">
+    <meta property="og:type" content="website">
+
+    <!--  TWITTER -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Advocate Thakre & Associates">
+    <meta name="twitter:description" content="Top legal and tax consultancy services in Amravati.">
+    <meta name="twitter:image" content="{{ url_for('static', filename='images/logo1.png') }}">
+
+    <!--  FAVICON -->
+    <link rel="icon" href="{{ url_for('static', filename='images/logo1.png') }}">
+
+    <!--  LOCAL SEO (VERY IMPORTANT) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LegalService",
+      "name": "Advocate Thakre & Associates",
+      "image": "https://advthakre.com/static/images/logo1.png",
+      "url": "https://advthakre.com",
+      "telephone": "+918888244176",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Amravati",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "India"
+      },
+      "areaServed": "India",
+      "priceRange": "₹₹",
+      "description": "Providing expert legal and tax services including Income Tax, GST, Civil, Criminal, Family Law and documentation services.",
+      "sameAs": [
+        "https://www.facebook.com/",
+        "https://www.instagram.com/",
+        "https://www.linkedin.com/"
+      ]
+    }
+    </script>
+
+    <!-- CSS FILES  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/services.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+     
+    <!-- DISCLAIMER STYLE -->
+    <style>
+      .disclaimer-popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.85);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+
+      .disclaimer-box {
+        width: 90%;
+        max-width: 600px;
+        padding: 35px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.06);
+        backdrop-filter: blur(25px);
+        border: 1px solid rgba(255,255,255,0.2);
+        text-align: center;
+        color: #fff;
+      }
+
+      .disclaimer-box h2 {
+        color: #d4af37;
+        margin-bottom: 15px;
+      }
+
+      .disclaimer-box p {
+        font-size: 14px;
+        color: #ddd;
+        margin-bottom: 10px;
+        line-height: 1.6;
+      }
+
+      .agree-box {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin: 15px 0;
+      }
+
+      #proceedBtn {
+        padding: 12px 25px;
+        border-radius: 8px;
+        border: none;
+        background: #d4af37;
+        color: #000;
+        font-weight: bold;
+        cursor: pointer;
+        opacity: 0.5;
+        pointer-events: none;
+        transition: 0.3s;
+      }
+
+      #proceedBtn.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      body.popup-open {
+        overflow: hidden;
+      }
+
+
+      .blog-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 30px;
+          margin-top: 40px;
+        }
+
+        .blog-card {
+          background: rgba(255,255,255,0.05);
+          border-radius: 15px;
+          overflow: hidden;
+          transition: 0.3s;
+        }
+
+        .blog-card img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+        }
+
+        .blog-content {
+          padding: 20px;
+        }
+
+        .btn-blog {
+          display: inline-block;
+          margin-top: 10px;
+          color: #d4af37;
+        }
+    </style>
+  </head>
+
+<body>  
+
+<!-- 🔥 DISCLAIMER POPUP -->
+<div id="disclaimer-popup" class="disclaimer-popup">
+  <div class="disclaimer-box">
+    <h2>Disclaimer</h2>
+
+    <p>
+      The Bar Council of India prohibits advocates from advertising or soliciting work in any form.
+      By accessing this website, you acknowledge that you are seeking information voluntarily.
+    </p>
+
+    <p>
+      The content available on this website is for informational purposes only and should not be
+      interpreted as legal advice or solicitation.
+    </p>
+
+    <label class="agree-box">
+      <input type="checkbox" id="agreeCheck">
+      <span>I Agree</span>
+    </label>
+
+    <button id="proceedBtn">Proceed</button>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header id="navbar" class="navbar">
+  <div class="container">
+
+    <!-- LOGO -->
+<a href="{{ url_for('home') }}" class="logo">
+
+  <img 
+    src="{{ url_for('static', filename='images/logo1.png') }}" 
+    alt="Thakre Logo" 
+    class="logo-img"
+  >
+
+  <div class="subtle-logo-text">
+    <h4>ADVOCATE THAKRE & ASSOCIATES</h4>
+    <p>Tax & Legal Services</p>
+  </div>
+
+</a>
+
+    <!-- DESKTOP MENU -->
+<nav class="nav-links">
+
+  <a href="/" class="nav-link">Home</a>
+
+  <!-- ABOUT -->
+  <div class="nav-item">
+    <a href="/about" class="nav-link">About ▾</a>
+
+    <div class="dropdown-menu">
+      <a href="/about">About Firm</a>
+      <a href="/team">Our Team</a>
+      <a href="/why-us">Why Choose Us</a>
+    </div>
+  </div>
+
+ <!-- SERVICES -->
+<div class="nav-item">
+  <a href="/services " class="nav-link">Services ▾</a>
+
+  <div class="dropdown-menu">
+
+    <a href="/services/income-tax-litigation">Income Tax Litigation</a>
+    <a href="/services/civil-law">Civil Law</a>
+    <a href="/services/criminal-law">Criminal Law</a>
+    <a href="/services/family-divorce">Family & Divorce</a>
+    <a href="/services/consumer-cases">Consumer Cases</a>
+    <a href="/services/legal-documentation">Legal Documentation</a>
+    <a href="/services/gst-services">GST Services</a>
+    <a href="/services/epf">EPF Services</a>
+    <a href="/services/esic">ESIC Services</a>
+    <a href="/services/other">Other Services</a>
+
+  </div>
+</div>
+
+  <a href="/gallery" class="nav-link">Gallery</a>
+  <a href="/blogs" class="nav-link">Blog</a>
+  <a href="/contact" class="nav-link">Contact</a>
+
+</nav>
+
+    <!-- MOBILE BUTTON -->
+    <div class="menu-toggle" id="menuToggle">☰</div>
+
+  </div>
+
+ <!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+
+  <div class="mobile-menu-card">
+
+    <a href="/">Home</a>
+
+    <!-- ABOUT -->
+    <div class="mobile-dropdown">
+      <div class="mobile-dropdown-header">
+        <a href="/about">About</a>
+        <span class="dropdown-arrow">▾</span>
+      </div>
+
+      <div class="mobile-submenu">
+        <a href="/about">About Firm</a>
+        <a href="/team">Our Team</a>
+        <a href="/why-us">Why Choose Us</a>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="mobile-dropdown">
+      <div class="mobile-dropdown-header">
+        <a href="/services">Services</a>
+        <span class="dropdown-arrow">▾</span>
+      </div>
+
+      <div class="mobile-submenu">
+        <a href="/services#income-tax">Income Tax Litigation</a>
+        <a href="/services#civil">Civil Law</a>
+        <a href="/services#criminal">Criminal Law</a>
+        <a href="/services#family">Family & Divorce</a>
+        <a href="/services#consumer">Consumer Cases</a>
+        <a href="/services#documentation">Legal Documentation</a>
+        <a href="/services#gst">GST Services</a>
+        <a href="/services#epf">EPF Services</a>
+        <a href="/services#esic">ESIC Services</a>
+        <a href="/services#other">Other Services</a>
+
+      </div>
+    </div>
+
+    <a href="/gallery">Gallery</a>
+    <a href="/blogs">Blog</a>
+    <a href="/contact">Contact</a>
+
+  </div>
+
+</div>
+</header>
+
+ 
+<main style="padding-top: 100px;">
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- COLUMN 1 -->
+    <div class="footer-col">
+
+      <div class="footer-logo">
+        <img src="{{ url_for('static', filename='images/logo1.png') }}" alt="Logo">
+        <div class="footer-logo-text">
+          <h3>AdvocateThakre & Associates</h3>
+          <p>Tax & Legal Services</p>
+        </div>
+      </div>
+
+      <p class="footer-text">
+        Delivering trusted legal and taxation solutions with precision, integrity, and client-first approach.
+      </p>
+
+      <!-- SOCIAL ICONS -->
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/p/Adv-Thakre-Tax-Consultant-61560064247830/"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/thakre_and_associates/"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/thakreandassociate/"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/@shriprabhusoftlink"><i class="fab fa-youtube"></i></a>
+        
+      </div>
+
+    </div>
+
+    <!-- COLUMN 2 -->
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About Us</a></li>
+        <li><a href="{{ url_for('services') }}">Services</a></li>
+        <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+        <li><a href="{{ url_for('public_blogs') }}">Blog</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- COLUMN 3 (UPDATED SERVICES) -->
+    <div class="footer-col">
+      <h4>Our Services</h4>
+      <ul>
+        <li><a href="/services#income-tax">Income Tax Litigation</a></li>
+        <li><a href="/services#civil">Civil Law</a></li>
+        <li><a href="/services#criminal">Criminal Law</a></li>
+        <li><a href="/services#family">Family & Divorce</a></li>
+        <li><a href="/services#consumer">Consumer Cases</a></li>
+        <li><a href="/services#documentation">Legal Documentation</a></li>
+        <li><a href="/services#gst">GST Services</a></li>
+        <li><a href="/services#epf">EPF Services</a></li>
+        <li><a href="/services#esic">ESIC Services</a></li>
+        <li><a href="/services#other">Other Services</a></li>
+
+      </ul>
+    </div>
+
+    <!-- COLUMN 4 -->
+    <div class="footer-col">
+      <h4>Contact Info</h4>
+
+      <ul class="footer-contact">
+        <li>
+          <a href="https://maps.google.com?q=Amravati,Maharashtra" target="_blank">
+            <i class="fas fa-map-marker-alt"></i>
+            Amravati, Maharashtra
+          </a>
+        </li>
+
+        <li>
+          <a href="tel:+918888244176">
+            <i class="fas fa-phone"></i>
+            +91 8888244176
+          </a>
+        </li>
+
+        <li>
+          <a href="mailto:info@thakreassociates.com">
+            <i class="fas fa-envelope"></i>
+            info@advthakre.com
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <p>© 2026 Thakre & Associates. All rights reserved.</p>
+
+    <div>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOAT BUTTON -->
+<div class="wa-float" onclick="toggleChat()">
+  <i class="fas fa-comment-dots"></i>
+</div>
+
+<!-- CHAT BOX -->
+<div class="wa-chat-box" id="waChatBox">
+
+  <!-- HEADER -->
+  <div class="wa-header">
+    <span>Legal Assistant</span>
+    <button onclick="toggleChat()">×</button>
+  </div>
+
+  <!-- CHAT AREA -->
+  <div class="wa-chat-body" id="chatBody">
+    <div class="bot-msg">
+      👋 Hello! Welcome to Advocate Thakre & Associates.<br>
+      How can I assist you today?
+    </div>
+  </div>
+
+  <!-- INPUT -->
+  <div class="wa-input">
+    <input type="text" id="userInput" placeholder="Ask about services, location..." />
+    <button onclick="sendMessage()">➤</button>
+  </div>
+
+</div>
+
+
+<script>
+function toggleChat() {
+  const box = document.getElementById("waChatBox");
+  box.style.display = box.style.display === "block" ? "none" : "block";
+}
+
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const chat = document.getElementById("chatBody");
+
+  const userText = input.value.trim();
+  if (userText === "") return;
+
+  // USER MESSAGE
+  const userMsg = document.createElement("div");
+  userMsg.className = "user-msg";
+  userMsg.innerText = userText;
+  chat.appendChild(userMsg);
+
+  // BOT RESPONSE
+  const botMsg = document.createElement("div");
+  botMsg.className = "bot-msg";
+
+  const msg = userText.toLowerCase();
+
+  if (msg.includes("service")) {
+    botMsg.innerHTML = `
+      We offer:<br>
+      • Income Tax<br>
+      • GST Services<br>
+      • Civil Law<br>
+      • Criminal Law<br>
+      • Family & Divorce<br><br>
+      👉 <a href="/services" style="color:#d4af37;">View Services</a>
+    `;
+  }
+  else if (msg.includes("contact") || msg.includes("call")) {
+    botMsg.innerHTML = `
+      📞 Call us: <a href="tel:+918888244176" style="color:#d4af37;">+91 8888244176</a><br>
+      📩 Email: info@thakreassociates.com
+    `;
+  }
+  else if (msg.includes("location") || msg.includes("address")) {
+    botMsg.innerHTML = `
+      📍 Amravati, Maharashtra<br>
+      👉 <a href="https://maps.google.com" target="_blank" style="color:#d4af37;">View on Map</a>
+    `;
+  }
+  else if (msg.includes("consult")) {
+    botMsg.innerHTML = `
+      You can book a consultation here:<br>
+      👉 <a href="/contact" style="color:#d4af37;">Get Consultation</a>
+    `;
+  }
+  else {
+    botMsg.innerHTML = `
+      I'm here to help! You can ask about:<br>
+      • Services<br>
+      • Contact<br>
+      • Location<br>
+      • Consultation
+    `;
+  }
+
+  // SIMULATE TYPING DELAY
+  setTimeout(() => {
+    chat.appendChild(botMsg);
+    chat.scrollTop = chat.scrollHeight;
+  }, 500);
+
+  input.value = "";
+}
+</script>
+
+<!--  DISCLAIMER SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+const popup = document.getElementById("disclaimer-popup");
+const checkbox = document.getElementById("agreeCheck");
+const button = document.getElementById("proceedBtn");
+
+ if (!popup) return;
+
+// CHECK IF USER HAS ALREADY ACCEPTED
+ 
+    const isAccepted = sessionStorage.getItem("disclaimerAccepted");
+
+  if (isAccepted === "true") {
+    popup.style.display = "none";
+    document.body.classList.remove("popup-open");
+    return;
+  }
+
+  // SHOW POPUP
+  popup.style.display = "flex";
+  document.body.classList.add("popup-open");
+
+  // ENABLE BUTTON
+  checkbox.addEventListener("change", () => {
+    button.classList.toggle("active", checkbox.checked);
+  });
+
+  // PROCEED CLICK
+  button.addEventListener("click", () => {
+
+    // ✅ SAVE ONLY FOR THIS SESSION
+    sessionStorage.setItem("disclaimerAccepted", "true");
+
+
+    popup.style.display = "none";
+    document.body.classList.remove("popup-open");
+  });
+
+
+});
+</script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="{{ url_for('static', filename='js/slider.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/three-bg.js') }}"></script>
+
+</body>
+</html>

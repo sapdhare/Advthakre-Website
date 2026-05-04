@@ -1,0 +1,102 @@
+{% extends 'admin/admin-layout.html' %}
+{% block content %}
+
+<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+
+<div class="container mt-4">
+    <h3 class="mb-4">Edit Publication</h3>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+
+            <form method="POST" enctype="multipart/form-data">
+
+                <!-- Title -->
+                <div class="mb-3">
+                    <label class="form-label">Title</label>
+                    <input type="text" name="title" class="form-control"
+                           value="{{ blog[1] }}" required>
+                </div>
+
+                <!-- Content Editor -->
+                <div class="mb-3">
+                    <label class="form-label">Content</label>
+                    <textarea name="content" id="editor">{{ blog[3] }}</textarea>
+                </div>
+
+                <!-- Status -->
+                <div class="mb-3">
+                    <label class="form-label">Status</label>
+                    <select name="status" class="form-select">
+                        <option value="Draft" {% if blog[5]=='Draft' %}selected{% endif %}>Draft</option>
+                        <option value="Published" {% if blog[5]=='Published' %}selected{% endif %}>Published</option>
+                    </select>
+                </div>
+
+                <!-- Featured Image -->
+                <div class="mb-3">
+                    <label class="form-label">Current Featured Image</label><br>
+                    {% if blog[4] %}
+                    <img src="{{ url_for('static', filename='uploads/' + blog[4]) }}"
+                         width="180" class="mb-2 rounded">
+                    {% else %}
+                    <p>No image uploaded</p>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Change Featured Image</label>
+                    <input type="file" name="image" class="form-control">
+                </div>
+
+                <!-- Gallery Images -->
+                <div class="mb-3">
+                    <label class="form-label">Gallery Images</label><br>
+                    {% for img in images %}
+                        <img src="{{ url_for('static', filename='uploads/' + img[0]) }}"
+                             width="120" class="me-2 mb-2 rounded">
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Add More Gallery Images</label>
+                    <input type="file" name="images" class="form-control" multiple>
+                </div>
+
+                <button class="btn btn-dark">Update Blog</button>
+                <a href="/admin/blogs" class="btn btn-secondary">Cancel</a>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+ClassicEditor
+    .create(document.querySelector('#editor'), {
+        toolbar: [
+            'heading',
+            '|',
+            'bold',
+            'italic',
+            'underline',
+            'strikethrough',
+            '|',
+            'bulletedList',
+            'numberedList',
+            '|',
+            'link',
+            'blockQuote',
+            'insertTable',
+            '|',
+            'undo',
+            'redo'
+        ]
+    })
+    .catch(error => {
+        console.error(error);
+    });
+</script>
+
+{% endblock %}

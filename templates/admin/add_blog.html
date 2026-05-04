@@ -1,0 +1,136 @@
+{% extends 'admin/admin-layout.html' %}
+{% block content %}
+
+<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+
+<div class="container-fluid py-4">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h4 class="fw-bold mb-0">Create Publication</h4>
+            <small class="text-muted">Add new legal blog</small>
+        </div>
+
+        <div>
+            <a href="/admin/blogs" class="btn btn-light border">Cancel</a>
+            <button type="submit" form="blogForm" class="btn btn-dark">
+                Publish
+            </button>
+        </div>
+    </div>
+
+    <form id="blogForm" method="POST" enctype="multipart/form-data">
+
+        <div class="row g-4">
+
+            <!-- LEFT SIDE -->
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0 p-4">
+
+                    <!-- TITLE -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Article Title</label>
+                        <input type="text" name="title" class="form-control form-control-lg"
+                               placeholder="Enter blog title" required>
+                    </div>
+
+                    <!-- CONTENT -->
+                    <div>
+                        <label class="form-label fw-bold">Content</label>
+                        <textarea name="content" id="editor"></textarea>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="col-lg-4">
+
+                <!-- SETTINGS -->
+                <div class="card shadow-sm border-0 p-4 mb-4">
+                    <h6 class="fw-bold mb-3">Post Settings</h6>
+
+                    <!-- AUTHOR -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Author</label>
+                        <select name="author" class="form-select" required>
+                            <option value="">Select Author</option>
+                            {% for member in team %}
+                                <option value="{{ member[0] }}">
+                                    {{ member[1] }} ({{ member[3] }})
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- SLUG -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Slug</label>
+                        <input type="text" name="slug" class="form-control"
+                               placeholder="auto-generated">
+                    </div>
+
+                    <!-- STATUS -->
+                    <div>
+                        <label class="form-label fw-bold">Status</label>
+                        <select name="status" class="form-select">
+                            <option value="Draft">Draft</option>
+                            <option value="Published">Published</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- IMAGES -->
+                <div class="card shadow-sm border-0 p-4 mb-4">
+                    <h6 class="fw-bold mb-3">Images</h6>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Featured Image</label>
+                        <input type="file" name="image" class="form-control">
+                    </div>
+
+                    <div>
+                        <label class="form-label fw-bold">Gallery Images</label>
+                        <input type="file" name="images" multiple class="form-control">
+                    </div>
+                </div>
+
+                <!-- TIPS -->
+                <div class="card border-0 bg-dark text-white p-4">
+                    <h6 class="fw-bold text-warning mb-2">Tips</h6>
+                    <ul class="small mb-0">
+                        <li>Use headings for structure</li>
+                        <li>Keep paragraphs short</li>
+                        <li>Add images for engagement</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+<!-- CKEDITOR -->
+<script>
+ClassicEditor.create(document.querySelector('#editor')).catch(error => {
+    console.error(error);
+});
+</script>
+
+<!-- AUTO SLUG -->
+<script>
+document.querySelector('[name="title"]').addEventListener('input', function() {
+    let slug = this.value
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '');
+
+    document.querySelector('[name="slug"]').value = slug;
+});
+</script>
+
+{% endblock %}

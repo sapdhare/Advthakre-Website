@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="contact-hero">
+
+  <!-- BACKGROUND -->
+  <div class="hero-bg"></div>
+
+  <!-- CONTENT -->
+  <div class="contact-hero-content">
+
+    <h1>
+      Get In <span>Touch</span>
+    </h1>
+
+    <div class="breadcrumb">
+      <a href="{{ url_for('home') }}">Home</a>
+      <span>/</span>
+      <span class="active">Contact</span>
+    </div>
+
+    <p class="hero-subtitle">
+      Connect with our experts for trusted legal and taxation solutions tailored to your needs.
+    </p>
+
+  </div>
+
+</section>
+<!-- CONTACT SECTION -->
+<section class="contact-cards">
+
+  <div class="contact-cards-container">
+
+    <!-- CALL -->
+    <a href="tel:+918888244176" class="contact-card">
+      <div class="icon"><i class="fas fa-phone"></i></div>
+      <h3>Call Us</h3>
+      <p>+91 8888244176</p>
+      <span>Call Now →</span>
+    </a>
+
+    <!-- WHATSAPP -->
+    <a href="https://wa.me/918888244176" target="_blank" class="contact-card">
+      <div class="icon"><i class="fab fa-whatsapp"></i></div>
+      <h3>WhatsApp</h3>
+      <p>Chat with our team instantly</p>
+      <span>Start Chat →</span>
+    </a>
+
+    <!-- EMAIL -->
+    <a href="mailto:info@thakreassociates.com" class="contact-card">
+      <div class="icon"><i class="fas fa-envelope"></i></div>
+      <h3>Email Us</h3>
+      <p>info@thakreassociates.com</p>
+      <span>Send Email →</span>
+    </a>
+
+    <!-- ADDRESS -->
+    <a href="https://maps.app.goo.gl/Xe5k15qF54viQBKp9" target="_blank" class="contact-card">
+      <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+      <h3>Visit Office</h3>
+      <p>Amravati, Maharashtra</p>
+      <span>Get Directions →</span>
+    </a>
+
+  </div>
+
+</section>
+
+<!-- FORM + MAP SECTION -->
+ <section class="contact-main" id="ctaForm">
+
+  <div class="contact-wrapper" >
+
+    <!-- LEFT FORM -->
+    <div class="contact-form-box" >
+
+      <h2>Send Us a Message</h2>
+      <p>Fill out the form and our team will get back to you shortly.</p>
+
+      <form id="contactForm">
+
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email Address" required>
+        <input type="tel" id="phone" placeholder="Phone Number" required>
+
+        <select id="service" required>
+          <option value="">Select Service</option>
+          <option>Income Tax Litigation</option>
+          <option>Civil Law</option>
+          <option>Criminal Law</option>
+          <option>Family & Divorce</option>
+          <option>Consumer Cases</option>
+          <option>Legal Documentation</option>
+          <option>GST Services</option>
+        </select>
+
+        <input type="text" id="subject" placeholder="Subject" required>
+
+        <textarea id="message" rows="4" placeholder="Your Message"></textarea>
+
+        <button type="submit">Send Message →</button>
+
+      </form>
+
+    </div>
+
+    <!-- RIGHT MAP -->
+    <div class="contact-map">
+
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3727.0839375213395!2d77.7599689!3d20.9089424!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd6a54ddbe17d1f%3A0x121708717e71c25f!2sShri%20Prabhu%20Softlink%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1775478522989!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- LEGAL CTA SECTION  -->
+<section class="legal-cta">
+
+  <div class="legal-cta-box">
+
+    <h2>Thank You for Visiting</h2>
+
+    <p>
+      We appreciate your time in exploring Thakre & Associates.  
+      Our commitment is to provide reliable legal guidance with integrity, professionalism, and confidentiality.
+    </p>
+
+    <p class="cta-note">
+      If you require assistance, you may reach out to us for general information or consultation.
+    </p>
+
+    <a href="/contact#ctaForm" class="cta-btn">
+      Contact Our Office →
+    </a>
+
+  </div>
+
+</section>
+ <!-- WHATSAPP FORM SUBMISSION SCRIPT -->
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
+  const service = document.getElementById("service").value;
+  const subject = document.getElementById("subject").value;
+  const message = document.getElementById("message").value;
+
+  const whatsappMessage =
+`*ADVOCATE THAKRE & ASSOCIATES*
+*Legal Consultation Request*
+
+--------------------------------
+*Client Details*
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+
+--------------------------------
+*Service Required*
+${service}
+
+--------------------------------
+*Subject*
+${subject}
+
+--------------------------------
+*Client Message*
+${message}
+
+--------------------------------
+This inquiry was submitted from the website contact form.`;
+
+  const url = "https://wa.me/918888244176?text=" + encodeURIComponent(whatsappMessage);
+
+  window.open(url, "_blank");
+});
+</script>
+
+{% endblock %}

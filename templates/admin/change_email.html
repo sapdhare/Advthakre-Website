@@ -1,0 +1,52 @@
+{% extends 'admin/admin-layout.html' %}
+{% block content %}
+
+<div class="mb-4">
+    <h3 class="fw-bold mb-1">Change Email</h3>
+    <p class="text-muted">Update your login email address.</p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-12">
+
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    <div class="alert alert-info">
+                        {{ messages[0] }}
+                    </div>
+                  {% endif %}
+                {% endwith %}
+
+                <form method="POST">
+
+                    <div class="mb-3">
+                        <label class="form-label">New Email Address</label>
+                        <input type="email" name="email" class="form-control form-control-lg" required>
+                    </div>
+
+                    <div class="d-flex gap-2 flex-wrap">
+                        <button class="btn btn-dark">
+                            Update Email
+                        </button>
+
+                        <a href="/admin/profile" class="btn btn-secondary">
+                            Cancel
+                        </a>
+
+                        <a href="/admin/dashboard" class="btn btn-outline-dark">
+                            Dashboard
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

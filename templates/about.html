@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ===== HERO SECTION ===== -->
+ 
+<section class="about-hero">
+
+  <!-- BACKGROUND LAYER -->
+  <div class="hero-bg"></div>
+
+  <!-- CONTENT -->
+  <div class="hero-content">
+
+    <h1>
+      About <span>Us</span>
+    </h1>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <span class="active">About</span>
+    </div>
+
+    <p class="hero-subtitle">
+      Trusted legal and taxation experts in Amravati
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ===== ABOUT OVERVIEW SECTION ===== -->
+<section class="about-overview">
+
+  <div class="about-wrapper"> <!-- 🔥 NEW WRAPPER -->
+
+    <div class="about-overview-grid">
+
+      <!-- LEFT IMAGE -->
+      <div class="about-images">
+        <img src="{{ url_for('static', filename='images/about.png') }}" class="active">
+        <img src="{{ url_for('static', filename='images/about1.jpg') }}">
+        <img src="{{ url_for('static', filename='images/about3.jpg') }}">
+      </div>
+
+      <!-- RIGHT CONTENT -->
+      <div class="about-content">
+
+        <h2>
+          About <span>Thakre & Associates</span>
+        </h2>
+
+        <p>
+          Advocate Thakre and Associates is a full-service law firm committed to delivering exceptional legal solutions with precision, integrity, and a client-first approach.
+        </p>
+
+        <p>
+          With a team of experienced professionals, we provide comprehensive advocacy and advisory services across taxation, compliance, and legal domains.
+        </p>
+
+        <div class="about-points">
+
+          <div class="point">
+            <i class="fas fa-scale-balanced"></i>
+            <span>Expert Legal Advisory</span>
+          </div>
+
+          <div class="point">
+            <i class="fas fa-file-contract"></i>
+            <span>Business Compliance Solutions</span>
+          </div>
+
+          <div class="point">
+            <i class="fas fa-user-shield"></i>
+            <span>Trusted Client Relationships</span>
+          </div>
+
+          <div class="point">
+            <i class="fas fa-chart-line"></i>
+            <span>Growth-Focused Strategies</span>
+          </div>
+
+        </div>
+
+        <a href="/contact" class="gold-btn">Get Consultation →</a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</section>
+
+<!-- ===== OUR APPROACH SECTION ===== -->
+<section class="approach-section">
+
+  <div class="approach-wrapper"> <!-- 🔥 CENTER BLOCK -->
+
+    <!-- HEADER -->
+    <div class="approach-header">
+      <h2>
+        Our <span>Approach</span>
+      </h2>
+
+      <p>
+        We follow a structured and client-focused process to deliver reliable legal and tax solutions.
+      </p>
+    </div>
+
+    <!-- CARDS -->
+    <div class="approach-grid">
+
+      <!-- CARD 1 -->
+      <div class="approach-card">
+        <i class="fas fa-comments"></i>
+        <h3>Consultation</h3>
+        <p>We understand your needs and analyze your legal or tax situation.</p>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="approach-card">
+        <i class="fas fa-magnifying-glass"></i>
+        <h3>Analysis</h3>
+        <p>In-depth research and evaluation to identify the best solution.</p>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="approach-card">
+        <i class="fas fa-scale-balanced"></i>
+        <h3>Execution</h3>
+        <p>Accurate and efficient implementation of legal strategies.</p>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="approach-card">
+        <i class="fas fa-handshake"></i>
+        <h3>Support</h3>
+        <p>Continuous guidance and support for long-term success.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+ <!-- ===== CLIENT LOGOS SECTION ===== -->
+<section class="clients-section">
+
+  <div class="clients-wrapper"> <!-- 🔥 CENTER BLOCK -->
+
+    <div class="clients-header">
+      <h2>Trusted By <span>Institutions</span></h2>
+      <p>Serving clients across Amravati division</p>
+    </div>
+
+    <!-- SLIDER -->
+    <div class="clients-slider">
+
+      <div class="clients-track">
+
+        <!-- LOGOS (SET 1) -->
+        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/amc.png') }}"></div>
+        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/vyws-logo.png') }}"></div>
+        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/shivaji-logo.png') }}"></div>
+        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/district-health-logo.png') }}"></div>
+        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/prashikshan logo.png') }}"></div>
+        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/brijlal-biyani.jpg') }}"></div>
+        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/bhartiya-college.png') }}"></div>
+
+        <!-- 🔁 DUPLICATE (IMPORTANT for infinite loop) -->
+        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/amc.png') }}"></div>
+        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/vyws-logo.png') }}"></div>
+        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/shivaji-logo.png') }}"></div>
+        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/district-health-logo.png') }}"></div>
+        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/prashikshan logo.png') }}"></div>
+        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/brijlal-biyani.jpg') }}"></div>
+        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/bhartiya-college.png') }}"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}

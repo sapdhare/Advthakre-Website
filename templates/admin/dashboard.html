@@ -1,0 +1,105 @@
+{% extends 'admin/admin-layout.html' %}
+{% block content %}
+
+<!-- Header Section -->
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+    <div>
+        <h3 class="fw-bold mb-1">Administrative Overview</h3>
+        <p class="text-muted mb-0">Welcome back, Adv. Thakre & Associates</p>
+    </div>
+
+    <div>
+        <span class="badge bg-white text-dark border px-3 py-2 shadow-sm">
+            <i class="bi bi-calendar3 me-2 text-warning"></i>
+            <span id="currentDate" class="fw-semibold"></span>
+        </span>
+    </div>
+</div>
+
+<!-- Stats + Quick Actions -->
+<div class="row g-4 mb-4">
+
+    <!-- Blog Count -->
+    <div class="col-12 col-md-6 col-xl-4">
+        <div class="card border-0 shadow-sm p-4 h-100" style="border-left: 5px solid #d4af37;">
+            <div class="d-flex align-items-center">
+                <div class="bg-light p-3 rounded-circle">
+                    <i class="bi bi-journal-text fs-3" style="color:#d4af37;"></i>
+                </div>
+                <div class="ms-3">
+                    <small class="text-muted fw-bold text-uppercase">Total Blogs</small>
+                    <h2 class="mb-0 fw-bold">{{ blog_count }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="col-12 col-md-6 col-xl-8">
+        <div class="card border-0 shadow-sm p-4 h-100">
+            <h6 class="fw-bold mb-3">Quick Management</h6>
+
+            <div class="row g-2">
+                <div class="col-12 col-sm-4">
+                    <a href="/admin/add-blog" class="btn btn-gold w-100">
+                        <i class="bi bi-plus-lg me-2"></i>Add Blog
+                    </a>
+                </div>
+
+                <div class="col-12 col-sm-4">
+                    <a href="/admin/blogs" class="btn btn-outline-dark w-100">
+                        <i class="bi bi-gear me-2"></i>Manage Blogs
+                    </a>
+                </div>
+
+                <div class="col-12 col-sm-4">
+                    <a href="/blogs" target="_blank" class="btn btn-light border w-100">
+                        <i class="bi bi-eye me-2"></i>View Website
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Bottom Banner -->
+<div class="row">
+    <div class="col-12">
+        <div class="p-4 p-md-5 rounded-4 bg-dark text-white shadow-lg d-flex flex-column flex-md-row align-items-center justify-content-between text-center text-md-start">
+            <div class="mb-3 mb-md-0">
+                <h5 class="mb-1 fw-bold" style="color:#d4af37;">
+                    Keep your clients informed.
+                </h5>
+                <p class="mb-0 opacity-75">
+                    Regular updates on legal matters build trust and firm authority.
+                </p>
+            </div>
+            <div class="display-5 opacity-25 d-none d-md-block">
+                <i class="bi bi-shield-check"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const options = { month: 'long', day: 'numeric', year: 'numeric' };
+document.getElementById('currentDate').innerText =
+    new Date().toLocaleDateString('en-US', options);
+</script>
+
+<style>
+.btn-gold {
+    background-color: #d4af37;
+    color: black;
+    font-weight: 600;
+    border: none;
+}
+
+.btn-gold:hover {
+    background-color: #bc9b30;
+    color: black;
+}
+</style>
+
+{% endblock %}

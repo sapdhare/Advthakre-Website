@@ -1,0 +1,156 @@
+{% extends 'admin/admin-layout.html' %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <div>
+        <h3 class="fw-bold mb-1">Manage Publications</h3>
+        <p class="text-muted mb-0">View, edit and manage all blog posts.</p>
+    </div>
+    <a href="/admin/add-blog" class="btn btn-dark">+ Add New Blog</a>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body">
+
+        <!-- Search + Filter -->
+        <form method="GET" class="row g-2 mb-4">
+            <div class="col-lg-4 col-md-6">
+                <input type="text" name="search" value="{{ search }}"
+                       class="form-control"
+                       placeholder="Search blog title...">
+            </div>
+
+            <div class="col-lg-3 col-md-4">
+                <select name="status" class="form-select">
+                    <option value="">All Status</option>
+                    <option value="Published" {% if status=='Published' %}selected{% endif %}>Published</option>
+                    <option value="Draft" {% if status=='Draft' %}selected{% endif %}>Draft</option>
+                </select>
+            </div>
+
+            <div class="col-lg-3 col-md-4">
+                <button class="btn btn-dark">Apply</button>
+                <a href="/admin/blogs" class="btn btn-light border">Reset</a>
+            </div>
+        </form>
+
+        <!-- Blog Table -->
+        <div class="table-responsive">
+            <table class="table align-middle table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Date</th>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for blog in blogs %}
+                    <tr>
+                        <td>
+                            <small class="text-muted">
+                                {{ blog[4].strftime('%d %b %Y') }}
+                            </small>
+                        </td>
+
+                        <td>
+                            {% if blog[3] %}
+                            <img src="{{ url_for('static', filename='uploads/' + blog[3]) }}"
+                                 style="width:75px; height:50px; object-fit:cover; border-radius:6px;">
+                            {% else %}
+                            <span class="text-muted small">No Image</span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            <strong>{{ blog[1] }}</strong>
+                        </td>
+
+                        <td>
+                            {% if blog[6] == 'Published' %}
+                            <span class="badge bg-success px-3 py-2">Published</span>
+                            {% else %}
+                            <span class="badge bg-secondary px-3 py-2">Draft</span>
+                            {% endif %}
+                        </td>
+
+                        <td class="text-end">
+                            <a href="/admin/edit-blog/{{ blog[0] }}" class="btn btn-sm btn-outline-warning">Edit</a>
+
+                            <!-- ✅ FIXED DELETE BUTTON -->
+                            <button onclick="confirmDelete({{ blog[0] }})"
+                                    class="btn btn-sm btn-outline-danger">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap">
+            <div class="text-muted small">
+                Page {{ page }} of {{ total_pages }}
+            </div>
+
+            <nav>
+                <ul class="pagination mb-0">
+                    {% for p in range(1, total_pages + 1) %}
+                    <li class="page-item {% if p == page %}active{% endif %}">
+                        <a class="page-link"
+                           href="?page={{p}}&search={{search}}&status={{status}}">
+                            {{p}}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</div>
+
+<!-- ✅ DELETE MODAL (ONLY ONCE, OUTSIDE LOOP) -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title text-danger">Confirm Delete</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        Are you sure you want to delete this blog? This action cannot be undone.
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+
+        <a href="#" id="deleteBtn" class="btn btn-danger">
+          Yes, Delete
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ✅ SCRIPT -->
+<script>
+function confirmDelete(id) {
+    document.getElementById("deleteBtn").href = "/admin/delete-blog/" + id;
+
+    var modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    modal.show();
+}
+</script>
+
+{% endblock %}

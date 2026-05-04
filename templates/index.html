@@ -1,0 +1,617 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <!-- HERO SECTION  -->
+<section class="hero">
+
+  <!-- THREE BACKGROUND -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 🔥 SLIDE 1 -->
+  <div class="slide active">
+    <img src="static/images/gallery/office_front.png"  alt="Tax consultant services in Amravati - Advocate Thakre"/>
+    <div class="overlay"></div>
+
+    <div class="glass-card">
+      <p class="subtitle">Tax Planning Experts</p>
+
+      <h1>
+        Navigate Tax Laws <br>
+        <span>Easily</span>
+      </h1>
+
+      <p class="desc">
+        We simplify compliance and maximize your efficiency.
+      </p>
+
+      <div class="buttons">
+        <a href="/contact#ctaForm" class="btn gold">Get Started</a>
+        <a href="/services#servGrid" class="btn outline">Our Services</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔥 SLIDE 2 -->
+  <div class="slide">
+    <img src="static/images/gallery/client2.png"   alt="Legal advisory services in Amravati - Advocate Thakre"/>
+    <div class="overlay"></div>
+
+    <div class="glass-card">
+      <p class="subtitle">Legal Expertise</p>
+
+      <h1>
+        Trusted Legal <br>
+        <span>Advisory</span>
+      </h1>
+
+      <p class="desc">
+        Professional legal solutions for businesses and individuals.
+      </p>
+
+      <div class="buttons">
+        <a href="/contact#ctaForm" class="btn gold">Consult Now</a>
+        <a href="/about" class="btn outline">Learn More</a>
+      </div>
+    </div>
+  </div>
+  <!-- 🔥 SLIDE 3 -->
+  <div class="slide">
+    <img src="static/images/gallery/office_grp.png"  alt="Business legal support services in Amravati - Advocate Thakre"/>
+    <div class="overlay"></div>
+
+    <div class="glass-card">
+      <p class="subtitle">Business Support</p>
+
+      <h1>
+        Complete Business <br>
+        <span>Compliance</span>
+      </h1>
+
+      <p class="desc">
+        From GST to company registration — we handle everything.
+      </p>
+
+      <div class="buttons">
+        <a href="/services#servGrid" class="btn gold">Explore Services</a>
+        <a href="/contact#ctaForm" class="btn outline">Contact Us</a>
+      </div>
+    </div>
+  </div>
+
+  <!--  NAVIGATION -->
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
+
+  <!-- DOTS -->
+  <div class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+
+ <div class="hero-divider"></div>
+
+</section>
+
+<!-- TRUST/STATS SECTION -->
+<section class="stats">
+
+  <div class="stats-container">
+
+    <!-- CARD 1 -->
+    <div class="stat-card">
+      <div class="icon">⚖️</div>
+      <h2 class="counter" data-target="13000">0</h2>
+      <p>Clients Served</p>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="stat-card">
+      <div class="icon">📊</div>
+      <h2 class="counter" data-target="25">0</h2>
+      <p>Years Experience</p>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="stat-card">
+      <div class="icon">📁</div>
+      <h2 class="counter" data-target="12000">0</h2>
+      <p>Cases Handled</p>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="stat-card">
+      <div class="icon">🏆</div>
+      <h2 class="counter" data-target="98">0</h2>
+      <p>Success Rate (%)</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about">
+
+  <div class="about-container">
+
+    <!-- IMAGE -->
+    <div class="about-image">
+      <img src="{{ url_for('static', filename='images/about.png') }}" alt="">
+      <div class="image-glow"></div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="about-content">
+
+      <p class="about-tag">About Us</p>
+
+      <h2>
+         Top Legal & Tax Consultants in Amravati <br>
+        <span>Advocate Thakre & Associates</span>
+      </h2>
+
+      <p class="about-desc">
+        Thakre & Associates provides reliable taxation and legal solutions
+        tailored for individuals and businesses. We simplify compliance,
+        ensure accuracy, and help you grow with confidence.
+      </p>
+
+      <div class="about-points">
+        <div class="point">✔ Expert Tax Consultation</div>
+        <div class="point">✔ Legal Representation</div>
+        <div class="point">✔ Business Compliance Support</div>
+      </div>
+
+      <a href="/about" class="about-btn">Learn More →</a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SERVICES SECTION -->
+ <section class="services">
+
+  <h2 class="section-title">Our <span>Services</span></h2>
+ <p style="color:#aaa; max-width:600px; margin:auto; margin-bottom:60px;margin-top:-40px">
+  We provide expert legal services including Income Tax, GST, Civil, Criminal,
+  Family Law, and business compliance solutions in Amravati and across Maharashtra.
+ </p>
+  <div class="orbit-wrapper">
+
+    <!-- CENTER (FIXED) -->
+    <div class="center-circle">
+      <h3>Thakre & Associates</h3>
+      <p>Tax & Legal Experts</p>
+    </div>
+
+    <!-- ORBIT -->
+<div class="orbit">
+
+<div class="planet" style="--i:0"><span>Legal</span></div>
+<div class="planet" style="--i:1"><span>Company</span></div>
+<div class="planet" style="--i:2"><span>Taxation</span></div>
+<div class="planet" style="--i:3"><span>Compliance</span></div>
+<div class="planet" style="--i:4"><span>Registration</span></div>
+<div class="planet" style="--i:5"><span>Consulting</span></div>
+
+</div>
+
+  </div>
+
+</section>
+
+<!-- FEATURES SECTION -->
+
+<section class="features">
+
+  <div class="features-header">
+    <p class="tag">Our Features</p>
+    <h2>
+      Expert Guidance. <span>Seamless Solutions.</span>
+    </h2>
+    <p class="subtitle">
+      We deliver reliable, efficient, and transparent legal & taxation services
+      tailored for individuals and businesses in Amravati.
+    </p>
+  </div>
+
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <div class="icon">⚖️</div>
+      <h3>Expert Legal & Tax Services</h3>
+      <p>Comprehensive solutions for taxation, GST, and legal compliance.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="icon">👥</div>
+      <h3>Personalized Client Support</h3>
+      <p>Tailored services based on your business and individual needs.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="icon">🤝</div>
+      <h3>Trusted Experience</h3>
+      <p>Years of professional expertise with proven client satisfaction.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="icon">💻</div>
+      <h3>Technology Driven</h3>
+      <p>Efficient workflows using modern tools for faster service delivery.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- TESTIMONIALS SECTION -->
+
+<section class="testimonials">
+
+<div class="testimonials-wrapper">
+  <div class="testimonials-header">
+    <p class="testimonials-tag">Our Testimonials</p>
+    <h2>
+            What Our <span>Clients Say</span>
+
+    </h2>
+    <p class="testimonials-subtitle">
+     Trusted by institutions and goverment offices and peoples across Amravati division.
+    </p>
+  </div>
+
+    <!-- SLIDER -->
+     <div class="testimonial-slider">
+      <div class="testimonial-track">
+
+
+        <!-- CARD 1 -->
+        <div class="testimonial-card">
+          <p>
+            "Thakre & Associates provided excellent support in taxation matters.
+            Their guidance helped us maintain compliance smoothly."
+          </p>
+          <h4>Amravati Municipal Corporation</h4>
+          <span>Amravati</span>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="testimonial-card">
+          <p>
+            "Very professional and reliable service. Their legal expertise is
+            commendable and always delivered on time."
+          </p>
+          <h4>Late Baburao Kubetkar Madhyamik Vidyalaya</h4>
+          <span>Amravati Division</span>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="testimonial-card">
+          <p>
+            "We received complete assistance in compliance and documentation.
+            Highly recommend for educational institutions."
+          </p>
+          <h4>Block Education Officer Office</h4>
+          <span>Nandgaon Kh</span>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="testimonial-card">
+          <p>
+            "Their team handled our taxation and legal matters efficiently.
+            Hassle-free experience throughout."
+          </p>
+          <h4>Shri Shivaji High School & Jr College</h4>
+          <span>Darwha</span>
+        </div>
+
+        <!-- CARD 5 -->
+        <div class="testimonial-card">
+          <p>
+            "Expert consultation and quick solutions. Their approach is very
+            practical and result-oriented."
+          </p>
+          <h4>Panchayat Samiti</h4>
+          <span>Nandgaon Kh</span>
+        </div>
+
+        <!-- CARD 6 -->
+        <div class="testimonial-card">
+          <p>
+            "We appreciate their professionalism and accuracy in handling tax
+            filings and compliance services."
+          </p>
+          <h4>Krushnabai Dandale Jr. College</h4>
+          <span>Teosa</span>
+        </div>
+
+        <!-- CARD 7 -->
+        <div class="testimonial-card">
+          <p>
+            "A trustworthy firm for legal and taxation advisory. Their support
+            has been consistent and dependable."
+          </p>
+          <h4>Deputy Director of Education Office</h4>
+          <span>Amravati Division</span>
+        </div>
+
+        <!-- CARD 8 -->
+        <div class="testimonial-card">
+          <p>
+            "Professional service with deep knowledge of compliance and
+            regulations. Highly satisfied with their work."
+          </p>
+          <h4>Ahilyadevi Holkar Kanya Vidyalaya</h4>
+          <span>Amravati</span>
+        </div>
+
+        <!-- DUPLICATE FOR INFINITE SCROLL -->
+          <!-- CARD 1 -->
+        <div class="testimonial-card">
+          <p>
+            "Thakre & Associates provided excellent support in taxation matters.
+            Their guidance helped us maintain compliance smoothly."
+          </p>
+          <h4>Amravati Municipal Corporation</h4>
+          <span>Amravati</span>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="testimonial-card">
+          <p>
+            "Very professional and reliable service. Their legal expertise is
+            commendable and always delivered on time."
+          </p>
+          <h4>Late Baburao Kubetkar Madhyamik Vidyalaya</h4>
+          <span>Amravati Division</span>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="testimonial-card">
+          <p>
+            "We received complete assistance in compliance and documentation.
+            Highly recommend for educational institutions."
+          </p>
+          <h4>Block Education Officer Office</h4>
+          <span>Nandgaon Kh</span>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="testimonial-card">
+          <p>
+            "Their team handled our taxation and legal matters efficiently.
+            Hassle-free experience throughout."
+          </p>
+          <h4>Shri Shivaji High School & Jr College</h4>
+          <span>Darwha</span>
+        </div>
+
+        <!-- CARD 5 -->
+        <div class="testimonial-card">
+          <p>
+            "Expert consultation and quick solutions. Their approach is very
+            practical and result-oriented."
+          </p>
+          <h4>Panchayat Samiti</h4>
+          <span>Nandgaon Kh</span>
+        </div>
+
+        <!-- CARD 6 -->
+        <div class="testimonial-card">
+          <p>
+            "We appreciate their professionalism and accuracy in handling tax
+            filings and compliance services."
+          </p>
+          <h4>Krushnabai Dandale Jr. College</h4>
+          <span>Teosa</span>
+        </div>
+
+        <!-- CARD 7 -->
+        <div class="testimonial-card">
+          <p>
+            "A trustworthy firm for legal and taxation advisory. Their support
+            has been consistent and dependable."
+          </p>
+          <h4>Deputy Director of Education Office</h4>
+          <span>Amravati Division</span>
+        </div>
+
+        <!-- CARD 8 -->
+        <div class="testimonial-card">
+          <p>
+            "Professional service with deep knowledge of compliance and
+            regulations. Highly satisfied with their work."
+          </p>
+          <h4>Ahilyadevi Holkar Kanya Vidyalaya</h4>
+          <span>Amravati</span>
+        </div>
+
+        <!-- (IMPORTANT for smooth infinite animation) -->
+
+      </div>
+
+    </div>
+
+  </div>
+  </div>
+
+</section>
+
+<!-- BLOG SECTION  -->
+<section class="blog-section">
+
+<div class="blog-wrapper">
+
+  <div class="blog-header">
+    <p class="blog-tag">Our Blogs</p>
+    <h2>Latest <span>Insights &</span> Updates</h2>
+    <p class="blog-subtitle">
+      Stay updated with taxation, GST, and legal knowledge.
+    </p>
+  </div>
+
+  <div class="blog-grid">
+{% for blog in blogs %}
+
+<a href="/blog/{{ blog[0] }}" class="blog-link">
+  <div class="blog-card">
+
+    {% if blog[3] %}
+      <img src="{{ url_for('static', filename='uploads/' + blog[3]) }}"
+      alt="{{ blog[1] }} - Legal blog by Advocate Thakre"
+      >
+    {% endif %}
+
+    <div class="blog-content">
+      <h3>{{ blog[1] }}</h3>
+      <p>{{ blog[2] | striptags | truncate(120) }}</p>
+    </div>
+
+  </div>
+</a>
+
+{% endfor %}
+</div>
+</div>
+</section>
+<!-- CTA SECTION -->
+<section class="cta-section">
+
+    <!-- HEADER -->
+    <div class="cta-header">
+      <p class="cta-tag">Get In Touch</p>
+
+    <h2>
+  Contact Best Advocate & Tax Consultant in Amravati <span>Today</span>
+    </h2>
+
+      <p class="cta-subtitle">
+        Get expert tax & legal solutions in Amravati.
+      </p>
+    </div>
+
+    <div class="cta-wrapper">
+    <!-- MAIN CONTENT -->
+    <div class="cta-main">
+
+
+<!-- LEFT SIDE (FORM) -->
+<div class="cta-form">
+
+  <!-- HEADING -->
+  <div class="form-header">
+    <h3>Start Your Consultation</h3>
+    <p>Share your query and our experts will get back to you.</p>
+  </div>
+
+  <form onsubmit="sendToWhatsApp(event)">
+
+  <div class="input-group">
+    <input type="text" id="name" placeholder="Your Name" required>
+  </div>
+
+  <div class="input-group">
+    <input type="email" id="email" placeholder="Email Address" required>
+  </div>
+
+  <div class="input-group">
+    <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
+  </div>
+
+  <button type="submit" class="cta-btn">
+    Send Message →
+  </button>
+
+</form>
+
+</div>
+
+      <!-- RIGHT SIDE -->
+      <div class="cta-side">
+
+        <!-- CONTACT CARD -->
+        <div class="cta-card contact-cardd">
+          <h3>Contact Info</h3>
+
+          <div class="contact-list">
+
+            <a href="https://maps.app.goo.gl/Xf4Zve8bK4SFNi4V9" target="_blank" class="contact-itemm">
+              <span class="iconnn"><i class="fas fa-location-dot"></i></span>
+              <span>Dhanwantari nagar, Dastur Nagar Rd, Chatrapati Sahu Nagar, Amravati, Maharashtra 444606</span>
+            </a>
+
+            <a href="tel:+918888244176" class="contact-itemm">
+              <span class="iconn"><i class="fas fa-phone"></i></span>
+              <span>+91 8888244176</span>
+            </a>
+
+            <a href="mailto:info@advthakre.com" class="contact-itemm">
+              <span class="iconn"><i class="fas fa-envelope"></i></span>
+              <span>info@advthakre.com</span>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- SOCIAL CARD -->
+        <div class="cta-card social-card">
+          <h3>Reach Out Us On</h3>
+
+          <div class="socials">
+
+            <a href="https://www.facebook.com/p/Adv-Thakre-Tax-Consultant-61560064247830/" target="_blank" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+
+            <a href="https://www.linkedin.com/company/thakreandassociate/" target="_blank" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+
+            <a href="https://www.instagram.com/thakre_and_associates/" target="_blank" class="social-icon">
+              <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="https://www.youtube.com/@shriprabhusoftlink" target="_blank" class="social-icon">
+              <i class="fab fa-youtube"></i>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+<!-- WHATAPP REDIRECT FORM JS  -->
+<script>
+function sendToWhatsApp(event) {
+    event.preventDefault();
+
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var message = document.getElementById("message").value;
+
+    var phone = "918888244176";
+
+    var text = 
+`*Advocate Thakre & Associates*
+*Consultation Request*
+
+*Client Details*
+Name: ${name}
+Email: ${email}
+
+*Message*
+${message}`;
+
+    var url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
+
+    window.open(url, "_blank");
+}
+</script>
+
+</section>
+{% endblock %}

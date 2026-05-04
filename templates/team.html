@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- ===== TEAM HERO SECTION ===== -->
+<section class="about-hero">
+
+  <!-- BACKGROUND -->
+  <div class="hero-bg"></div>
+
+  <!-- CONTENT -->
+  <div class="hero-content">
+
+    <h1>
+      Our <span>Team</span>
+    </h1>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/about">About</a>
+      <span>/</span>
+      <span class="active">Our Team</span>
+    </div>
+
+    <p class="hero-subtitle">
+      Meet the professionals behind Thakre & Associates
+    </p>
+
+  </div>
+
+</section>
+<!-- ===== TEAM SECTION =====  -->
+<section class="team-section">
+
+  <!-- HEADER -->
+  <div class="team-header">
+    <p class="team-tag">Our Team</p>
+    <h2>Meet Our <span>Advisors</span></h2>
+    <p>
+      Dedicated professionals delivering trusted legal and taxation solutions.
+    </p>
+  </div>
+
+  <!-- TEAM GRID -->
+  <div class="team-grid">
+
+    <!-- MEMBER 1 -->
+    <div class="team-card" onclick="openModal('Arun')">
+      <div class="team-img">
+        <img src="/static/images/arun_sir.jpg">
+      </div>
+
+      <h3>Adv. Arun Thakre</h3>
+      <span>Director</span>
+
+      <div class="team-socials">
+        <a href="https://www.facebook.com/arun.thakre.9615" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/company/thakreandassociate/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/adv.arun8?igsh=d3UyOGM4cDh0eDA=" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <!-- MEMBER 2 -->
+    <div class="team-card" onclick="openModal('Amol')">
+      <div class="team-img">
+        <img src="/static/images/amol_sir.jpg">
+      </div>
+
+      <h3>Adv. Amol Thakre</h3>
+      <span>Managing Director</span>
+
+      <div class="team-socials">
+        <a href="https://www.facebook.com/amol.thakre.391" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/in/amol-thakre-b4b89727/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href=" https://www.instagram.com/thakreamol0908?igsh=dDUxOW5ueGo0aGhy" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+   
+
+    <!-- MEMBER 3 -->
+    <div class="team-card" onclick="openModal('Aparna')">
+      <div class="team-img">
+        <img src="/static/images/aparna_mam.png">
+      </div>
+
+      <h3>Adv. Aparna Thakre</h3>
+      <span>Director</span>
+
+      <div class="team-socials">
+        <a href="https://www.facebook.com/AmolThakreamt/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/company/thakreandassociate/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/aparna.thakre.5" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    
+    <!-- MEMBER 4 -->
+    <div class="team-card" onclick="openModal('Anuj')">
+      <div class="team-img">
+        <img src="/static/images/anuj.jpg">
+      </div>
+
+      <h3>Adv. Anuj Thakare</h3>
+      <span>Junior Partner</span>
+
+      <div class="team-socials">
+        <a href="https://www.facebook.com/anuj.thakare.9/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://in.linkedin.com/in/anujthakare" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/_anuuj_thakare/" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TEAM MODAL -->
+ 
+<div id="teamModal" class="team-modal">
+
+  <div class="modal-card">
+
+    <!-- CLOSE -->
+    <span class="close-btn" onclick="closeModal()">×</span>
+
+    <!-- IMAGE -->
+    <div class="modal-img">
+      <img id="modalImage" src="" alt="">
+    </div>
+
+    <!-- NAME -->
+    <h2 id="modalName"></h2>
+    <p class="modal-role" id="modalRole"></p>
+
+    <!-- INFO -->
+    <div class="modal-info">
+      <p id="modalInfo"></p>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="modal-section">
+      <h4>Education</h4>
+      <p id="modalEducation"></p>
+    </div>
+
+    <!-- THOUGHT -->
+    <div class="modal-thought">
+      <p id="modalThought"></p>
+    </div>
+
+  </div>
+
+</div>
+<!-- ===== EXPERTISE SECTION ===== -->
+<section class="expertise-section">
+
+  <!-- HEADER -->
+  <div class="expertise-header">
+    <p class="expertise-tag">Our Expertise</p>
+    <h2>Areas of <span>Specialization</span></h2>
+    <p>
+      Delivering expert legal and taxation solutions with precision and reliability.
+    </p>
+  </div>
+
+  <!-- CARDS -->
+  <div class="expertise-grid">
+
+    <div class="expertise-card">
+      <i class="fas fa-scale-balanced"></i>
+      <h3>Tax Law</h3>
+      <p>Comprehensive tax planning, filing, and advisory services.</p>
+    </div>
+
+    <div class="expertise-card">
+      <i class="fas fa-building"></i>
+      <h3>Corporate Compliance</h3>
+      <p>Ensure smooth regulatory compliance for your business.</p>
+    </div>
+
+    <div class="expertise-card">
+      <i class="fas fa-gavel"></i>
+      <h3>Legal Advisory</h3>
+      <p>Strategic legal consultation tailored to your needs.</p>
+    </div>
+
+    <div class="expertise-card">
+      <i class="fas fa-handshake"></i>
+      <h3>Litigation Support</h3>
+      <p>Strong representation and case handling expertise.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- MODAL SCRIPT -->
+<script>
+const data = {
+  Arun: {
+    name: "Adv. Arun Thakre",
+    role: "Director",
+    image: "/static/images/arun_sir.jpg",
+    education: "LLB, 25+ Years Experience",
+    info: "He holds a degree in Law and Diploma in Taxation with over 40 years of experience in consultation in education and taxation field.",
+    thought: "Justice with integrity is the foundation of trust."
+  },
+  Amol: {
+    name: "Adv. Amol Arun Thakre",
+    role: "Managing Director",
+    image: "/static/images/amol_sir.jpg",
+    education: "B.E.(Mech),MBA Finance,M.A.(Economics) LLB,D.tax",
+    info: "Expert in finance, economics, and taxation with 24+ years experience. Previously worked with HDFC Life Insurance.",
+    thought: "Strategic thinking drives success."
+  },
+  Aparna: {
+    name: "Adv. Aparna Amol Thakre",
+    role: "Director",
+    image: "/static/images/aparna_mam.png",
+    education: "B.S.L.LL.B,D.I.P.L,LL.M(Business Law),Notary(Gov. of India)",
+    info: "Specialist in Intellectual Property Law including trademarks, patents, and copyrights with 15+ years experience.",
+    thought: "Clarity builds confidence and trust."
+  },
+    Anuj: {
+    name: "Adv. Anuj Thakre",
+    role: "Junior Partner",
+    image: "/static/images/anuj.jpg",
+    education: "Bachelor of Laws (LLB)",
+    info: "Junior Advocate working on civil, criminal, and taxation matters. Assists in legal research, drafting, documentation, and court procedures while supporting senior advocates in case preparation.",
+    thought: "Dedication, preparation, and integrity build strong legal practice."
+  }
+
+
+};
+
+function openModal(person) {
+  const modal = document.getElementById("teamModal");
+
+  modal.style.display = "flex";
+
+  document.getElementById("modalName").innerText = data[person].name;
+  document.getElementById("modalRole").innerText = data[person].role;
+  document.getElementById("modalEducation").innerText = data[person].education;
+  document.getElementById("modalThought").innerText = data[person].thought;
+  document.getElementById("modalInfo").innerText = data[person].info;
+  document.getElementById("modalImage").src = data[person].image;
+}
+
+function closeModal() {
+  document.getElementById("teamModal").style.display = "none";
+}
+
+/* CLOSE ON OUTSIDE CLICK */
+window.onclick = function(e) {
+  const modal = document.getElementById("teamModal");
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+{% endblock %}

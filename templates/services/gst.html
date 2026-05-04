@@ -1,0 +1,475 @@
+
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/services/service-detail.css') }}">
+
+<!-- HERO SECTION -->
+
+<section class="service-hero-common">
+
+  <div class="hero-bg"></div>
+
+  <div class="hero-center-card">
+
+    <h1>GST <span>Services</span></h1>
+
+    <div class="breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/services#servGrid">Services</a>
+      <span>/</span>
+      <span class="active">GST Services</span>
+    </div>
+
+    <p class="hero-desc">
+      End-to-end GST compliance, registration, and advisory services
+      to ensure smooth business operations and legal accuracy.
+    </p>
+
+  </div>
+
+</section>
+
+<!-- SERVICE OVERVIEW SECTON  -->
+
+<section class="service-overview">
+
+  <div class="service-overview-grid">
+
+    <div class="service-content">
+
+      <p class="section-tag">GST Legal Advisory</p>
+
+      <h2>Understanding <span>GST Services</span></h2>
+
+      <p>
+        Goods and Services Tax (GST) is a comprehensive indirect tax
+        applied on the supply of goods and services in India.
+        Proper GST compliance is essential for businesses to avoid penalties
+        and ensure seamless operations.
+      </p>
+
+      <p>
+        Our firm provides expert guidance under the 
+        <strong>CGST Act, 2017</strong>, 
+        <strong>SGST Act</strong>, and 
+        <strong>IGST Act</strong>,
+        ensuring accurate filings, compliance, and advisory support.
+      </p>
+
+      <div class="service-points">
+
+        <div class="point">
+          <i class="fas fa-file-invoice"></i>
+          <span>Accurate GST return filing</span>
+        </div>
+
+        <div class="point">
+          <i class="fas fa-user-check"></i>
+          <span>GST registration & compliance</span>
+        </div>
+
+        <div class="point">
+          <i class="fas fa-calculator"></i>
+          <span>Tax planning & advisory</span>
+        </div>
+
+        <div class="point">
+          <i class="fas fa-shield-alt"></i>
+          <span>Handling notices & litigation</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="service-image">
+      <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c" alt="GST Services">
+    </div>
+
+  </div>
+
+</section>
+
+ <!-- SERVICE INCLUDES  -->
+<section class="service-includes">
+
+  <div class="service-includes-grid">
+
+    <div class="section-header">
+      <h2>Our <span>GST Services</span></h2>
+      <p>
+        Comprehensive GST solutions for businesses ensuring compliance
+        and smooth financial operations.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <i class="fas fa-user-plus"></i>
+        <h3>GST Registration</h3>
+        <p>New GST registration for businesses and professionals.</p>
+        <a href="/contact" class="service-btn">Consult Now →</a>
+      </div>
+
+      <div class="service-card">
+        <i class="fas fa-file-invoice"></i>
+        <h3>GST Return Filing</h3>
+        <p>Timely and accurate GST return submissions.</p>
+        <a href="/contact" class="service-btn">Consult Now →</a>
+      </div>
+
+      <div class="service-card">
+        <i class="fas fa-calculator"></i>
+        <h3>GST Advisory</h3>
+        <p>Expert advice on GST compliance and tax planning.</p>
+        <a href="/contact" class="service-btn">Consult Now →</a>
+      </div>
+
+      <div class="service-card">
+        <i class="fas fa-search"></i>
+        <h3>GST Audit</h3>
+        <p>Review and audit of GST records and filings.</p>
+        <a href="/contact" class="service-btn">Consult Now →</a>
+      </div>
+
+      <div class="service-card">
+        <i class="fas fa-gavel"></i>
+        <h3>GST Litigation</h3>
+        <p>Handling GST disputes and legal proceedings.</p>
+        <a href="/contact" class="service-btn">Consult Now →</a>
+      </div>
+
+      <div class="service-card">
+        <i class="fas fa-exclamation-circle"></i>
+        <h3>Notice Handling</h3>
+        <p>Response and resolution of GST notices.</p>
+        <a href="/contact" class="service-btn">Consult Now →</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- LEGAL FRAMEWORK SECTION  -->
+
+<section class="legal-framework">
+
+  <div class="legal-header">
+    <p class="legal-tag">Legal Framework</p>
+    <h2>Governed by <span>GST Laws in India</span></h2>
+    <p>
+      Our GST services comply with statutory provisions ensuring
+      legal accuracy and business compliance.
+    </p>
+  </div>
+
+  <div class="legal-grid">
+
+    <div class="legal-card">
+      <h3>CGST Act, 2017</h3>
+      <p>Central GST governing taxation within states.</p>
+    </div>
+
+    <div class="legal-card">
+      <h3>SGST Act</h3>
+      <p>State GST applicable for intra-state transactions.</p>
+    </div>
+
+    <div class="legal-card">
+      <h3>IGST Act</h3>
+      <p>Applicable for inter-state supply of goods and services.</p>
+    </div>
+
+    <div class="legal-card">
+      <h3>GST Rules</h3>
+      <p>Defines procedures for registration, returns, and compliance.</p>
+    </div>
+
+  </div>
+
+</section>
+<!-- PROCESS SECTION  -->
+<section class="process-section">
+
+  <div class="process-header">
+    <p class="process-tag">Our Process</p>
+    <h2>How We <span>Handle GST Compliance</span></h2>
+    <p>
+      A structured approach to ensure accurate and hassle-free GST compliance.
+    </p>
+  </div>
+
+  <div class="process-timeline">
+
+    <div class="process-step">
+      <div class="step-number">01</div>
+      <div class="step-content">
+        <h3>Business Analysis</h3>
+        <p>Understanding your business model and GST applicability.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-number">02</div>
+      <div class="step-content">
+        <h3>Registration</h3>
+        <p>GST registration and documentation process.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-number">03</div>
+      <div class="step-content">
+        <h3>Return Filing</h3>
+        <p>Accurate filing of GST returns.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-number">04</div>
+      <div class="step-content">
+        <h3>Compliance Check</h3>
+        <p>Ensuring adherence to GST regulations.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-number">05</div>
+      <div class="step-content">
+        <h3>Ongoing Support</h3>
+        <p>Handling notices, audits, and advisory.</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FAQ SECTION -->
+<section class="faq-section">
+
+  <div class="faq-header">
+    <p class="faq-tag">FAQs</p>
+    <h2>Frequently Asked <span>Questions</span></h2>
+    <p>
+      Understand GST compliance and legal requirements.
+    </p>
+  </div>
+
+  <div class="faq-container">
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>What is GST?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          GST is an indirect tax on supply of goods and services in India,
+          replacing multiple taxes.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Who needs GST registration?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          Businesses crossing turnover threshold or involved in interstate trade must register.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>What happens if GST returns are not filed?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          Penalties, interest, and legal notices may be issued.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>What is input tax credit (ITC)?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          ITC allows businesses to reduce tax liability on inputs.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Can GST registration be cancelled?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          Yes, under certain conditions as per GST rules.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Do you handle GST notices?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          Yes, we provide complete assistance for responding to GST notices.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+<section class="faq-section">
+
+  <div class="faq-header">
+    <p class="faq-tag">FAQs</p>
+    <h2>Frequently Asked <span>Questions</span></h2>
+    <p>
+      Understand GST compliance and legal requirements.
+    </p>
+  </div>
+
+  <div class="faq-container">
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>What is GST?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          GST is an indirect tax on supply of goods and services in India,
+          replacing multiple taxes.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Who needs GST registration?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          Businesses crossing turnover threshold or involved in interstate trade must register.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>What happens if GST returns are not filed?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          Penalties, interest, and legal notices may be issued.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>What is input tax credit (ITC)?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          ITC allows businesses to reduce tax liability on inputs.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Can GST registration be cancelled?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          Yes, under certain conditions as per GST rules.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Do you handle GST notices?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          Yes, we provide complete assistance for responding to GST notices.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CTA SECTION  -->
+
+<section class="cta-section">
+
+  <div class="cta-box">
+
+    <h2>Need Help with <span>GST Compliance?</span></h2>
+
+    <p>
+      Ensure smooth and accurate GST operations with expert guidance.
+      Advocate Thakre & Associates is your trusted partner in compliance.
+    </p>
+
+    <div class="cta-buttons">
+      <a href="/contact" class="primary">Get Consultation →</a>
+      <a href="tel:+919876543210" class=" secondary">Call Now</a>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FAQ TOGGLE SCRIPT -->
+ <script>
+const faqs = document.querySelectorAll(".faq-item");
+
+faqs.forEach(faq => {
+  faq.querySelector(".faq-question").addEventListener("click", () => {
+
+    // Close others
+    faqs.forEach(item => {
+      if(item !== faq) item.classList.remove("active");
+    });
+
+    // Toggle current
+    faq.classList.toggle("active");
+  });
+});
+</script>
+ 
+
+{% endblock %}

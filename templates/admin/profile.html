@@ -1,0 +1,71 @@
+{% extends 'admin/admin-layout.html' %}
+{% block content %}
+
+<div class="mb-4">
+    <h3 class="fw-bold mb-1">Admin Profile</h3>
+    <p class="text-muted">Manage your account information and security settings.</p>
+</div>
+
+<div class="row g-4">
+
+    <!-- Profile Info -->
+    <div class="col-xl-6 col-lg-6 col-md-12">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+
+                <h5 class="mb-3">Account Information</h5>
+
+                <div class="mb-3">
+                    <label class="text-muted small">Email</label>
+                    <div class="fw-semibold">{{ admin.email }}</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="text-muted small">Username</label>
+                    <div class="fw-semibold">{{ admin.username }}</div>
+                </div>
+
+                <hr>
+
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="/admin/change-email" class="btn btn-primary">
+                        Change Email
+                    </a>
+
+                    <a href="/admin/change-password-request" class="btn btn-warning">
+                        Change Password
+                    </a>
+
+                    <a href="/admin/dashboard" class="btn btn-dark">
+                        Back to Dashboard
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Info -->
+    <div class="col-xl-6 col-lg-6 col-md-12">
+        <div class="card border-0 bg-light h-100">
+            <div class="card-body">
+                <h5 class="fw-bold mb-3">Account Security</h5>
+
+                <p class="text-muted small">
+                    Keep your account secure by using a strong password and updating it regularly.
+                    Never share your login credentials with anyone.
+                </p>
+
+                <ul class="small text-muted">
+                    <li>Use OTP password reset</li>
+                    <li>Update email if changed</li>
+                    <li>Logout after work</li>
+                    <li>Keep your password secure</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

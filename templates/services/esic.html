@@ -1,0 +1,384 @@
+
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/services/service-detail.css') }}">
+
+<!-- HERO SECTION -->
+
+<section class="service-hero-common">
+
+  <div class="hero-bg"></div>
+
+  <div class="hero-center-card">
+
+    <h1>ESIC <span>Services</span></h1>
+
+    <div class="breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/services#servGrid">Services</a>
+      <span>/</span>
+      <span class="active">ESIC Services</span>
+    </div>
+
+    <p class="hero-desc">
+      Comprehensive ESIC compliance and employee welfare solutions
+      ensuring medical and financial protection under statutory laws.
+    </p>
+
+  </div>
+
+</section>
+
+<!-- SERVICE OVERVIEW SECTON  -->
+
+<section class="service-overview">
+
+  <div class="service-overview-grid">
+
+    <div class="service-content">
+
+      <p class="section-tag">ESIC Compliance</p>
+
+      <h2>Understanding <span>ESIC Services</span></h2>
+
+      <p>
+        Employees' State Insurance (ESIC) is a government-backed social security scheme
+        providing medical care and financial assistance to employees.
+      </p>
+
+      <p>
+        Our services are aligned with the 
+        <strong>Employees’ State Insurance Act, 1948</strong>,
+        ensuring proper compliance, contribution management, and employee benefits.
+      </p>
+
+      <div class="service-points">
+
+        <div class="point">
+          <i class="fas fa-user-plus"></i>
+          <span>ESIC registration for employers</span>
+        </div>
+
+        <div class="point">
+          <i class="fas fa-file-medical"></i>
+          <span>Employee enrollment & IP registration</span>
+        </div>
+
+        <div class="point">
+          <i class="fas fa-calculator"></i>
+          <span>Contribution calculation & filing</span>
+        </div>
+
+        <div class="point">
+          <i class="fas fa-heartbeat"></i>
+          <span>Employee medical benefit support</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="service-image">
+      <img src="https://images.unsplash.com/photo-1588776814546-ec7e89e7e4f4" alt="ESIC Services">
+    </div>
+
+  </div>
+
+</section>
+
+ <!-- SERVICE INCLUDES  -->
+<section class="service-includes">
+
+  <div class="service-includes-grid">
+
+    <div class="section-header">
+      <h2>Our <span>ESIC Services</span></h2>
+      <p>
+        Complete ESIC compliance and employee benefit management solutions.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <i class="fas fa-user-plus"></i>
+        <h3>ESIC Registration</h3>
+        <p>Employer registration under ESIC Act.</p>
+        <a href="/contact#ctaForm" class="service-btn">Consult Now →</a>
+      </div>
+
+      <div class="service-card">
+        <i class="fas fa-id-card"></i>
+        <h3>Employee Enrollment</h3>
+        <p>IP registration and ESIC card generation.</p>
+        <a href="/contact#ctaForm" class="service-btn">Consult Now →</a>
+      </div>
+
+      <div class="service-card">
+        <i class="fas fa-calculator"></i>
+        <h3>Contribution Filing</h3>
+        <p>Accurate calculation and timely submission.</p>
+        <a href="/contact#ctaForm" class="service-btn">Consult Now →</a>
+      </div>
+
+      <div class="service-card">
+        <i class="fas fa-heartbeat"></i>
+        <h3>Medical Benefits</h3>
+        <p>Guidance for employee medical claims.</p>
+        <a href="/contact" class="service-btn">Consult Now →</a>
+      </div>
+
+      <div class="service-card">
+        <i class="fas fa-search"></i>
+        <h3>ESIC Audit</h3>
+        <p>Compliance checks and record verification.</p>
+        <a href="/contact#ctaForm" class="service-btn">Consult Now →</a>
+      </div>
+
+      <div class="service-card">
+        <i class="fas fa-gavel"></i>
+        <h3>Notice Handling</h3>
+        <p>Legal support for ESIC notices and disputes.</p>
+        <a href="/contact#ctaForm" class="service-btn">Consult Now →</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- LEGAL FRAMEWORK SECTION  -->
+
+<section class="legal-framework">
+
+  <div class="legal-header">
+    <p class="legal-tag">Legal Framework</p>
+    <h2>Governed by <span>ESIC Laws</span></h2>
+    <p>
+      Our services comply with statutory provisions ensuring employee welfare and compliance.
+    </p>
+  </div>
+
+  <div class="legal-grid">
+
+    <div class="legal-card">
+      <h3>ESI Act, 1948</h3>
+      <p>Primary law governing employee insurance and benefits.</p>
+    </div>
+
+    <div class="legal-card">
+      <h3>ESI Rules</h3>
+      <p>Defines procedures for contributions and claims.</p>
+    </div>
+
+    <div class="legal-card">
+      <h3>Medical Benefit Scheme</h3>
+      <p>Provides healthcare services to insured employees.</p>
+    </div>
+
+    <div class="legal-card">
+      <h3>Contribution Regulations</h3>
+      <p>Specifies employer and employee contribution rates.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- PROCESS SECTION  -->
+<section class="process-section">
+
+  <div class="process-header">
+    <p class="process-tag">Our Process</p>
+    <h2>How We <span>Handle ESIC Compliance</span></h2>
+    <p>
+      A structured process ensuring smooth registration,
+      contribution management, and employee benefits.
+    </p>
+  </div>
+
+  <div class="process-timeline">
+
+    <div class="process-step">
+      <div class="step-number">01</div>
+      <div class="step-content">
+        <h3>Employer Assessment</h3>
+        <p>Analyzing workforce eligibility under ESIC regulations.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-number">02</div>
+      <div class="step-content">
+        <h3>ESIC Registration</h3>
+        <p>Registering establishment and obtaining ESIC code.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-number">03</div>
+      <div class="step-content">
+        <h3>Employee Enrollment</h3>
+        <p>Registering employees and generating insurance numbers.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-number">04</div>
+      <div class="step-content">
+        <h3>Contribution Filing</h3>
+        <p>Monthly contribution calculation and submission.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-number">05</div>
+      <div class="step-content">
+        <h3>Compliance Support</h3>
+        <p>Handling notices, audits, and ongoing compliance.</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FAQ SECTION -->
+<section class="faq-section">
+
+  <div class="faq-header">
+    <p class="faq-tag">FAQs</p>
+    <h2>Frequently Asked <span>Questions</span></h2>
+    <p>
+      Understand ESIC compliance and employee benefits.
+    </p>
+  </div>
+
+  <div class="faq-container">
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>What is ESIC?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          ESIC is a social security scheme providing medical and financial benefits to employees.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Who is eligible for ESIC?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          Employees earning within prescribed salary limits are eligible.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Is ESIC mandatory?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          Yes, for establishments meeting employee threshold requirements.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>What benefits does ESIC provide?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          Medical care, maternity benefits, disability support, and insurance.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>What is ESIC contribution rate?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          Employee contributes 0.75% and employer contributes 3.25%.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Do you handle ESIC notices?</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">
+        <p>
+          Yes, we provide complete legal support for ESIC compliance and notices.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- CTA SECTION  -->
+
+<section class="cta-section">
+
+  <div class="cta-box">
+
+    <h2>Need Help with <span>ESIC Compliance?</span></h2>
+
+    <p>
+      Ensure employee welfare and statutory compliance with expert ESIC solutions.
+      Advocate Thakre & Associates helps you manage everything seamlessly.
+    </p>
+
+    <div class="cta-buttons">
+      <a href="/contact#ctaForm" class="primary">Get Consultation →</a>
+      <a href="tel:+918888244176" class=" secondary">Call Now</a>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FAQ TOGGLE SCRIPT -->
+ <script>
+const faqs = document.querySelectorAll(".faq-item");
+
+faqs.forEach(faq => {
+  faq.querySelector(".faq-question").addEventListener("click", () => {
+
+    // Close others
+    faqs.forEach(item => {
+      if(item !== faq) item.classList.remove("active");
+    });
+
+    // Toggle current
+    faq.classList.toggle("active");
+  });
+});
+</script>
+ 
+
+{% endblock %}
