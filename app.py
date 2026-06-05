@@ -2,15 +2,20 @@ from flask import Flask, render_template, request, redirect, session, flash
 import pyodbc
 import random
 import smtplib
+import os
+from dotenv import load_dotenv
+load_dotenv()
 app = Flask(__name__)
-app.secret_key = "secretkey"
+app.secret_key = os.getenv("SECRET_KEY")
 
 # Database Connection
 conn = pyodbc.connect(
-    "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER= SoftServer\MSSQLSERVER01;"
-    "DATABASE=adv_thakre_cms;"
-    "Trusted_Connection=yes;"
+       f"DRIVER={{ODBC Driver 17 for SQL Server}};"
+    f"SERVER={os.getenv('DB_SERVER')};"
+    f"DATABASE={os.getenv('DB_DATABASE')};"
+    f"UID={os.getenv('DB_USERNAME')};"
+    f"PWD={os.getenv('DB_PASSWORD')};"
+    f"TrustServerCertificate=yes;"
 )
 
 
@@ -369,7 +374,7 @@ def blog_list():
     )
 
 
-import os
+
 
 UPLOAD_FOLDER = 'static/uploads'
 
