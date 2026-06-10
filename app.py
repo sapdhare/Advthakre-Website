@@ -10,7 +10,7 @@ app.secret_key = os.getenv("SECRET_KEY")
 
 # Database Connection
 conn = pyodbc.connect(
-       f"DRIVER={{ODBC Driver 17 for SQL Server}};"
+       f"DRIVER={{ODBC Driver 18 for SQL Server}};"
     f"SERVER={os.getenv('DB_SERVER')};"
     f"DATABASE={os.getenv('DB_DATABASE')};"
     f"UID={os.getenv('DB_USERNAME')};"
@@ -493,6 +493,9 @@ def delete_blog(id):
 def sitemap():
     return send_from_directory('static', 'sitemap.xml')
 
+@app.route("/healthcheck")
+def health():
+    return "OK", 200
     
 if __name__ == "__main__":
-    app.run( port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

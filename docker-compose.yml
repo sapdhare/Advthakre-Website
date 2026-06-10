@@ -1,0 +1,47 @@
+services:
+
+  flaskapp:
+    build: .
+    container_name: flaskapp
+
+    command: gunicorn --workers 4 --bind 0.0.0.0:5000 --timeout 120 app:app   
+
+    env_file:
+      - .env
+
+    volumes:
+      - adv_uploads:/app/static/uploads
+
+    networks:
+      - techsora-net
+
+    restart: unless-stopped
+
+    healthcheck:
+                test: ["CMD", "curl", "-f", "http://localhost:5000/healthcheck"]
+                interval: 30s
+                timeout: 10s
+                retries: 3
+
+  nginx:
+    image: nginx
+    container_name: nginx
+
+    ports:
+      - "8888:80"
+
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
+    depends_on:
+      - flaskapp
+
+    networks:
+      - techsora-net
+
+    restart: unless-stopped
+networks:
+  techsora-net:
+
+volumes:
+  adv_uploads:
