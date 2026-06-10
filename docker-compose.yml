@@ -28,7 +28,7 @@ services:
   nginx:
     image: nginx
     container_name: nginx
-    mem_limit: 128m
+    mem_limit: 200m
     cpus: "0.25"
     ports:
       - "8888:80"
