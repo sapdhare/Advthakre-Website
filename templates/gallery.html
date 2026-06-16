@@ -3,24 +3,24 @@
 {% block content %}
 <link rel="stylesheet" href="/static/css/gallery.css">
 
-<section class="gallery-hero">
+<!-- ===== GALLERY HERO ===== -->
+<section class="gallery-page-hero">
 
-  <!-- BACKGROUND -->
-  <div class="hero-bg"></div>
+  <div class="gallery-page-hero-bg"></div>
 
-  <!-- CONTENT -->
-  <div class="gallery-hero-content">
+  <div class="gallery-page-hero-card">
+
+    <p class="gallery-page-tag">Gallery</p>
 
     <h1>Our <span>Gallery</span></h1>
 
-    <!-- BREADCRUMB -->
-    <div class="breadcrumb">
+    <div class="gallery-page-breadcrumb">
       <a href="/">Home</a>
       <span>/</span>
       <span class="active">Gallery</span>
     </div>
 
-    <p class="hero-subtitle">
+    <p class="gallery-page-subtitle">
       A glimpse into our professional journey, achievements, and legal excellence.
     </p>
 
@@ -111,13 +111,11 @@
   </div>
 
 </section>
-
-<!-- Gllery MODAL -->
-<div class="gallery-modall" id="galleryModall">
-  <span class="close-modall">&times;</span>
-  <img class="modal-imgg" id="modalImage">
+<!-- GALLERY MODAL -->
+<div class="gallery-modal" id="galleryModal">
+  <button class="gallery-modal-close" type="button">&times;</button>
+  <img class="gallery-modal-img" id="galleryModalImage" alt="Gallery preview">
 </div>
-
  
 
 <!-- FEATURE MOMENT SECTION -->
@@ -170,88 +168,114 @@
 
 </section>
 
-<!-- FULLSCREEN MODAL -->
-<div class="gallery-modall" id="featuredModal">
-  <span class="close-modall">&times;</span>
-  <img class="modal-imgg" id="featuredModalImg">
+<!-- FEATURED MODAL -->
+<div class="featured-modal" id="featuredModal">
+  <button class="featured-modal-close" type="button">&times;</button>
+  <img class="featured-modal-img" id="featuredModalImg" alt="Featured moment">
 </div>
 
-
-<!--  Image Modal + Filter Script -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  // FILTER
+  /* FILTER */
   const filterBtns = document.querySelectorAll(".filter-btn");
-  const items = document.querySelectorAll(".gallery-item");
+  const galleryItems = document.querySelectorAll(".gallery-item");
 
   filterBtns.forEach(btn => {
     btn.addEventListener("click", () => {
-
-      document.querySelector(".filter-btn.active").classList.remove("active");
+      filterBtns.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
 
-      const filter = btn.getAttribute("data-filter");
+      const filter = btn.dataset.filter;
 
-      items.forEach(item => {
-        if (filter === "all" || item.dataset.category === filter) {
-          item.style.display = "block";
+      galleryItems.forEach(item => {
+        const category = item.dataset.category;
+
+        if (filter === "all" || category === filter) {
+          item.classList.remove("hide");
         } else {
-          item.style.display = "none";
+          item.classList.add("hide");
         }
       });
-
     });
   });
 
-  /* =========================
-     GALLERY MODAL
-  ========================= */
-  const galleryImages = document.querySelectorAll(".gallery-item img");
-  const galleryModal = document.getElementById("galleryModall");
-  const galleryModalImg = document.getElementById("modalImage");
 
-  galleryImages.forEach(img => {
-    img.addEventListener("click", () => {
-      galleryModal.style.display = "flex";
-      galleryModalImg.src = img.src;
-    });
-  });
+  /* MAIN GALLERY MODAL */
+  const galleryModal = document.getElementById("galleryModal");
+  const galleryModalImg = document.getElementById("galleryModalImage");
+  const galleryClose = document.querySelector(".gallery-modal-close");
 
-  /* =========================
-     FEATURED MODAL
-  ========================= */
-  const featuredImages = document.querySelectorAll(".featured-item img");
-  const featuredModal = document.getElementById("featuredModal");
-  const featuredModalImg = document.getElementById("featuredModalImg");
-
-  featuredImages.forEach(img => {
-    img.addEventListener("click", () => {
-      featuredModal.style.display = "flex";
-      featuredModalImg.src = img.src;
-    });
-  });
-
-  /* =========================
-     CLOSE BUTTONS
-  ========================= */
-document.querySelectorAll(".close-modall").forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".gallery-modall").forEach(m => {
-        m.style.display = "none";
+  if (galleryModal && galleryModalImg) {
+    document.querySelectorAll(".gallery-item img").forEach(img => {
+      img.addEventListener("click", () => {
+        galleryModal.classList.add("show");
+        galleryModalImg.src = img.src;
+        document.body.style.overflow = "hidden";
       });
     });
-  });
 
-  /* =========================
-     CLICK OUTSIDE CLOSE
-  ========================= */
-  document.querySelectorAll(".gallery-modall").forEach(modal => {
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.style.display = "none";
+    galleryClose.addEventListener("click", () => {
+      galleryModal.classList.remove("show");
+      galleryModalImg.src = "";
+      document.body.style.overflow = "";
+    });
+
+    galleryModal.addEventListener("click", (e) => {
+      if (e.target === galleryModal) {
+        galleryModal.classList.remove("show");
+        galleryModalImg.src = "";
+        document.body.style.overflow = "";
       }
     });
+  }
+
+
+  /* FEATURED MOMENTS MODAL */
+  const featuredModal = document.getElementById("featuredModal");
+  const featuredModalImg = document.getElementById("featuredModalImg");
+  const featuredClose = document.querySelector(".featured-modal-close");
+
+  if (featuredModal && featuredModalImg) {
+    document.querySelectorAll(".featured-item img").forEach(img => {
+      img.addEventListener("click", () => {
+        featuredModal.classList.add("show");
+        featuredModalImg.src = img.src;
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    featuredClose.addEventListener("click", () => {
+      featuredModal.classList.remove("show");
+      featuredModalImg.src = "";
+      document.body.style.overflow = "";
+    });
+
+    featuredModal.addEventListener("click", (e) => {
+      if (e.target === featuredModal) {
+        featuredModal.classList.remove("show");
+        featuredModalImg.src = "";
+        document.body.style.overflow = "";
+      }
+    });
+  }
+
+
+  /* ESC KEY CLOSE */
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      if (galleryModal) {
+        galleryModal.classList.remove("show");
+        galleryModalImg.src = "";
+      }
+
+      if (featuredModal) {
+        featuredModal.classList.remove("show");
+        featuredModalImg.src = "";
+      }
+
+      document.body.style.overflow = "";
+    }
   });
 
 });

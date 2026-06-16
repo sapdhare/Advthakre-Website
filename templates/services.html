@@ -2,118 +2,147 @@
 
 {% block content %}
 
-<!-- ===== HERO SECTION ===== -->
- <section class="services-hero">
+<!-- SERVICES PAGE HERO SECTION -->
+<section class="services-page-hero">
 
-  <!-- BACKGROUND LAYER -->
-  <div class="hero-bg"></div>
+  <div class="services-page-hero-bg"></div>
 
-  <!-- CONTENT -->
-  <div class="services-hero-content">
+  <div class="services-page-hero-card">
+
+    <p class="services-page-badge">Our Services</p>
+
     <h1>
       Comprehensive <span>Legal Services</span>
     </h1>
 
-    <!-- BREADCRUMB -->
-    <div class="breadcrumb">
+    <div class="services-page-breadcrumb">
       <a href="/">Home</a>
       <span>/</span>
       <span class="active">Services</span>
     </div>
 
-    <p class="hero-subtitle">
-      Professional legal solutions including litigation, taxation, compliance, and advisory services tailored to individuals and businesses.
+    <p class="services-page-subtitle">
+      Professional legal, taxation, compliance, and advisory services for individuals and businesses.
     </p>
 
   </div>
- </section>
+
+</section>
 
 <section class="services-section" id="servGrid">
 
-  <!-- HEADER -->
   <div class="services-header">
     <p class="services-tag">Our Services</p>
-    <h2>
-      Legal Solutions That <span>Empower You</span>
-    </h2>
-    <p>
-      We provide trusted legal and taxation services tailored for individuals, businesses, and institutions.
-    </p>
+    <h2>Legal Solutions That <span>Empower You</span></h2>
+    <p>Trusted legal, taxation, documentation, and compliance support for individuals, businesses, and institutions.</p>
   </div>
 
-  <!-- CARDS -->
   <div class="services-grid">
 
-    <!-- 1 -->
     <div class="service-card">
       <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f" alt="">
       <div class="card-content">
+        <span>01</span>
         <h3>Income Tax Litigation</h3>
-        <p>Handling tax disputes, appeals, and representation.</p>
+        <p>Tax disputes, appeals, notices, and representation.</p>
         <a href="/services/income-tax-litigation">Learn More →</a>
       </div>
     </div>
 
-    <!-- 2 -->
     <div class="service-card">
       <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f" alt="">
       <div class="card-content">
+        <span>02</span>
         <h3>Civil Law</h3>
         <p>Property disputes, contracts, and civil litigation.</p>
         <a href="/services/civil-law">Learn More →</a>
       </div>
     </div>
 
-    <!-- 3 -->
     <div class="service-card">
       <img src="https://images.unsplash.com/photo-1589998059171-988d887df646" alt="">
       <div class="card-content">
+        <span>03</span>
         <h3>Criminal Law</h3>
-        <p>Strong legal defense and criminal case handling.</p>
+        <p>Legal defense and criminal case assistance.</p>
         <a href="/services/criminal-law">Learn More →</a>
       </div>
     </div>
 
-    <!-- 4 -->
     <div class="service-card">
       <img src="https://images.unsplash.com/photo-1532377416656-e35d0e574765" alt="">
       <div class="card-content">
+        <span>04</span>
         <h3>Family & Divorce</h3>
-        <p>Divorce, settlements, and family dispute support.</p>
+        <p>Family matters, divorce, and settlement support.</p>
         <a href="/services/family-divorce">Learn More →</a>
       </div>
     </div>
 
-    <!-- 5 -->
     <div class="service-card">
       <img src="https://images.unsplash.com/photo-1740818576527-ef64975bf03e" alt="">
       <div class="card-content">
+        <span>05</span>
         <h3>Consumer Cases</h3>
-        <p>Protecting rights and resolving consumer disputes.</p>
+        <p>Consumer complaints and dispute resolution.</p>
         <a href="/services/consumer-cases">Learn More →</a>
       </div>
     </div>
 
-    <!-- 6 -->
     <div class="service-card">
       <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85" alt="">
       <div class="card-content">
+        <span>06</span>
         <h3>Legal Documentation</h3>
-        <p>Contracts, agreements, and legal drafting.</p>
+        <p>Agreements, affidavits, contracts, and drafting.</p>
         <a href="/services/legal-documentation">Learn More →</a>
       </div>
     </div>
 
-    <!-- 7 -->
-    <div class="service-card">
+    <div class="service-card service-extra">
       <img src="https://images.unsplash.com/photo-1554224154-22dec7ec8818" alt="">
       <div class="card-content">
+        <span>07</span>
         <h3>GST Services</h3>
-        <p>GST registration, filing, and compliance.</p>
+        <p>GST registration, filing, notices, and compliance.</p>
         <a href="/services/gst-services">Learn More →</a>
       </div>
     </div>
 
+    <div class="service-card service-extra">
+      <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c" alt="">
+      <div class="card-content">
+        <span>08</span>
+        <h3>EPF Services</h3>
+        <p>EPF registration, filing, and compliance support.</p>
+        <a href="/services/epf">Learn More →</a>
+      </div>
+    </div>
+
+    <div class="service-card service-extra">
+      <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df" alt="">
+      <div class="card-content">
+        <span>09</span>
+        <h3>ESIC Services</h3>
+        <p>ESIC registration and employer compliance help.</p>
+        <a href="/services/esic">Learn More →</a>
+      </div>
+    </div>
+
+    <div class="service-card service-extra">
+      <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216" alt="">
+      <div class="card-content">
+        <span>10</span>
+        <h3>Other Services</h3>
+        <p>Custom legal, tax, and compliance assistance.</p>
+        <a href="/services/other">Learn More →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="services-toggle-wrap">
+    <button id="servicesToggleBtn" class="services-toggle-btn">Show More Services ↓</button>
   </div>
 
 </section>
@@ -123,39 +152,48 @@
 
   <div class="process-wrapper">
 
-    <!-- HEADER -->
     <div class="process-header">
       <p class="process-tag">Our Process</p>
       <h2>How We <span>Work With You</span></h2>
-      <p>Simple, transparent, and result-driven approach</p>
+      <p>A clear, professional, and step-by-step approach from consultation to resolution.</p>
     </div>
 
-    <!-- PROCESS FLOW -->
-    <div class="process-flow">
+    <div class="process-timeline">
 
-      <!-- STEP -->
-      <div class="process-card">
-        <div class="icon"><i class="fas fa-comments"></i></div>
-        <h3>Consultation</h3>
-        <p>We understand your problem and requirements.</p>
+      <div class="process-step">
+        <div class="step-number">01</div>
+        <div class="step-icon"><i class="fas fa-comments"></i></div>
+        <div class="step-content">
+          <h3>Consultation</h3>
+          <p>We understand your legal, tax, or compliance requirement in detail.</p>
+        </div>
       </div>
 
-      <div class="process-card">
-        <div class="icon"><i class="fas fa-search"></i></div>
-        <h3>Case Analysis</h3>
-        <p>Deep analysis with legal and tax expertise.</p>
+      <div class="process-step">
+        <div class="step-number">02</div>
+        <div class="step-icon"><i class="fas fa-magnifying-glass"></i></div>
+        <div class="step-content">
+          <h3>Case Analysis</h3>
+          <p>Our team studies documents, facts, rules, and possible solutions.</p>
+        </div>
       </div>
 
-      <div class="process-card">
-        <div class="icon"><i class="fas fa-file-signature"></i></div>
-        <h3>Execution</h3>
-        <p>We handle documentation and legal procedures.</p>
+      <div class="process-step">
+        <div class="step-number">03</div>
+        <div class="step-icon"><i class="fas fa-file-signature"></i></div>
+        <div class="step-content">
+          <h3>Execution</h3>
+          <p>We prepare documents, filings, representations, and legal actions.</p>
+        </div>
       </div>
 
-      <div class="process-card">
-        <div class="icon"><i class="fas fa-handshake"></i></div>
-        <h3>Resolution</h3>
-        <p>Delivering results with full client satisfaction.</p>
+      <div class="process-step">
+        <div class="step-number">04</div>
+        <div class="step-icon"><i class="fas fa-handshake"></i></div>
+        <div class="step-content">
+          <h3>Resolution</h3>
+          <p>We deliver guidance, updates, and support until the matter is resolved.</p>
+        </div>
       </div>
 
     </div>
@@ -164,161 +202,162 @@
 
 </section>
 
-<!--  TESTIMONIALS SECTION -->
-<section class="testimonials-section">
+<!-- TESTIMONIALS SECTION -->
+<section class="service-testimonials-section">
 
-  <div class="testimonials-wrapper">
+  <div class="service-testimonials-wrapper">
 
-    <!-- HEADER -->
-    <div class="testimonials-header">
-      <p class="test-tag">Client Testimonials</p>
+    <div class="service-testimonials-header">
+      <p class="service-test-tag">Client Testimonials</p>
       <h2>What Our <span>Clients Say</span></h2>
-      <p>Trusted by institutions and individuals across Amravati</p>
+      <p>Trusted feedback from institutions and clients across Amravati.</p>
     </div>
 
-    <!-- SCROLL TRACK -->
-    <div class="test-track">
+    <div class="service-test-slider">
+      <div class="service-test-track">
 
-      <div class="test-slider">
-
-        <!-- ORIGINAL SET -->
-        <div class="chat-card">
+        <div class="service-test-card">
           <div class="stars">★★★★★</div>
           <p>“Their handling of our tax litigation was smooth and professional.”</p>
           <h4>Amravati Municipal Corporation</h4>
           <span>Amravati</span>
         </div>
 
-        <div class="chat-card">
+        <div class="service-test-card">
           <div class="stars">★★★★★</div>
-          <p>“Very supportive team. They guided us through compliance.”</p>
+          <p>“Very supportive team. They guided us clearly through compliance.”</p>
           <h4>Block Education Office</h4>
           <span>Nandgaon Kh</span>
         </div>
 
-        <div class="chat-card">
+        <div class="service-test-card">
           <div class="stars">★★★★★</div>
-          <p>“Expert legal consultation helped us avoid major issues.”</p>
+          <p>“Expert legal consultation helped us avoid major documentation issues.”</p>
           <h4>Shivaji High School</h4>
           <span>Darwha</span>
         </div>
 
-        <div class="chat-card">
+        <div class="service-test-card">
           <div class="stars">★★★★★</div>
-          <p>“Professional approach with clear communication.”</p>
+          <p>“Professional approach with clear communication and timely support.”</p>
           <h4>Deputy Director Office</h4>
           <span>Amravati Division</span>
         </div>
 
-        <!-- DUPLICATE (for infinite loop) -->
-        <div class="chat-card">
+        <!-- Duplicate for smooth loop -->
+        <div class="service-test-card">
           <div class="stars">★★★★★</div>
           <p>“Their handling of our tax litigation was smooth and professional.”</p>
           <h4>Amravati Municipal Corporation</h4>
           <span>Amravati</span>
         </div>
 
-        <div class="chat-card">
+        <div class="service-test-card">
           <div class="stars">★★★★★</div>
-          <p>“Very supportive team. They guided us through compliance.”</p>
+          <p>“Very supportive team. They guided us clearly through compliance.”</p>
           <h4>Block Education Office</h4>
           <span>Nandgaon Kh</span>
         </div>
 
-        <div class="chat-card">
+        <div class="service-test-card">
           <div class="stars">★★★★★</div>
-          <p>“Expert legal consultation helped us avoid major issues.”</p>
+          <p>“Expert legal consultation helped us avoid major documentation issues.”</p>
           <h4>Shivaji High School</h4>
           <span>Darwha</span>
         </div>
 
-        <div class="chat-card">
+        <div class="service-test-card">
           <div class="stars">★★★★★</div>
-          <p>“Professional approach with clear communication.”</p>
+          <p>“Professional approach with clear communication and timely support.”</p>
           <h4>Deputy Director Office</h4>
           <span>Amravati Division</span>
         </div>
 
       </div>
-
     </div>
 
   </div>
 
 </section>
- <!-- FAQ SECTION  -->
-  <section class="faq-section">
 
-  <div class="faq-wrapper">
 
-    <!-- HEADER -->
-    <div class="faq-header">
-      <p class="faq-tag">FAQs</p>
+<!-- FAQ SECTION -->
+<section class="services-faq-section">
+
+  <div class="services-faq-wrapper">
+
+    <div class="services-faq-header">
+      <p class="services-faq-tag">FAQs</p>
       <h2>Frequently Asked <span>Questions</span></h2>
-      <p>Quick answers to common legal and tax queries</p>
+      <p>Quick answers to common legal, tax, GST, and documentation queries.</p>
     </div>
 
-    <!-- GRID -->
-    <div class="faq-grid">
+    <div class="services-faq-grid">
 
-      <!-- LEFT FAQ -->
-      <div class="faq-left">
+      <div class="services-faq-left">
 
-        <div class="faq-item active">
-          <div class="faq-question">
-            What services does Thakre & Associates provide?
-            <span>+</span>
-          </div>
-          <div class="faq-answer">
-            We provide legal advisory, tax litigation, GST services, compliance support, and documentation for individuals and businesses.
+        <div class="services-faq-item active">
+          <button class="services-faq-question">
+            <span>What services does Thakre & Associates provide?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="services-faq-answer">
+            <p>We provide tax litigation, GST services, legal advisory, compliance support, consumer cases, family matters, and legal documentation.</p>
           </div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-question">
-            Do you handle income tax litigation cases?
-            <span>+</span>
-          </div>
-          <div class="faq-answer">
-            Yes, we specialize in handling tax disputes, appeals, and representation before authorities.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            Can you help with GST registration and filing?
-            <span>+</span>
-          </div>
-          <div class="faq-answer">
-            Absolutely. We assist with GST registration, return filing, and compliance management.
+        <div class="services-faq-item">
+          <button class="services-faq-question">
+            <span>Do you handle income tax litigation cases?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="services-faq-answer">
+            <p>Yes, we assist with tax notices, appeals, disputes, and representation before concerned authorities.</p>
           </div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-question">
-            Do you provide legal support for family and divorce cases?
-            <span>+</span>
-          </div>
-          <div class="faq-answer">
-            Yes, we offer confidential legal assistance for family disputes, divorce, and settlements.
+        <div class="services-faq-item">
+          <button class="services-faq-question">
+            <span>Can you help with GST registration and filing?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="services-faq-answer">
+            <p>Yes, we handle GST registration, return filing, notices, compliance, and related documentation.</p>
           </div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-question">
-            What type of legal documentation do you prepare?
-            <span>+</span>
+        <div class="services-faq-item">
+          <button class="services-faq-question">
+            <span>Do you provide family and divorce legal support?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="services-faq-answer">
+            <p>Yes, we provide confidential assistance for family disputes, divorce matters, settlements, and legal guidance.</p>
           </div>
-          <div class="faq-answer">
-            We draft agreements, contracts, affidavits, and other legal documents tailored to your needs.
+        </div>
+
+        <div class="services-faq-item">
+          <button class="services-faq-question">
+            <span>What legal documents do you prepare?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="services-faq-answer">
+            <p>We prepare agreements, affidavits, contracts, declarations, legal notices, and other required documents.</p>
           </div>
         </div>
 
       </div>
 
-      <!-- RIGHT VISUAL -->
-      <div class="faq-right">
-        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f" alt="Legal Illustration">
+      <div class="services-faq-right">
+        <div class="services-faq-image">
+          <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f" alt="Legal services FAQ">
+        </div>
+
+        <div class="services-faq-help">
+          <h3>Still have questions?</h3>
+          <p>Connect with our team for clear legal and tax guidance.</p>
+          <a href="/contact">Ask Your Query →</a>
+        </div>
       </div>
 
     </div>
@@ -326,6 +365,8 @@
   </div>
 
 </section>
+
+
 
 <!-- CTA SECTION  -->
  <section class="services-cta">
@@ -343,19 +384,37 @@
   </div>
 
 </section>
+
+
+<script>
+const servicesToggleBtn = document.getElementById("servicesToggleBtn");
+const servicesGrid = document.querySelector(".services-grid");
+
+servicesToggleBtn.addEventListener("click", () => {
+  servicesGrid.classList.toggle("show-all");
+
+  if (servicesGrid.classList.contains("show-all")) {
+    servicesToggleBtn.innerText = "Show Less Services ↑";
+  } else {
+    servicesToggleBtn.innerText = "Show More Services ↓";
+  }
+});
+</script>
+
+
 <!-- FAQ TOGGLE SCRIPT -->
 <script>
-    document.querySelectorAll(".faq-item").forEach(item => {
-  item.addEventListener("click", () => {
+document.querySelectorAll(".services-faq-question").forEach((question) => {
+  question.addEventListener("click", () => {
+    const currentItem = question.parentElement;
 
-    // close others
-    document.querySelectorAll(".faq-item").forEach(el => {
-      if (el !== item) el.classList.remove("active");
+    document.querySelectorAll(".services-faq-item").forEach((item) => {
+      if (item !== currentItem) {
+        item.classList.remove("active");
+      }
     });
 
-    // toggle current
-    item.classList.toggle("active");
-
+    currentItem.classList.toggle("active");
   });
 });
 </script>

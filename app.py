@@ -1,14 +1,18 @@
-from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect, session, flash, send_from_directory
 import pyodbc
 import random
 import smtplib
 import os
+
+ 
 from dotenv import load_dotenv
+
 load_dotenv()
+
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 
-# Database Connection
+ 
 conn = pyodbc.connect(
     f"DRIVER={{ODBC Driver 18 for SQL Server}};"
     f"SERVER={os.getenv('DB_SERVER')};"
@@ -20,6 +24,15 @@ conn = pyodbc.connect(
 )
 
 
+
+@app.route("/privacy-policy")
+def privacy_policy():
+    return render_template("privacy.html")
+
+@app.route("/terms-and-conditions")
+def terms_and_conditions():
+    return render_template("terms-and-conditions.html")
+ 
 @app.route('/')
 def home():
     cursor = conn.cursor()
@@ -174,7 +187,7 @@ def change_password_request():
 
     # Redirect directly to forgot password
     session['reset_email'] = session['admin']
-    return redirect('admin/forgot-password')
+    return redirect('/forgot-password')
 
 
 # ================= ADMIN FORGOT PASSWORD =================
@@ -229,7 +242,7 @@ def forgot_password():
         flash("OTP sent to your email")
         return redirect('/verify-otp')
 
-    email = session.get('templates/admin')
+    email = session.get('reset_email')
     return render_template('admin/forgot_password.html', email=email)
 
 # ================= ADMIN VERIFY OTP =================
@@ -478,6 +491,10 @@ def edit_blog(id):
 
 @app.route('/admin/delete-blog/<int:id>')
 def delete_blog(id):
+
+    if 'admin' not in session:
+           return redirect('/admin/login')
+       
     cursor = conn.cursor()
 
     # First delete images
@@ -501,5 +518,7 @@ def health():
 @app.route("/HEllo")
 def hello():
     return "Imherer", 200
+
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=False)

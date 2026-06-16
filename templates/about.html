@@ -2,29 +2,27 @@
 
 {% block content %}
 
-<!-- ===== HERO SECTION ===== -->
- 
-<section class="about-hero">
+<!-- ABOUT PAGE HERO SECTION -->
+<section class="about-page-hero">
 
-  <!-- BACKGROUND LAYER -->
-  <div class="hero-bg"></div>
+  <div class="about-page-hero-bg"></div>
 
-  <!-- CONTENT -->
-  <div class="hero-content">
+  <div class="about-page-hero-card">
+
+    <p class="about-page-badge">About Our Firm</p>
 
     <h1>
       About <span>Us</span>
     </h1>
 
-    <!-- BREADCRUMB -->
-    <div class="breadcrumb">
+    <div class="about-page-breadcrumb">
       <a href="/">Home</a>
       <span>/</span>
       <span class="active">About</span>
     </div>
 
-    <p class="hero-subtitle">
-      Trusted legal and taxation experts in Amravati
+    <p class="about-page-subtitle">
+      Trusted legal and taxation experts serving clients across Amravati.
     </p>
 
   </div>
@@ -32,60 +30,62 @@
 </section>
 
 
-<!-- ===== ABOUT OVERVIEW SECTION ===== -->
-<section class="about-overview">
+<!-- ABOUT PAGE OVERVIEW SECTION -->
+<section class="about-page-overview">
 
-  <div class="about-wrapper"> <!-- 🔥 NEW WRAPPER -->
+  <div class="about-page-overview-wrapper">
 
-    <div class="about-overview-grid">
+    <div class="about-page-overview-grid">
 
       <!-- LEFT IMAGE -->
-      <div class="about-images">
-        <img src="{{ url_for('static', filename='images/about.png') }}" class="active">
-        <img src="{{ url_for('static', filename='images/about1.jpg') }}">
-        <img src="{{ url_for('static', filename='images/about3.jpg') }}">
+      <div class="about-page-overview-image">
+        <img src="{{ url_for('static', filename='images/about.png') }}" alt="Advocate Thakre & Associates Office">
+        <div class="about-page-image-overlay"></div>
       </div>
 
       <!-- RIGHT CONTENT -->
-      <div class="about-content">
+      <div class="about-page-overview-content">
+
+        <p class="about-page-section-tag">Who We Are</p>
 
         <h2>
-          About <span>Thakre & Associates</span>
+          Reliable Legal & Tax Advisory for
+          <span>Individuals, Businesses & Institutions</span>
         </h2>
 
         <p>
-          Advocate Thakre and Associates is a full-service law firm committed to delivering exceptional legal solutions with precision, integrity, and a client-first approach.
+          Advocate Thakre & Associates is a professional legal and taxation firm based in Amravati, committed to providing practical, transparent, and result-focused solutions.
         </p>
 
         <p>
-          With a team of experienced professionals, we provide comprehensive advocacy and advisory services across taxation, compliance, and legal domains.
+          Our work covers taxation, GST, legal documentation, compliance, civil matters, criminal matters, family law, and advisory services for individuals, businesses, schools, institutions, and government-related offices.
         </p>
 
-        <div class="about-points">
+        <div class="about-page-overview-points">
 
-          <div class="point">
+          <div class="about-page-overview-point">
             <i class="fas fa-scale-balanced"></i>
-            <span>Expert Legal Advisory</span>
+            <span>Legal & Tax Advisory</span>
           </div>
 
-          <div class="point">
+          <div class="about-page-overview-point">
             <i class="fas fa-file-contract"></i>
-            <span>Business Compliance Solutions</span>
+            <span>Compliance & Documentation</span>
           </div>
 
-          <div class="point">
+          <div class="about-page-overview-point">
             <i class="fas fa-user-shield"></i>
-            <span>Trusted Client Relationships</span>
+            <span>Client-First Approach</span>
           </div>
 
-          <div class="point">
-            <i class="fas fa-chart-line"></i>
-            <span>Growth-Focused Strategies</span>
+          <div class="about-page-overview-point">
+            <i class="fas fa-handshake"></i>
+            <span>Trusted Institutional Support</span>
           </div>
 
         </div>
 
-        <a href="/contact" class="gold-btn">Get Consultation →</a>
+        <a href="/contact" class="about-page-gold-btn">Get Consultation →</a>
 
       </div>
 
@@ -93,54 +93,61 @@
 
   </div>
 
-
 </section>
 
-<!-- ===== OUR APPROACH SECTION ===== -->
-<section class="approach-section">
+<!-- ABOUT PAGE APPROACH SECTION -->
+<section class="about-page-approach">
 
-  <div class="approach-wrapper"> <!-- 🔥 CENTER BLOCK -->
+  <div class="about-page-approach-wrapper">
 
-    <!-- HEADER -->
-    <div class="approach-header">
+    <div class="about-page-approach-header">
+      <p class="about-page-approach-tag">Our Process</p>
+
       <h2>
         Our <span>Approach</span>
       </h2>
 
       <p>
-        We follow a structured and client-focused process to deliver reliable legal and tax solutions.
+        We follow a clear, structured, and client-focused process to deliver reliable legal and taxation solutions.
       </p>
     </div>
 
-    <!-- CARDS -->
-    <div class="approach-grid">
+    <div class="about-page-steps">
 
-      <!-- CARD 1 -->
-      <div class="approach-card">
-        <i class="fas fa-comments"></i>
+      <div class="about-page-step">
+        <div class="about-page-step-number">01</div>
+        <div class="about-page-step-icon">
+          <i class="fas fa-comments"></i>
+        </div>
         <h3>Consultation</h3>
-        <p>We understand your needs and analyze your legal or tax situation.</p>
+        <p>We understand your concern, requirements, and legal or tax situation in detail.</p>
       </div>
 
-      <!-- CARD 2 -->
-      <div class="approach-card">
-        <i class="fas fa-magnifying-glass"></i>
+      <div class="about-page-step">
+        <div class="about-page-step-number">02</div>
+        <div class="about-page-step-icon">
+          <i class="fas fa-magnifying-glass"></i>
+        </div>
         <h3>Analysis</h3>
-        <p>In-depth research and evaluation to identify the best solution.</p>
+        <p>We evaluate documents, facts, compliance needs, and possible legal solutions.</p>
       </div>
 
-      <!-- CARD 3 -->
-      <div class="approach-card">
-        <i class="fas fa-scale-balanced"></i>
+      <div class="about-page-step">
+        <div class="about-page-step-number">03</div>
+        <div class="about-page-step-icon">
+          <i class="fas fa-scale-balanced"></i>
+        </div>
         <h3>Execution</h3>
-        <p>Accurate and efficient implementation of legal strategies.</p>
+        <p>We prepare, file, represent, or implement the required legal and tax strategy.</p>
       </div>
 
-      <!-- CARD 4 -->
-      <div class="approach-card">
-        <i class="fas fa-handshake"></i>
+      <div class="about-page-step">
+        <div class="about-page-step-number">04</div>
+        <div class="about-page-step-icon">
+          <i class="fas fa-handshake"></i>
+        </div>
         <h3>Support</h3>
-        <p>Continuous guidance and support for long-term success.</p>
+        <p>We provide continuous guidance, updates, and long-term professional support.</p>
       </div>
 
     </div>
@@ -149,46 +156,43 @@
 
 </section>
 
+<!-- ABOUT PAGE TRUSTED CLIENTS SECTION -->
+<section class="about-page-clients">
 
- <!-- ===== CLIENT LOGOS SECTION ===== -->
-<section class="clients-section">
+  <div class="about-page-clients-wrapper">
 
-  <div class="clients-wrapper"> <!-- 🔥 CENTER BLOCK -->
-
-    <div class="clients-header">
+    <div class="about-page-clients-header">
+      <p class="about-page-clients-tag">Trusted Network</p>
       <h2>Trusted By <span>Institutions</span></h2>
-      <p>Serving clients across Amravati division</p>
+      <p>Serving reputed clients and institutions across Amravati division.</p>
     </div>
 
-    <!-- SLIDER -->
-    <div class="clients-slider">
+    <div class="about-page-clients-slider">
+      <div class="about-page-clients-track">
 
-      <div class="clients-track">
+        <div class="about-page-client-logo"><img src="{{ url_for('static', filename='images/logo/amc.png') }}" alt="Client Logo"></div>
+        <div class="about-page-client-logo"><img src="{{ url_for('static', filename='images/logo/vyws-logo.png') }}" alt="Client Logo"></div>
+        <div class="about-page-client-logo"><img src="{{ url_for('static', filename='images/logo/shivaji-logo.png') }}" alt="Client Logo"></div>
+        <div class="about-page-client-logo"><img src="{{ url_for('static', filename='images/logo/district-health-logo.png') }}" alt="Client Logo"></div>
+        <div class="about-page-client-logo"><img src="{{ url_for('static', filename='images/logo/prashikshan logo.png') }}" alt="Client Logo"></div>
+        <div class="about-page-client-logo"><img src="{{ url_for('static', filename='images/logo/brijlal-biyani.jpg') }}" alt="Client Logo"></div>
+        <div class="about-page-client-logo"><img src="{{ url_for('static', filename='images/logo/bhartiya-college.png') }}" alt="Client Logo"></div>
 
-        <!-- LOGOS (SET 1) -->
-        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/amc.png') }}"></div>
-        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/vyws-logo.png') }}"></div>
-        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/shivaji-logo.png') }}"></div>
-        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/district-health-logo.png') }}"></div>
-        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/prashikshan logo.png') }}"></div>
-        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/brijlal-biyani.jpg') }}"></div>
-        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/bhartiya-college.png') }}"></div>
-
-        <!-- 🔁 DUPLICATE (IMPORTANT for infinite loop) -->
-        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/amc.png') }}"></div>
-        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/vyws-logo.png') }}"></div>
-        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/shivaji-logo.png') }}"></div>
-        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/district-health-logo.png') }}"></div>
-        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/prashikshan logo.png') }}"></div>
-        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/brijlal-biyani.jpg') }}"></div>
-        <div class="client-logo"><img src="{{ url_for('static', filename='images/logo/bhartiya-college.png') }}"></div>
+        <div class="about-page-client-logo"><img src="{{ url_for('static', filename='images/logo/amc.png') }}" alt="Client Logo"></div>
+        <div class="about-page-client-logo"><img src="{{ url_for('static', filename='images/logo/vyws-logo.png') }}" alt="Client Logo"></div>
+        <div class="about-page-client-logo"><img src="{{ url_for('static', filename='images/logo/shivaji-logo.png') }}" alt="Client Logo"></div>
+        <div class="about-page-client-logo"><img src="{{ url_for('static', filename='images/logo/district-health-logo.png') }}" alt="Client Logo"></div>
+        <div class="about-page-client-logo"><img src="{{ url_for('static', filename='images/logo/prashikshan logo.png') }}" alt="Client Logo"></div>
+        <div class="about-page-client-logo"><img src="{{ url_for('static', filename='images/logo/brijlal-biyani.jpg') }}" alt="Client Logo"></div>
+        <div class="about-page-client-logo"><img src="{{ url_for('static', filename='images/logo/bhartiya-college.png') }}" alt="Client Logo"></div>
 
       </div>
-
     </div>
 
   </div>
 
 </section>
+
+
 
 {% endblock %}

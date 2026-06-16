@@ -1,21 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- ===== TEAM HERO SECTION ===== -->
-<section class="about-hero">
+<!-- TEAM PAGE HERO SECTION -->
+<section class="team-page-hero">
 
-  <!-- BACKGROUND -->
-  <div class="hero-bg"></div>
+  <div class="team-page-hero-bg"></div>
 
-  <!-- CONTENT -->
-  <div class="hero-content">
+  <div class="team-page-hero-card">
+
+    <p class="team-page-badge">Our Professionals</p>
 
     <h1>
       Our <span>Team</span>
     </h1>
 
-    <!-- BREADCRUMB -->
-    <div class="breadcrumb">
+    <div class="team-page-breadcrumb">
       <a href="/">Home</a>
       <span>/</span>
       <a href="/about">About</a>
@@ -23,13 +22,17 @@
       <span class="active">Our Team</span>
     </div>
 
-    <p class="hero-subtitle">
-      Meet the professionals behind Thakre & Associates
+    <p class="team-page-subtitle">
+      Meet the professionals behind Thakre & Associates.
     </p>
 
   </div>
 
 </section>
+
+
+
+
 <!-- ===== TEAM SECTION =====  -->
 <section class="team-section">
 
@@ -85,7 +88,7 @@
       </div>
 
       <h3>Adv. Aparna Thakre</h3>
-      <span>Director</span>
+      <span>Managing Director</span>
 
       <div class="team-socials">
         <a href="https://www.facebook.com/AmolThakreamt/" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -150,6 +153,8 @@
   </div>
 
 </div>
+
+
 <!-- ===== EXPERTISE SECTION ===== -->
 <section class="expertise-section">
 
@@ -193,6 +198,8 @@
 
 </section>
 
+
+
 <!-- MODAL SCRIPT -->
 <script>
 const data = {
@@ -214,7 +221,7 @@ const data = {
   },
   Aparna: {
     name: "Adv. Aparna Amol Thakre",
-    role: "Director",
+    role: "Managing Director",
     image: "/static/images/aparna_mam.png",
     education: "B.S.L.LL.B,D.I.P.L,LL.M(Business Law),Notary(Gov. of India)",
     info: "Specialist in Intellectual Property Law including trademarks, patents, and copyrights with 15+ years experience.",
@@ -235,27 +242,35 @@ const data = {
 function openModal(person) {
   const modal = document.getElementById("teamModal");
 
-  modal.style.display = "flex";
-
   document.getElementById("modalName").innerText = data[person].name;
   document.getElementById("modalRole").innerText = data[person].role;
   document.getElementById("modalEducation").innerText = data[person].education;
   document.getElementById("modalThought").innerText = data[person].thought;
   document.getElementById("modalInfo").innerText = data[person].info;
   document.getElementById("modalImage").src = data[person].image;
+
+  modal.classList.add("show");
+  document.body.classList.add("modal-open");
 }
 
 function closeModal() {
-  document.getElementById("teamModal").style.display = "none";
+  document.getElementById("teamModal").classList.remove("show");
+  document.body.classList.remove("modal-open");
 }
 
-/* CLOSE ON OUTSIDE CLICK */
-window.onclick = function(e) {
+window.addEventListener("click", function(e) {
   const modal = document.getElementById("teamModal");
   if (e.target === modal) {
-    modal.style.display = "none";
+    closeModal();
   }
-}
+});
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    closeModal();
+  }
+});
+ 
 </script>
 
 {% endblock %}
