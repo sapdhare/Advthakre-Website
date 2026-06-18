@@ -1,0 +1,325 @@
+{% extends 'admin/admin-layout.html' %}
+
+{% block content %}
+
+<!-- HEADER -->
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+
+<div>
+    <h3 class="fw-bold mb-1">
+        User Management
+    </h3>
+
+    <p class="text-muted mb-0">
+        Manage verification executives and staff users.
+    </p>
+</div>
+
+<a href="/admin/users/add"
+   class="btn btn-dark">
+    <i class="bi bi-person-plus"></i>
+    Add New User
+</a>
+
+
+</div>
+
+<!-- SUMMARY CARDS -->
+
+<div class="row g-3 mb-4">
+
+
+<div class="col-lg-4">
+
+    <div class="card border-0 shadow-sm">
+
+        <div class="card-body">
+
+            <small class="text-muted">
+                Total Users
+            </small>
+
+            <h2 class="fw-bold">
+                {{ users|length }}
+            </h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="col-lg-4">
+
+    <div class="card border-0 shadow-sm">
+
+        <div class="card-body">
+
+            <small class="text-muted">
+                Active Users
+            </small>
+
+            <h2 class="fw-bold text-success">
+                {{ active_users }}
+            </h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="col-lg-4">
+
+    <div class="card border-0 shadow-sm">
+
+        <div class="card-body">
+
+            <small class="text-muted">
+                Inactive Users
+            </small>
+
+            <h2 class="fw-bold text-danger">
+                {{ inactive_users }}
+            </h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+
+<!-- SEARCH FILTER -->
+
+<div class="card border-0 shadow-sm mb-4">
+
+
+<div class="card-body">
+
+    <form method="GET" id="filterForm">
+
+        <div class="row g-3">
+
+            <div class="col-lg-8">
+
+                <input
+                    type="text"
+                    name="search"
+                    id="searchInput"
+                    class="form-control"
+                    placeholder="Search by Name, Email or Mobile"
+                    value="{{ request.args.get('search','') }}">
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <select
+                    name="status"
+                    id="statusFilter"
+                    class="form-select">
+
+                    <option value="">
+                        All Status
+                    </option>
+
+                    <option value="Active">
+                        Active
+                    </option>
+
+                    <option value="Inactive">
+                        Inactive
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+</div>
+
+<!-- USER TABLE -->
+
+<div class="card border-0 shadow-sm">
+
+<div class="card-header bg-white">
+
+    <div class="d-flex justify-content-between align-items-center">
+
+        <h5 class="mb-0">
+            Verification Executives
+        </h5>
+
+        <span class="badge bg-dark">
+            {{ users|length }} Users
+        </span>
+
+    </div>
+
+</div>
+
+<div class="card-body">
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+            <thead class="table-light">
+
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th width="180">Actions</th>
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for user in users %}
+
+            <tr>
+
+                <td>
+                    <strong>
+                        {{ user.fullname }}
+                    </strong>
+                </td>
+
+                <td>
+                    {{ user.email }}
+                </td>
+
+                <td>
+                    {{ user.mobile }}
+                </td>
+
+                <td>
+
+                    <span class="badge bg-primary">
+                        {{ user.role }}
+                    </span>
+
+                </td>
+
+                <td>
+
+                    {% if user.status == 'Active' %}
+
+                    <span class="badge bg-success">
+                        Active
+                    </span>
+
+                    {% else %}
+
+                    <span class="badge bg-danger">
+                        Inactive
+                    </span>
+
+                    {% endif %}
+
+                </td>
+
+            <td>
+
+            <div class="user-actions">
+
+                <a href="/admin/users/edit/{{ user.id }}"
+                   class="btn btn-warning btn-sm">
+                   <i class="bi bi-pencil"></i>
+                </a>
+
+                <a href="/admin/users/delete/{{ user.id }}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Delete User?')">
+                   <i class="bi bi-trash"></i>
+                </a>
+
+            </div>
+
+            </td>
+
+            </tr>
+
+            {% else %}
+
+            <tr>
+
+                <td colspan="6"
+                    class="text-center py-5">
+
+                    <i class="bi bi-people fs-1 text-muted"></i>
+
+                    <h5 class="mt-3">
+                        No Users Found
+                    </h5>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+</div>
+
+<script>
+
+const filterForm =
+document.getElementById("filterForm");
+
+const statusFilter =
+document.getElementById("statusFilter");
+
+const searchInput =
+document.getElementById("searchInput");
+
+statusFilter.addEventListener(
+"change",
+function() {
+    filterForm.submit();
+}
+);
+
+let timer;
+
+searchInput.addEventListener(
+"keyup",
+function() {
+
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+
+        filterForm.submit();
+
+    }, 500);
+
+}
+);
+
+</script>
+
+{% endblock %}

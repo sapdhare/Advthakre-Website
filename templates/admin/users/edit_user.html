@@ -1,0 +1,145 @@
+{% extends 'admin/admin-layout.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+
+<div>
+    <h3 class="fw-bold">
+        Edit User
+    </h3>
+
+    <p class="text-muted">
+        Update verification executive details.
+    </p>
+</div>
+
+<a href="/admin/users"
+   class="btn btn-secondary">
+    Back
+</a>
+
+
+</div>
+
+<div class="card border-0 shadow-sm">
+
+
+<div class="card-body">
+
+    <form method="POST">
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    name="fullname"
+                    class="form-control"
+                    value="{{ user.fullname }}"
+                    required>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    value="{{ user.email }}"
+                    required>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    Mobile
+                </label>
+
+                <input
+                    type="text"
+                    name="mobile"
+                    class="form-control"
+                    value="{{ user.mobile }}"
+                    required>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    Role
+                </label>
+
+                <select
+                    name="role"
+                    class="form-select">
+
+                    <option value="Executive"
+                    {% if user.role=='Executive' %}selected{% endif %}>
+                        Executive
+                    </option>
+
+                    <option value="Manager"
+                    {% if user.role=='Manager' %}selected{% endif %}>
+                        Manager
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    Status
+                </label>
+
+                <select
+                    name="status"
+                    class="form-select">
+
+                    <option value="Active"
+                    {% if user.status=='Active' %}selected{% endif %}>
+                        Active
+                    </option>
+
+                    <option value="Inactive"
+                    {% if user.status=='Inactive' %}selected{% endif %}>
+                        Inactive
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <button
+            type="submit"
+            class="btn btn-dark">
+
+            Update User
+
+        </button>
+
+    </form>
+
+</div>
+
+
+</div>
+
+{% endblock %}

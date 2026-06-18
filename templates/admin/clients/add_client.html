@@ -1,0 +1,128 @@
+{% extends 'admin/admin-layout.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+        <h3 class="fw-bold">Add New Client</h3>
+        <p class="text-muted mb-0">
+            Register a new client and assign for verification.
+        </p>
+    </div>
+
+    <a href="/admin/clients"
+       class="btn btn-outline-dark">
+        Back
+    </a>
+
+</div>
+
+<div class="card border-0 shadow-sm">
+
+    <div class="card-body">
+
+        <form method="POST">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Client Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="client_name"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        PAN Number
+                    </label>
+
+                    <input
+                        type="text"
+                        name="pan"
+                        class="form-control"
+                        style="text-transform:uppercase"
+                        required>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Mobile Number
+                    </label>
+
+                    <input
+                        type="text"
+                        name="mobile"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Assign Executive
+                    </label>
+
+                    <select
+                        name="assigned_user"
+                        class="form-select"
+                        required>
+
+                        <option value="">
+                            Select User
+                        </option>
+
+                        {% for user in users %}
+                        <option value="{{ user.id }}">
+                            {{ user.fullname }}
+                        </option>
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <button
+                type="submit"
+                class="btn btn-dark">
+
+                Add Client
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY")
+app.secret_key =  "ADV"
 
 conn = pyodbc.connect(
     'DRIVER={ODBC Driver 17 for SQL Server};'
@@ -284,6 +284,370 @@ def change_password():
 
     return render_template('admin/change_password.html')
 
+
+# ================= USER MANAGEMENT =================
+@app.route('/admin/users')
+def manage_users():
+
+        if 'admin' not in session:
+            return redirect('/admin/login')
+
+        search = request.args.get('search', '')
+        status = request.args.get('status', '')
+
+        cursor = conn.cursor()
+
+        query = """
+            SELECT *
+            FROM users
+            WHERE 1=1
+        """
+
+        params = []
+
+        if search:
+
+            query += """
+            AND (
+                fullname LIKE ?
+                OR email LIKE ?
+                OR mobile LIKE ?
+            )
+            """
+
+            params.extend([
+                f'%{search}%',
+                f'%{search}%',
+                f'%{search}%'
+            ])
+
+        if status:
+
+            query += """
+            AND status = ?
+            """
+
+            params.append(status)
+
+        query += " ORDER BY id DESC "
+
+        cursor.execute(query, params)
+
+        users = cursor.fetchall()
+
+        # TOTAL USERS
+
+        cursor.execute("""
+            SELECT COUNT(*)
+            FROM users
+        """)
+        total_users = cursor.fetchone()[0]
+
+        # ACTIVE USERS
+
+        cursor.execute("""
+            SELECT COUNT(*)
+            FROM users
+            WHERE status='Active'
+        """)
+        active_users = cursor.fetchone()[0]
+
+        # INACTIVE USERS
+
+        cursor.execute("""
+            SELECT COUNT(*)
+            FROM users
+            WHERE status='Inactive'
+        """)
+        inactive_users = cursor.fetchone()[0]
+
+        return render_template(
+            'admin/users/manage_users.html',
+            users=users,
+            total_users=total_users,
+            active_users=active_users,
+            inactive_users=inactive_users
+        )
+
+
+@app.route('/admin/users/add', methods=['GET', 'POST'])
+def add_user():
+
+    if 'admin' not in session:
+        return redirect('/admin/login')
+
+    if request.method == 'POST':
+
+        fullname = request.form['fullname']
+        email = request.form['email']
+        mobile = request.form['mobile']
+        password = request.form['password']
+        role = request.form['role']
+        status = request.form['status']
+
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            INSERT INTO users
+            (fullname,email,mobile,password,role,status)
+            VALUES (?,?,?,?,?,?)
+        """,(fullname,email,mobile,password,role,status))
+
+        conn.commit()
+
+        flash("User Added Successfully")
+
+        return redirect('/admin/users')
+
+    return render_template('admin/users/add_user.html')
+
+
+
+@app.route('/admin/users/delete/<int:id>')
+def delete_user(id):
+
+    if 'admin' not in session:
+        return redirect('/admin/login')
+
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "DELETE FROM users WHERE id=?",
+        (id,)
+    )
+
+    conn.commit()
+
+    flash("User Deleted")
+
+    return redirect('/admin/users')
+
+@app.route('/admin/users/edit/<int:id>', methods=['GET','POST'])
+def edit_user(id):
+
+    if 'admin' not in session:
+        return redirect('/admin/login')
+
+    cursor = conn.cursor()
+
+    if request.method == 'POST':
+
+        fullname = request.form['fullname']
+        email = request.form['email']
+        mobile = request.form['mobile']
+        role = request.form['role']
+        status = request.form['status']
+
+        cursor.execute("""
+            UPDATE users
+            SET fullname=?,
+                email=?,
+                mobile=?,
+                role=?,
+                status=?
+            WHERE id=?
+        """,(fullname,email,mobile,role,status,id))
+
+        conn.commit()
+
+        flash("User Updated")
+
+        return redirect('/admin/users')
+
+    cursor.execute(
+        "SELECT * FROM users WHERE id=?",
+        (id,)
+    )
+
+    user = cursor.fetchone()
+
+    return render_template(
+        'admin/users/edit_user.html',
+        user=user
+    )
+
+# ================= CLIENT MANAGEMENT =================
+
+@app.route('/admin/clients')
+def manage_clients():
+    if 'admin' not in session:
+        return redirect('/admin/login')
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT
+            c.id,
+            c.client_name,
+            c.pan,
+            c.mobile,
+            u.fullname
+        FROM clients c
+        LEFT JOIN users u
+            ON c.assigned_user = u.id
+        ORDER BY c.id DESC
+    """)
+
+    clients = cursor.fetchall()
+
+    return render_template(
+        'admin/clients/manage_clients.html',
+        clients=clients
+    )
+
+
+@app.route('/admin/clients/add', methods=['GET', 'POST'])
+def add_client():
+
+    if 'admin_id' not in session:
+        return redirect('/admin/login')
+
+    cursor = conn.cursor()
+
+    if request.method == 'POST':
+
+        client_name = request.form['client_name']
+        pan = request.form['pan']
+        mobile = request.form['mobile']
+        email = request.form['email']
+        assigned_user = request.form['assigned_user']
+
+        cursor.execute("""
+            INSERT INTO clients
+            (
+                client_name,
+                pan,
+                mobile,
+                email,
+                assigned_user
+            )
+            VALUES
+            (
+                ?,?,?,?,?
+            )
+        """,
+        (
+            client_name,
+            pan,
+            mobile,
+            email,
+            assigned_user
+        ))
+
+        conn.commit()
+
+        flash('Client Added Successfully','success')
+
+        return redirect('/admin/clients')
+
+    cursor.execute("""
+        SELECT id, fullname
+        FROM users
+        WHERE status='Active'
+        ORDER BY fullname
+    """)
+
+    users = cursor.fetchall()
+
+    return render_template(
+        'admin/clients/add_client.html',
+        users=users
+    )
+
+
+# ================= KYC =================
+
+@app.route('/admin/kyc')
+def kyc_dashboard():
+
+    if 'admin' not in session:
+        return redirect('/admin/login')
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    SELECT
+        k.id,
+        c.client_name,
+        c.pan,
+        c.mobile,
+        u.fullname,
+        k.priority,
+        k.kyc_status,
+        k.submitted_date
+    FROM kyc_verification k
+    INNER JOIN clients c
+        ON c.id = k.client_id
+    INNER JOIN users u
+        ON u.id = k.assigned_user
+    ORDER BY k.id DESC
+    """)
+
+    records = cursor.fetchall()
+    users = cursor.fetchall()
+
+    return render_template(
+        'admin/kyc/index.html',
+        records=records,
+        users=users,
+        pending_count=0,
+        review_count=0,
+        approved_count=0,
+        rejected_count=0,
+        today_count=0,
+        overdue_count=0
+    )
+
+
+# ================= EVC =================
+
+@app.route('/admin/evc')
+def evc_dashboard():
+
+    if 'admin' not in session:
+        return redirect('/admin/login')
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT
+            e.id,
+            c.client_name,
+            c.pan,
+            u.fullname,
+            e.evc_status,
+            e.submitted_date
+        FROM evc_verification e
+        INNER JOIN clients c
+            ON c.id = e.client_id
+        INNER JOIN users u
+            ON u.id = e.assigned_user
+        ORDER BY e.id DESC
+    """)
+
+    records = cursor.fetchall()
+
+    return render_template(
+        'admin/evc/index.html',
+        records=records
+    )
+# ================= ACTIVITY =================
+
+@app.route('/admin/activity-logs')
+def activity_logs():
+    if 'admin' not in session:
+        return redirect('/admin/login')
+    return render_template('admin/activity/index.html')
+
+
+# ================= REPORTS =================
+
+@app.route('/admin/reports')
+def reports():
+    if 'admin' not in session:
+        return redirect('/admin/login')
+    return render_template('admin/reports/index.html')
+
 @app.route('/admin/logout')
 def admin_logout():
     session.pop('templates/admin', None)
@@ -516,6 +880,7 @@ def health():
 def hello():
     return "Imherer", 200
 
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=False)
+#
+# if __name__ == "__main__":
+#     app.run(host="0.0.0.0", port=5000, debug=False)
+app.run(debug=True)

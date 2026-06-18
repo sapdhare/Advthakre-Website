@@ -1,0 +1,278 @@
+{% extends 'admin/admin-layout.html' %}
+
+{% block content %}
+
+<!-- HEADER -->
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+        <h3 class="fw-bold mb-1">
+            Activity Logs
+        </h3>
+
+        <p class="text-muted mb-0">
+            Monitor all user activities, KYC actions and EVC verification history.
+        </p>
+    </div>
+
+    <button class="btn btn-dark">
+        <i class="bi bi-download"></i>
+        Export Logs
+    </button>
+
+</div>
+
+<!-- STATS CARDS -->
+
+<div class="row g-3 mb-4">
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <small class="text-muted">Today's Activities</small>
+                <h2 class="fw-bold text-primary">
+                    {{ today_logs or 0 }}
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <small class="text-muted">KYC Actions</small>
+                <h2 class="fw-bold text-success">
+                    {{ kyc_logs or 0 }}
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <small class="text-muted">EVC Actions</small>
+                <h2 class="fw-bold text-warning">
+                    {{ evc_logs or 0 }}
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <small class="text-muted">User Activities</small>
+                <h2 class="fw-bold text-danger">
+                    {{ user_logs or 0 }}
+                </h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- FILTERS -->
+
+<div class="card border-0 shadow-sm mb-4">
+
+    <div class="card-body">
+
+        <form method="GET">
+
+            <div class="row g-3">
+
+                <div class="col-md-3">
+                    <input type="text"
+                           name="search"
+                           class="form-control"
+                           placeholder="Search User / Client">
+                </div>
+
+                <div class="col-md-3">
+                    <select name="activity"
+                            class="form-select">
+
+                        <option value="">
+                            All Activities
+                        </option>
+
+                        <option value="Login">
+                            Login
+                        </option>
+
+                        <option value="User Created">
+                            User Created
+                        </option>
+
+                        <option value="Client Created">
+                            Client Created
+                        </option>
+
+                        <option value="KYC Verified">
+                            KYC Verified
+                        </option>
+
+                        <option value="EVC Verified">
+                            EVC Verified
+                        </option>
+
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <input type="date"
+                           name="date"
+                           class="form-control">
+                </div>
+
+                <div class="col-md-3">
+                    <button class="btn btn-dark w-100">
+                        Search
+                    </button>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- TABLE -->
+
+<div class="card border-0 shadow-sm">
+
+    <div class="card-header bg-white">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <h5 class="mb-0">
+                Activity History
+            </h5>
+
+            <span class="badge bg-dark">
+                {{ logs|length }} Records
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-light">
+
+                <tr>
+                    <th>Date & Time</th>
+                    <th>User</th>
+                    <th>Client</th>
+                    <th>Activity</th>
+                    <th>Remarks</th>
+                    <th>Status</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for log in logs %}
+
+                <tr>
+
+                    <td>{{ log.created_at }}</td>
+
+                    <td>
+                        <strong>{{ log.user_name }}</strong>
+                    </td>
+
+                    <td>{{ log.client_name }}</td>
+
+                    <td>
+
+                        {% if 'KYC' in log.activity_type %}
+                        <span class="badge bg-primary">
+                            {{ log.activity_type }}
+                        </span>
+
+                        {% elif 'EVC' in log.activity_type %}
+                        <span class="badge bg-success">
+                            {{ log.activity_type }}
+                        </span>
+
+                        {% elif 'User' in log.activity_type %}
+                        <span class="badge bg-dark">
+                            {{ log.activity_type }}
+                        </span>
+
+                        {% else %}
+                        <span class="badge bg-secondary">
+                            {{ log.activity_type }}
+                        </span>
+                        {% endif %}
+
+                    </td>
+
+                    <td>{{ log.remarks }}</td>
+
+                    <td>
+
+                        {% if log.status == 'Success' %}
+                        <span class="badge bg-success">
+                            Success
+                        </span>
+
+                        {% elif log.status == 'Pending' %}
+                        <span class="badge bg-warning text-dark">
+                            Pending
+                        </span>
+
+                        {% else %}
+                        <span class="badge bg-danger">
+                            Failed
+                        </span>
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+
+                    <td colspan="6" class="text-center py-5">
+
+                        <i class="bi bi-clock-history fs-1 text-muted"></i>
+
+                        <h5 class="mt-3">
+                            No Activity Logs Found
+                        </h5>
+
+                        <p class="text-muted">
+                            Activities performed by users will appear here.
+                        </p>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

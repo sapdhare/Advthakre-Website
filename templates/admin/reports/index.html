@@ -1,0 +1,319 @@
+{% extends 'admin/admin-layout.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+
+<div>
+    <h3 class="fw-bold mb-1">
+        Reports Dashboard
+    </h3>
+    <p class="text-muted mb-0">
+        Business insights, verification statistics and employee performance.
+    </p>
+</div>
+
+<div>
+    <a href="/admin/reports/excel" class="btn btn-success">
+        <i class="bi bi-file-earmark-excel"></i>
+        Export Excel
+    </a>
+
+    <a href="/admin/reports/pdf" class="btn btn-danger">
+        <i class="bi bi-file-earmark-pdf"></i>
+        Export PDF
+    </a>
+</div>
+
+</div>
+
+<!-- SUMMARY CARDS -->
+
+<div class="row g-3 mb-4">
+
+
+<div class="col-lg-3 col-md-6">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <small class="text-muted">Total Users</small>
+            <h2 class="fw-bold text-primary">
+                {{ total_users }}
+            </h2>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <small class="text-muted">Total Clients</small>
+            <h2 class="fw-bold">
+                {{ total_clients }}
+            </h2>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <small class="text-muted">Pending KYC</small>
+            <h2 class="fw-bold text-warning">
+                {{ pending_kyc }}
+            </h2>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <small class="text-muted">Verified KYC</small>
+            <h2 class="fw-bold text-success">
+                {{ verified_kyc }}
+            </h2>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="row g-3 mb-4">
+
+
+<div class="col-lg-3 col-md-6">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <small class="text-muted">Pending EVC</small>
+            <h2 class="fw-bold text-warning">
+                {{ pending_evc }}
+            </h2>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <small class="text-muted">Verified EVC</small>
+            <h2 class="fw-bold text-success">
+                {{ verified_evc }}
+            </h2>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <small class="text-muted">Today's Verifications</small>
+            <h2 class="fw-bold text-info">
+                {{ today_verifications }}
+            </h2>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <small class="text-muted">Completion Rate</small>
+            <h2 class="fw-bold text-success">
+                {{ completion_rate }}%
+            </h2>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<!-- USER PERFORMANCE -->
+
+<div class="card border-0 shadow-sm mb-4">
+
+
+<div class="card-header bg-white">
+
+    <div class="d-flex justify-content-between align-items-center">
+
+        <h5 class="mb-0">
+            Verification Executive Performance
+        </h5>
+
+        <span class="badge bg-dark">
+            {{ performance|length }} Users
+        </span>
+
+    </div>
+
+</div>
+
+<div class="card-body">
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+            <thead class="table-light">
+            <tr>
+                <th>Executive</th>
+                <th>Assigned Clients</th>
+                <th>KYC Verified</th>
+                <th>EVC Verified</th>
+                <th>Performance</th>
+                <th>Rating</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for row in performance %}
+
+            <tr>
+
+                <td>
+                    <strong>{{ row.fullname }}</strong>
+                </td>
+
+                <td>
+                    {{ row.total_clients }}
+                </td>
+
+                <td>
+                    {{ row.kyc_done }}
+                </td>
+
+                <td>
+                    {{ row.evc_done }}
+                </td>
+
+                <td>
+
+                    {% set score = row.kyc_done + row.evc_done %}
+
+                    {% if score >= 200 %}
+                    <span class="badge bg-success">
+                        Excellent
+                    </span>
+
+                    {% elif score >= 100 %}
+                    <span class="badge bg-primary">
+                        Good
+                    </span>
+
+                    {% else %}
+                    <span class="badge bg-warning text-dark">
+                        Average
+                    </span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {% if score >= 200 %}
+                    ⭐⭐⭐⭐⭐
+
+                    {% elif score >= 100 %}
+                    ⭐⭐⭐⭐
+
+                    {% else %}
+                    ⭐⭐⭐
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% else %}
+
+            <tr>
+                <td colspan="6" class="text-center py-5">
+
+                    <i class="bi bi-bar-chart fs-1 text-muted"></i>
+
+                    <h5 class="mt-3">
+                        No Performance Data Available
+                    </h5>
+
+                </td>
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- RECENT ACTIVITY -->
+
+<div class="card border-0 shadow-sm">
+
+ <div class="card-header bg-white">
+    <h5 class="mb-0">
+        Recent Verification Activity
+    </h5>
+</div>
+
+<div class="card-body">
+
+    <div class="table-responsive">
+
+        <table class="table table-hover">
+
+            <thead class="table-light">
+            <tr>
+                <th>Date</th>
+                <th>User</th>
+                <th>Client</th>
+                <th>Action</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for log in recent_logs %}
+
+            <tr>
+
+                <td>{{ log.created_at }}</td>
+
+                <td>{{ log.user_name }}</td>
+
+                <td>{{ log.client_name }}</td>
+
+                <td>{{ log.activity_type }}</td>
+
+                <td>
+                    <span class="badge bg-success">
+                        {{ log.status }}
+                    </span>
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</div>
+
+{% endblock %}
