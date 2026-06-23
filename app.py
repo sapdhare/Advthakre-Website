@@ -3,10 +3,15 @@ import pyodbc
 import random
 import smtplib
 import os
-
- 
+from datetime import datetime
 from dotenv import load_dotenv
-
+import pandas as pd
+from flask import send_file
+import io
+from math import ceil
+import pandas as pd
+from flask import send_file
+from io import BytesIO
 load_dotenv()
 
 app = Flask(__name__)
@@ -466,140 +471,6 @@ def edit_user(id):
         user=user
     )
 
-# ================= CLIENT MANAGEMENT =================
-
-@app.route('/admin/clients')
-def manage_clients():
-    if 'admin' not in session:
-        return redirect('/admin/login')
-
-    cursor = conn.cursor()
-
-    cursor.execute("""
-        SELECT
-            c.id,
-            c.client_name,
-            c.pan,
-            c.mobile,
-            u.fullname
-        FROM clients c
-        LEFT JOIN users u
-            ON c.assigned_user = u.id
-        ORDER BY c.id DESC
-    """)
-
-    clients = cursor.fetchall()
-
-    return render_template(
-        'admin/clients/manage_clients.html',
-        clients=clients
-    )
-
-
-@app.route('/admin/clients/add', methods=['GET', 'POST'])
-def add_client():
-
-    if 'admin_id' not in session:
-        return redirect('/admin/login')
-
-    cursor = conn.cursor()
-
-    if request.method == 'POST':
-
-        client_name = request.form['client_name']
-        pan = request.form['pan']
-        mobile = request.form['mobile']
-        email = request.form['email']
-        assigned_user = request.form['assigned_user']
-
-        cursor.execute("""
-            INSERT INTO clients
-            (
-                client_name,
-                pan,
-                mobile,
-                email,
-                assigned_user
-            )
-            VALUES
-            (
-                ?,?,?,?,?
-            )
-        """,
-        (
-            client_name,
-            pan,
-            mobile,
-            email,
-            assigned_user
-        ))
-
-        conn.commit()
-
-        flash('Client Added Successfully','success')
-
-        return redirect('/admin/clients')
-
-    cursor.execute("""
-        SELECT id, fullname
-        FROM users
-        WHERE status='Active'
-        ORDER BY fullname
-    """)
-
-    users = cursor.fetchall()
-
-    return render_template(
-        'admin/clients/add_client.html',
-        users=users
-    )
-
-
-# ================= KYC =================
-
-@app.route('/admin/kyc')
-def kyc_dashboard():
-
-    if 'admin' not in session:
-        return redirect('/admin/login')
-
-    cursor = conn.cursor()
-
-    cursor.execute("""
-    SELECT
-        k.id,
-        c.client_name,
-        c.pan,
-        c.mobile,
-        u.fullname,
-        k.priority,
-        k.kyc_status,
-        k.submitted_date
-    FROM kyc_verification k
-    INNER JOIN clients c
-        ON c.id = k.client_id
-    INNER JOIN users u
-        ON u.id = k.assigned_user
-    ORDER BY k.id DESC
-    """)
-
-    records = cursor.fetchall()
-    users = cursor.fetchall()
-
-    return render_template(
-        'admin/kyc/index.html',
-        records=records,
-        users=users,
-        pending_count=0,
-        review_count=0,
-        approved_count=0,
-        rejected_count=0,
-        today_count=0,
-        overdue_count=0
-    )
-
-
-# ================= EVC =================
 
 @app.route('/admin/evc')
 def evc_dashboard():
@@ -610,43 +481,462 @@ def evc_dashboard():
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT
-            e.id,
+        SELECT COUNT(*)
+        FROM evc_clients
+        WHERE status='Pending'
+    """)
+    pending_count = cursor.fetchone()[0]
+
+    cursor.execute("""
+        SELECT COUNT(*)
+        FROM evc_clients
+        WHERE status='Verified'
+    """)
+    verified_count = cursor.fetchone()[0]
+
+    cursor.execute("""
+        SELECT TOP 10
+            v.id,
             c.client_name,
-            c.pan,
+            c.pan_no,
             u.fullname,
-            e.evc_status,
-            e.submitted_date
-        FROM evc_verification e
-        INNER JOIN clients c
-            ON c.id = e.client_id
-        INNER JOIN users u
-            ON u.id = e.assigned_user
-        ORDER BY e.id DESC
+            v.verified_date
+        FROM evc_verifications v
+        LEFT JOIN evc_clients c
+            ON c.id = v.client_id
+        LEFT JOIN users u
+            ON u.id = v.user_id
+        ORDER BY v.id DESC
     """)
 
-    records = cursor.fetchall()
+    latest_verifications = cursor.fetchall()
 
     return render_template(
-        'admin/evc/index.html',
-        records=records
+        'admin/evc/dashboard.html',
+        pending_count=pending_count,
+        verified_count=verified_count,
+        latest_verifications=latest_verifications
     )
-# ================= ACTIVITY =================
 
-@app.route('/admin/activity-logs')
-def activity_logs():
-    if 'admin' not in session:
-        return redirect('/admin/login')
-    return render_template('admin/activity/index.html')
+@app.route('/evc-pdf/<filename>')
+def evc_pdf(filename):
+
+    return send_from_directory(
+        EVC_UPLOAD_FOLDER,
+        filename,
+        as_attachment=False
+    )
+
+# =================User Login=================
+@app.route('/user/login', methods=['GET', 'POST'])
+def user_login():
+
+    if request.method == 'POST':
+
+        email = request.form['email'].strip()
+        password = request.form['password'].strip()
+
+        print("EMAIL:", email)
+        print("PASSWORD:", password)
+
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            SELECT *
+            FROM users
+            WHERE email=?
+        """, (email,))
+
+        user = cursor.fetchone()
+
+        print("USER:", user)
+
+        if user:
+
+            print("DB PASSWORD:", user.password)
+            print("DB STATUS:", user.status)
+
+            if (
+                str(user.password).strip() == password
+                and str(user.status).strip() == "Active"
+            ):
+
+                session['user_id'] = user.id
+                session['user_name'] = user.fullname
+                session['user_email'] = user.email
+
+                return redirect('/user/dashboard')
+
+        flash(
+            "Invalid Email or Password. Please contact administrator.",
+            "danger"
+        )
+
+        return redirect('/user/login')
+
+    return render_template('user/login.html')
+
+@app.route('/user/logout')
+def user_logout():
+
+    session.clear()
+
+    return redirect('/user/login')
+
+@app.route('/user/dashboard')
+def user_dashboard():
+
+    if 'user_id' not in session:
+        return redirect('/user/login')
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT COUNT(*)
+        FROM evc_clients
+        WHERE status='Pending'
+    """)
+    pending_count = cursor.fetchone()[0]
+
+    cursor.execute("""
+        SELECT COUNT(*)
+        FROM evc_clients
+        WHERE verified_by=?
+    """,(session['user_id'],))
+    my_verified = cursor.fetchone()[0]
+
+    cursor.execute("""
+        SELECT COUNT(*)
+        FROM evc_clients
+        WHERE status='Verified'
+    """)
+    total_verified = cursor.fetchone()[0]
+
+    return render_template(
+        'user/dashboard.html',
+        pending_count=pending_count,
+        my_verified=my_verified,
+        total_verified=total_verified
+    )
+
+@app.route('/user/evc-verification')
+def user_evc_verification():
+
+    if 'user_id' not in session:
+        return redirect('/user/login')
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT *
+        FROM evc_clients
+        WHERE status='Pending'
+        ORDER BY id ASC
+    """)
+
+    clients = cursor.fetchall()
+
+    return render_template(
+        'user/evc_verification.html',
+        clients=clients
+    )
+
+@app.route('/user/verify/<int:id>')
+def verify_client(id):
+
+    if 'user_id' not in session:
+        return redirect('/user/login')
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT *
+        FROM evc_clients
+        WHERE id=?
+    """, (id,))
+
+    client = cursor.fetchone()
+
+    if not client:
+        flash("Client not found")
+        return redirect('/user/evc-verification')
+
+    return render_template(
+        'user/verify_client.html',
+        client=client
+    )
+
+UPLOAD_FOLDER = os.path.join(
+    app.root_path,
+    "static",
+    "evc_pdfs"
+)
+
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+print("PDF Upload Folder:", UPLOAD_FOLDER)
+
+EVC_UPLOAD_FOLDER = os.path.join(
+    app.root_path,
+    "static",
+    "evc_pdfs"
+)
+
+os.makedirs(EVC_UPLOAD_FOLDER, exist_ok=True)
+
+@app.route('/user/verify-submit/<int:id>', methods=['POST'])
+def verify_submit(id):
+
+    if 'user_id' not in session:
+        return redirect('/user/login')
+
+    pdf = request.files.get('evc_pdf')
+
+    filename = None
+
+    if pdf and pdf.filename:
+
+        filename = f"{id}_{pdf.filename}"
+
+        file_path = os.path.join(
+            EVC_UPLOAD_FOLDER,
+            filename
+        )
+
+        pdf.save(file_path)
+
+        print("PDF SAVED TO:", file_path)
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        UPDATE evc_clients
+        SET
+            status='Verified',
+            verified_by=?,
+            verified_at=GETDATE(),
+            evc_pdf=?
+        WHERE id=?
+    """,
+    (
+        session['user_id'],
+        filename,
+        id
+    ))
+
+    conn.commit()
+
+    flash(
+        "EVC Verified Successfully",
+        "success"
+    )
+
+    return redirect('/user/my-verifications')
+
+
+@app.route('/user/my-verifications')
+def my_verifications():
+
+    if 'user_id' not in session:
+        return redirect('/user/login')
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT *
+        FROM evc_clients
+        WHERE verified_by=?
+        ORDER BY verified_at DESC
+    """,(session['user_id'],))
+
+    clients = cursor.fetchall()
+
+    return render_template(
+        'user/my_verifications.html',
+        clients=clients
+    )
+
+@app.route('/user/pending-clients')
+def user_pending_clients():
+
+    if 'user_id' not in session:
+        return redirect('/user/login')
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT *
+        FROM evc_clients
+        WHERE status='Pending'
+        ORDER BY id DESC
+    """)
+
+    clients = cursor.fetchall()
+
+    return render_template(
+        'user/pending_clients.html',
+        clients=clients
+    )
+
 
 
 # ================= REPORTS =================
 
 @app.route('/admin/reports')
-def reports():
-    if 'admin' not in session:
-        return redirect('/admin/login')
-    return render_template('admin/reports/index.html')
+def admin_reports():
+
+    cursor = conn.cursor()
+
+    # Dashboard Cards
+
+    cursor.execute("""
+        SELECT COUNT(*)
+        FROM evc_clients
+        WHERE status='Pending'
+    """)
+    pending_total = cursor.fetchone()[0]
+
+    cursor.execute("""
+        SELECT COUNT(*)
+        FROM evc_clients
+        WHERE status='Verified'
+    """)
+    verified_total = cursor.fetchone()[0]
+
+    # Active Users
+
+    cursor.execute("""
+        SELECT
+            id,
+            fullname
+        FROM users
+        WHERE status='Active'
+        ORDER BY fullname
+    """)
+    users = cursor.fetchall()
+
+    # User Wise Verification Report
+
+    cursor.execute("""
+        SELECT
+
+            u.fullname,
+
+            COUNT(
+                CASE
+                    WHEN c.status='Verified'
+                    THEN 1
+                END
+            ) AS verified_count,
+
+            COUNT(c.id) AS total_records
+
+        FROM users u
+
+        LEFT JOIN evc_clients c
+            ON c.verified_by = u.id
+
+        WHERE u.status='Active'
+
+        GROUP BY
+            u.id,
+            u.fullname
+
+        ORDER BY
+            verified_count DESC,
+            u.fullname
+    """)
+
+    report_data = cursor.fetchall()
+
+    return render_template(
+        'admin/reports/index.html',
+        pending_total=pending_total,
+        verified_total=verified_total,
+        users=users,
+        report_data=report_data
+    )
+
+
+@app.route('/admin/reports/excel')
+def export_report_excel():
+
+ 
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    SELECT
+    
+        u.fullname,
+    
+        COUNT(
+            CASE
+                WHEN c.status = 'Pending'
+                THEN 1
+            END
+        ) AS pending_count,
+    
+        COUNT(
+            CASE
+                WHEN c.status = 'Verified'
+                THEN 1
+            END
+        ) AS verified_count,
+    
+        COUNT(c.id) AS total_records
+    
+    FROM users u
+    
+    LEFT JOIN evc_clients c
+    ON c.verified_by = u.id    
+    WHERE u.status = 'Active'
+    
+    GROUP BY
+        u.fullname
+    
+    ORDER BY
+        total_records DESC
+    """)
+
+    rows = cursor.fetchall()
+
+    data = []
+
+    for row in rows:
+
+        data.append({
+            "User Name": row.fullname,
+            "Pending": row.pending_count,
+            "Verified": row.verified_count,
+            "Total Done": row.total_records
+        })
+
+    import pandas as pd
+    from io import BytesIO
+    from flask import send_file
+
+    df = pd.DataFrame(data)
+
+    output = BytesIO()
+
+    with pd.ExcelWriter(output, engine='openpyxl') as writer:
+        df.to_excel(
+            writer,
+            index=False,
+            sheet_name='EVC Report'
+        )
+
+    output.seek(0)
+
+    return send_file(
+        output,
+        as_attachment=True,
+        download_name='evc_report.xlsx',
+        mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+
+
 
 @app.route('/admin/logout')
 def admin_logout():

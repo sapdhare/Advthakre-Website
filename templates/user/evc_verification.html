@@ -1,0 +1,51 @@
+{% extends 'user/user-layout.html' %}
+
+{% block content %}
+
+<h3>Pending EVC Clients</h3>
+
+<table class="table">
+
+    <thead>
+
+        <tr>
+            <th>PAN</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for client in clients %}
+
+        <tr>
+
+            <td>{{ client.pan_no }}</td>
+            <td>{{ client.client_name }}</td>
+            <td>{{ client.mobile_no }}</td>
+            <td>{{ client.date_of_file }}</td>
+
+            <td>
+
+                <a href="/user/verify/{{ client.id }}"
+                   class="btn btn-success btn-sm">
+
+                    Verify
+
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

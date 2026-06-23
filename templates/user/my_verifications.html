@@ -1,0 +1,39 @@
+{% extends 'user/user-layout.html' %}
+
+{% block content %}
+
+<h3>My Verified Clients</h3>
+
+<table class="table">
+
+    <thead>
+
+        <tr>
+            <th>PAN</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Verified Date</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for client in clients %}
+
+        <tr>
+
+            <td>{{ client.pan_no }}</td>
+            <td>{{ client.client_name }}</td>
+            <td>{{ client.mobile_no }}</td>
+            <td>{{ client.verified_at }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

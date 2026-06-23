@@ -1,0 +1,127 @@
+{% extends 'user/user-layout.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+        <h3 class="fw-bold">
+            Verify Client
+        </h3>
+        <p class="text-muted">
+            Upload EVC PDF after successful verification.
+        </p>
+    </div>
+
+</div>
+
+<div class="card shadow-sm border-0">
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+
+                <label class="fw-bold">
+                    PAN Number
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       value="{{ client.pan_no }}"
+                       readonly>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="fw-bold">
+                    Client Name
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       value="{{ client.client_name }}"
+                       readonly>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="fw-bold">
+                    Mobile Number
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       value="{{ client.mobile_no }}"
+                       readonly>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="fw-bold">
+                    Filing Date
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       value="{{ client.date_of_file }}"
+                       readonly>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <form
+            action="/user/verify-submit/{{ client.id }}"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            <div class="mb-3">
+
+                <label class="form-label fw-bold">
+
+                    Upload EVC PDF
+
+                </label>
+
+                <input
+                    type="file"
+                    name="evc_pdf"
+                    accept=".pdf"
+                    required
+                    class="form-control"
+                >
+
+            </div>
+
+            <button
+                class="btn btn-success"
+            >
+
+                <i class="bi bi-check-circle"></i>
+
+                Mark as Verified
+
+            </button>
+
+            <a
+                href="/user/evc-verification"
+                class="btn btn-secondary"
+            >
+                Back
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

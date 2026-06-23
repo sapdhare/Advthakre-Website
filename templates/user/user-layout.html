@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>User Portal | Adv. Thakre & Associates</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+
+:root{
+    --sidebar-width:260px;
+    --primary:#0d6efd;
+    --dark:#111827;
+    --light:#f5f7fb;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--light);
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:var(--sidebar-width);
+    height:100vh;
+    background:var(--dark);
+    z-index:1050;
+    overflow-y:auto;
+    transition:.3s;
+}
+
+.logo{
+    height:70px;
+    display:flex;
+    align-items:center;
+    padding:0 25px;
+    color:#fff;
+    font-size:20px;
+    font-weight:700;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo i{
+    margin-right:10px;
+}
+
+.nav-menu{
+    padding:15px;
+}
+
+.nav-link{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px 15px;
+    margin-bottom:8px;
+    border-radius:10px;
+    color:#cbd5e1;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.nav-link:hover{
+    background:#1f2937;
+    color:white;
+}
+
+.nav-link.active{
+    background:var(--primary);
+    color:white;
+}
+
+.nav-link i{
+    font-size:18px;
+}
+
+/* MAIN */
+
+.main{
+    margin-left:var(--sidebar-width);
+    min-height:100vh;
+}
+
+.topbar{
+    height:70px;
+    background:white;
+    border-bottom:1px solid #e5e7eb;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 25px;
+}
+
+.page-title{
+    font-weight:600;
+}
+
+.user-info{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.user-avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:var(--primary);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:600;
+}
+
+.content{
+    padding:25px;
+}
+
+.page-card{
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 2px 15px rgba(0,0,0,.05);
+}
+
+/* MOBILE */
+
+.mobile-btn{
+    display:none;
+}
+
+.overlay{
+    display:none;
+}
+
+@media(max-width:992px){
+
+.sidebar{
+    left:-260px;
+}
+
+.sidebar.show{
+    left:0;
+}
+
+.main{
+    margin-left:0;
+}
+
+.mobile-btn{
+    display:block;
+}
+
+.overlay.show{
+    display:block;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.4);
+    z-index:1040;
+}
+
+.topbar{
+    padding:0 15px;
+}
+
+.content{
+    padding:15px;
+}
+
+.page-card{
+    padding:18px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<div class="sidebar" id="sidebar">
+
+```
+<div class="logo">
+    <i class="bi bi-shield-check"></i>
+    Verification Executive
+</div>
+
+<div class="nav-menu">
+
+    <a href="/user/dashboard" class="nav-link">
+        <i class="bi bi-grid"></i>
+        Dashboard
+    </a>
+
+    <a href="/user/evc-verification" class="nav-link">
+        <i class="bi bi-patch-check"></i>
+        EVC Verification
+    </a>
+
+    <a href="/user/my-verifications" class="nav-link">
+        <i class="bi bi-check-circle"></i>
+        My Verified Clients
+    </a>
+
+    <hr class="text-secondary">
+
+    <a href="/user/logout" class="nav-link">
+        <i class="bi bi-box-arrow-right"></i>
+        Logout
+    </a>
+
+</div>
+
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+    <div class="d-flex align-items-center gap-3">
+
+        <button class="btn btn-light mobile-btn"
+                onclick="toggleSidebar()">
+
+            <i class="bi bi-list fs-5"></i>
+
+        </button>
+
+        <span class="page-title">
+            Adv. Thakre & Associates
+        </span>
+
+    </div>
+
+    <div class="user-info">
+
+        <div class="user-avatar">
+            {{ session['user_name'][0] }}
+        </div>
+
+        <span class="fw-semibold">
+            {{ session['user_name'] }}
+        </span>
+
+    </div>
+
+</div>
+
+<div class="content">
+
+    <div class="page-card">
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+
+</div>
+
+
+</div>
+
+<script>
+
+function toggleSidebar(){
+
+    document
+    .getElementById("sidebar")
+    .classList.toggle("show");
+
+    document
+    .getElementById("overlay")
+    .classList.toggle("show");
+
+}
+
+document.addEventListener("DOMContentLoaded",function(){
+
+    let current = window.location.pathname;
+
+    document.querySelectorAll(".nav-link")
+    .forEach(link=>{
+
+        if(link.getAttribute("href")===current){
+
+            link.classList.add("active");
+
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

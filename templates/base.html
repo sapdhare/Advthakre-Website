@@ -223,25 +223,95 @@
     position: relative;
 }
 
-  .login-dropdown{
-    position:relative;
+.mobile-submenu{
+    display:none;
+    padding-left:15px;
 }
 
+.mobile-submenu.show{
+    display:block;
+}
+
+.mobile-submenu a{
+    display:block;
+    padding:10px 0;
+}
 .login-menu{
     position:absolute;
-    top:120%;
-    right:0;
-    width:280px;
-    background:#fff;
-    border-radius:16px;
+    top:100%;
+    left:50%;
+    transform:translateX(-50%);
+    min-width:320px;
+
+    background:#ffffff;
+
+    border-radius:18px;
     overflow:hidden;
+
     box-shadow:0 20px 50px rgba(0,0,0,.15);
+
     opacity:0;
     visibility:hidden;
-    transform:translateY(10px);
-    transition:.3s ease;
-    z-index:9999;
+
+    transition:all .3s ease;
+
+    z-index:99999;
 }
+
+.login-dropdown:hover .login-menu{
+    opacity:1;
+    visibility:visible;
+}
+
+.login-option{
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+    padding:20px;
+
+    text-decoration:none;
+    color:#222;
+
+    transition:.3s;
+}
+
+.login-option:not(:last-child){
+    border-bottom:1px solid #eee;
+}
+
+.login-option i{
+    width:45px;
+    height:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#f8f5ea;
+    color:#d4af37;
+
+    font-size:18px;
+}
+
+.login-option strong{
+    display:block;
+    font-size:16px;
+    font-weight:600;
+}
+
+.login-option small{
+    display:block;
+    color:#777;
+    margin-top:3px;
+}
+
+.login-option:hover{
+    background:#faf7ed;
+}
+
 
 .login-dropdown:hover .login-menu{
     opacity:1;
@@ -382,30 +452,25 @@
     Contact
   </a>
 
-<div class="nav-item login-dropdown">
+<div class="nav-item">
+
     <a href="#" class="nav-link">
-        <i class="fas fa-user-circle"></i> Login <span>▾</span>
+        Login <span>▾</span>
     </a>
 
-    <div class="login-menu">
-        <a href="/user/login" class="login-option">
-            <i class="fas fa-user"></i>
-            <div>
-                <strong>User Portal</strong>
-                <small>Track cases & services</small>
-            </div>
+    <div class="dropdown-menu">
+
+        <a href="/user/login">
+            User Login
         </a>
 
-        <a href="/admin/login" class="login-option">
-            <i class="fas fa-shield-alt"></i>
-            <div>
-                <strong>Admin Portal</strong>
-                <small>Manage website content</small>
-            </div>
+        <a href="/admin/login">
+            Admin Login
         </a>
+
     </div>
-</div>
 
+</div>
 
   <a href="/contact" class="nav-cta">Book Consultation</a>
 
@@ -459,7 +524,29 @@
         <a href="/gallery">Gallery</a>
         <a href="/blogs">Blog</a>
         <a href="/contact">Contact</a>
-        
+        <div class="mobile-dropdown">
+
+    <div class="mobile-dropdown-header">
+
+        <a href="#">Login</a>
+
+        <span class="dropdown-arrow">▾</span>
+
+    </div>
+
+    <div class="mobile-submenu">
+
+        <a href="/user/login">
+            User Login
+        </a>
+
+        <a href="/admin/login">
+            Admin Login
+        </a>
+
+    </div>
+
+</div>
         <a href="/contact" class="mobile-cta">Book Consultation</a>
 
       </div>
@@ -761,6 +848,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+document.querySelectorAll('.mobile-dropdown-header').forEach(item => {
+
+    item.addEventListener('click', function(){
+
+        const submenu =
+        this.nextElementSibling;
+
+        submenu.classList.toggle('show');
+
+    });
+
+});
+
 </script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 <script src="{{ url_for('static', filename='js/slider.js') }}"></script>

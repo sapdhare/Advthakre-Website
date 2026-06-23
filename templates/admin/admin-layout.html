@@ -95,6 +95,14 @@
         .nav-link.active {
             background: var(--accent-gold);
             color: #fff;
+            .collapse .nav-link{
+                padding-left:40px;
+                font-size:0.82rem;
+            }
+
+            .collapse .nav-link:hover{
+                background:rgba(255,255,255,0.05);
+            }
         }
 
         /* Main Content Adjustments */
@@ -187,25 +195,13 @@
     <i class="bi bi-people"></i> User Management
 </a>
 
-<!-- CLIENT MANAGEMENT -->
-<a href="/admin/clients" class="nav-link">
-    <i class="bi bi-person-vcard"></i> Client Management
-</a>
-
-<!-- KYC -->
-<a href="/admin/kyc" class="nav-link">
-    <i class="bi bi-person-badge"></i> KYC Verification
-</a>
 
 <!-- EVC -->
 <a href="/admin/evc" class="nav-link">
     <i class="bi bi-patch-check"></i> EVC Verification
 </a>
 
-<!-- ACTIVITY -->
-<a href="/admin/activity-logs" class="nav-link">
-    <i class="bi bi-clock-history"></i> Activity Logs
-</a>
+
 
 <!-- REPORTS -->
 <a href="/admin/reports" class="nav-link">
@@ -214,20 +210,53 @@
 
 <hr style="border-color:#333;">
 
-<!-- BLOG -->
-<a href="/admin/add-blog" class="nav-link">
-    <i class="bi bi-file-earmark-plus"></i> Add Blog
-</a>
+<!-- BLOG MANAGEMENT -->
 
-<a href="/admin/blogs" class="nav-link">
-    <i class="bi bi-collection"></i> Manage Blogs
-</a>
+<div class="nav-item">
+
+    <a class="nav-link d-flex justify-content-between align-items-center"
+       data-bs-toggle="collapse"
+       href="#blogMenu"
+       role="button">
+
+        <span>
+            <i class="bi bi-journal-richtext"></i>
+            Blog
+        </span>
+
+        <i class="bi bi-chevron-down"></i>
+
+    </a>
+
+    <div class="collapse" id="blogMenu">
+
+        <a href="/admin/add-blog" class="nav-link ms-4">
+            <i class="bi bi-file-earmark-plus"></i>
+            Add Blog
+        </a>
+
+        <a href="/admin/blogs" class="nav-link ms-4">
+            <i class="bi bi-collection"></i>
+            Manage Blogs
+        </a>
+
+    </div>
+
+</div>
 
 <a href="/blogs" class="nav-link" target="_blank">
     <i class="bi bi-globe"></i> View Website
 </a>
+        
+ <a href="/admin/logout" class="nav-link logout-link">
+    <i class="bi bi-box-arrow-right"></i>
+    Logout
+</a>
     </div>
 </div>
+
+
+
 
 <div class="main-content">
 
