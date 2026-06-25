@@ -18,7 +18,7 @@ app = Flask(__name__)
 app.secret_key =  "ADV"
 
 conn = pyodbc.connect(
-    'DRIVER={ODBC Driver 17 for SQL Server};'
+    'DRIVER={ODBC Driver 18 for SQL Server};'
     'SERVER=localhost;'
     'DATABASE=adv_thakre_cms;'
     'Trusted_Connection=yes;'
