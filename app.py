@@ -26,6 +26,8 @@ conn = pyodbc.connect(
     f"PWD={os.getenv('DB_PASSWORD')};"
     f"Encrypt=no;"
     f"TrustServerCertificate=yes;"
+    "MARS_Connection=Yes;",
+    autocommit=True
 )
 
 
