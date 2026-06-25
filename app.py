@@ -15,15 +15,17 @@ from io import BytesIO
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key =  "ADV"
+app.secret_key = os.getenv("SECRET_KEY")
 
+ 
 conn = pyodbc.connect(
-    'DRIVER={ODBC Driver 18 for SQL Server};'
-    'SERVER=localhost;'
-    'DATABASE=adv_thakre_cms;'
-    'Trusted_Connection=yes;'
-    'MARS_Connection=Yes;',
-    autocommit=True
+    f"DRIVER={{ODBC Driver 18 for SQL Server}};"
+    f"SERVER={os.getenv('DB_SERVER')};"
+    f"DATABASE={os.getenv('DB_DATABASE')};"
+    f"UID={os.getenv('DB_USERNAME')};"
+    f"PWD={os.getenv('DB_PASSWORD')};"
+    f"Encrypt=no;"
+    f"TrustServerCertificate=yes;"
 )
 
 
