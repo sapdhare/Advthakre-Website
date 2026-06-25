@@ -1172,7 +1172,7 @@ def health():
     
 @app.route("/HEllo")
 def hello():
-    return "I was here", 200
+    return "I AM here", 200
 
 #
 if __name__ == "__main__":
