@@ -641,9 +641,7 @@ def user_evc_verification():
     """, (session['user_id'],))
 
     clients = cursor.fetchall()
-
-    clients = cursor.fetchall()
-
+ 
     return render_template(
         'user/evc_verification.html',
         clients=clients
