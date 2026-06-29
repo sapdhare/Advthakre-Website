@@ -634,9 +634,13 @@ def user_evc_verification():
     cursor.execute("""
         SELECT *
         FROM evc_clients
-        WHERE status='Pending'
+        WHERE
+            status='Pending'
+            AND assigned_to=?
         ORDER BY id ASC
-    """)
+    """, (session['user_id'],))
+
+    clients = cursor.fetchall()
 
     clients = cursor.fetchall()
 
@@ -772,9 +776,11 @@ def user_pending_clients():
     cursor.execute("""
         SELECT *
         FROM evc_clients
-        WHERE status='Pending'
+        WHERE
+            status='Pending'
+            AND assigned_to=?
         ORDER BY id DESC
-    """)
+    """, (session['user_id'],))
 
     clients = cursor.fetchall()
 
