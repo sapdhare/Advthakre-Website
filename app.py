@@ -386,21 +386,46 @@ def add_user():
         return redirect('/admin/login')
 
     if request.method == 'POST':
-
         fullname = request.form['fullname']
+        employee_id = request.form['employee_id']
         email = request.form['email']
         mobile = request.form['mobile']
         password = request.form['password']
-        role = "Verification Executive"
         status = request.form['status']
+        joining_date = request.form['joining_date']
+        remarks = request.form['remarks']
 
         cursor = conn.cursor()
 
         cursor.execute("""
-            INSERT INTO users
-            (fullname,email,mobile,password,role,status)
-            VALUES (?,?,?,?,?,?)
-        """,(fullname,email,mobile,password,role,status))
+        INSERT INTO users
+        (
+        fullname,
+        employee_id,
+        email,
+        mobile,
+        password,
+        role,
+        status,
+        joining_date,
+        remarks
+        )
+        VALUES
+        (
+        ?,?,?,?,?,?,?,?,?
+        )
+        """,
+                       (
+                           fullname,
+                           employee_id,
+                           email,
+                           mobile,
+                           password,
+                           "Verification Executive",
+                           status,
+                           joining_date,
+                           remarks
+                       ))
 
         conn.commit()
 

@@ -21,10 +21,12 @@
 
             <div class="col-md-6 mb-3">
                 <label class="form-label">Employee ID *</label>
-                <input type="text"
-                       name="employee_id"
-                       class="form-control"
-                       placeholder="EMP001">
+                <input
+type="text"
+name="employee_id"
+class="form-control"
+placeholder="EMP001"
+required>
             </div>
 
             <div class="col-md-6 mb-3">
@@ -37,38 +39,41 @@
 
             <div class="col-md-6 mb-3">
                 <label class="form-label">Mobile Number *</label>
-                <input type="text"
-                       name="mobile"
-                       class="form-control"
-                       required>
+               <input
+type="tel"
+name="mobile"
+class="form-control"
+maxlength="10"
+pattern="[0-9]{10}"
+placeholder="mobile no"
+required>
             </div>
 
             <div class="col-md-6 mb-3">
                 <label class="form-label">Password *</label>
-                <input type="password"
-                       name="password"
-                       class="form-control"
-                       required>
+<div class="input-group">
+
+    <input
+        type="password"
+        id="password"
+        name="password"
+        class="form-control"
+        required>
+
+<button
+    type="button"
+    class="btn btn-outline-secondary border-start-0"
+    onclick="togglePassword()">
+        <i
+            class="bi bi-eye"
+            id="eyeIcon">
+        </i>
+
+    </button>
+
+</div>
             </div>
 
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Role *</label>
-                <select class="form-select" name="role">
-
-                    <option value="Verifier">
-                        Verification Executive
-                    </option>
-
-                    <option value="Senior Verifier">
-                        Senior Verifier
-                    </option>
-
-                    <option value="Team Leader">
-                        Team Leader
-                    </option>
-
-                </select>
-            </div>
 
             <div class="col-md-6 mb-3">
                 <label class="form-label">Status *</label>
@@ -117,5 +122,36 @@
     </form>
 
 </div>
+<script>
 
+function togglePassword(){
+
+    const password =
+    document.getElementById("password");
+
+    const eye =
+    document.getElementById("eyeIcon");
+
+    if(password.type==="password"){
+
+        password.type="text";
+
+        eye.classList.remove("bi-eye");
+
+        eye.classList.add("bi-eye-slash");
+
+    }
+    else{
+
+        password.type="password";
+
+        eye.classList.remove("bi-eye-slash");
+
+        eye.classList.add("bi-eye");
+
+    }
+
+}
+
+</script>
 {% endblock %}
