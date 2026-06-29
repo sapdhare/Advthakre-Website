@@ -45,9 +45,16 @@
                             Pending Clients
                         </h6>
 
-                        <h1 class="fw-bold text-warning mb-0">
-                            {{ pending_count }}
-                        </h1>
+                       <h1 class="fw-bold text-warning mb-1">
+                        {{ pending_count }}
+                        <small class="fs-5 text-muted">
+                            / {{ total_clients }}
+                        </small>
+                    </h1>
+
+                    <p class="text-muted mb-0">
+                        Pending Verification
+                    </p>
 
                     </div>
 

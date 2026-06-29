@@ -525,6 +525,13 @@ def evc_dashboard():
     pending_count = cursor.fetchone()[0]
 
     cursor.execute("""
+    SELECT COUNT(*)
+    FROM evc_clients
+    """)
+
+    total_clients = cursor.fetchone()[0]
+
+    cursor.execute("""
         SELECT COUNT(*)
         FROM evc_clients
         WHERE status='Verified'
@@ -552,6 +559,7 @@ def evc_dashboard():
         'admin/evc/dashboard.html',
         pending_count=pending_count,
         verified_count=verified_count,
+        total_clients=total_clients,
         latest_verifications=latest_verifications
     )
 
@@ -861,6 +869,13 @@ def admin_reports():
     pending_total = cursor.fetchone()[0]
 
     cursor.execute("""
+    SELECT COUNT(*)
+    FROM evc_clients
+    """)
+
+    total_clients = cursor.fetchone()[0]
+    
+    cursor.execute("""  
         SELECT COUNT(*)
         FROM evc_clients
         WHERE status='Verified'

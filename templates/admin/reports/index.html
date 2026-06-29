@@ -43,9 +43,29 @@
                 Total Pending EVC
             </small>
 
-            <h1 class="fw-bold text-warning mt-2">
-                {{ pending_total }}
-            </h1>
+         <h1 class="fw-bold text-warning mt-2">
+    {{ pending_total }}
+    <small class="fs-5 text-muted">
+        / {{ total_clients }}
+    </small>
+</h1>
+
+<div class="progress mt-3" style="height:8px;">
+
+    <div
+        class="progress-bar bg-warning"
+        style="width: {{ (pending_total*100/total_clients)|round if total_clients else 0 }}%;">
+
+    </div>
+
+</div>
+
+<small class="text-muted">
+
+    {{ (pending_total*100/total_clients)|round if total_clients else 0 }}%
+    Pending
+
+</small>
 
         </div>
 
@@ -63,9 +83,29 @@
                 Total Verified EVC
             </small>
 
-            <h1 class="fw-bold text-success mt-2">
-                {{ verified_total }}
-            </h1>
+    <h1 class="fw-bold text-success mt-2">
+    {{ verified_total }}
+    <small class="fs-5 text-muted">
+        / {{ total_clients }}
+    </small>
+</h1>
+
+<div class="progress mt-3" style="height:8px;">
+
+    <div
+        class="progress-bar bg-success"
+        style="width: {{ (verified_total*100/total_clients)|round if total_clients else 0 }}%;">
+
+    </div>
+
+</div>
+
+<small class="text-muted">
+
+    {{ (verified_total*100/total_clients)|round if total_clients else 0 }}%
+    Completed
+
+</small>
 
         </div>
 
