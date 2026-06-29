@@ -874,7 +874,7 @@ def admin_reports():
     """)
 
     total_clients = cursor.fetchone()[0]
-    
+
     cursor.execute("""  
         SELECT COUNT(*)
         FROM evc_clients
