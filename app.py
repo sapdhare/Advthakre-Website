@@ -391,7 +391,7 @@ def add_user():
         email = request.form['email']
         mobile = request.form['mobile']
         password = request.form['password']
-        role = request.form['role']
+        role = "Verification Executive"
         status = request.form['status']
 
         cursor = conn.cursor()
@@ -440,26 +440,34 @@ def edit_user(id):
     cursor = conn.cursor()
 
     if request.method == 'POST':
-
         fullname = request.form['fullname']
         email = request.form['email']
         mobile = request.form['mobile']
-        role = request.form['role']
+        password = request.form['password']
         status = request.form['status']
 
         cursor.execute("""
             UPDATE users
-            SET fullname=?,
+            SET
+                fullname=?,
                 email=?,
                 mobile=?,
-                role=?,
+                password=?,
                 status=?
             WHERE id=?
-        """,(fullname,email,mobile,role,status,id))
+        """,
+                       (
+                           fullname,
+                           email,
+                           mobile,
+                           password,
+                           status,
+                           id
+                       ))
 
         conn.commit()
 
-        flash("User Updated")
+        flash("User Updated Successfully")
 
         return redirect('/admin/users')
 
@@ -598,7 +606,9 @@ def user_dashboard():
     cursor.execute("""
         SELECT COUNT(*)
         FROM evc_clients
-        WHERE status='Pending'
+        WHERE
+        status='Pending'
+        AND assigned_to=?
     """)
     pending_count = cursor.fetchone()[0]
 
@@ -657,9 +667,18 @@ def verify_client(id):
 
     cursor.execute("""
         SELECT *
+
         FROM evc_clients
-        WHERE id=?
-    """, (id,))
+        
+        WHERE
+        
+        id=?
+        
+        AND assigned_to=?
+            """, (
+        id,
+        session['user_id']
+        ))
 
     client = cursor.fetchone()
 
@@ -718,18 +737,29 @@ def verify_submit(id):
 
     cursor.execute("""
         UPDATE evc_clients
-        SET
-            status='Verified',
-            verified_by=?,
-            verified_at=GETDATE(),
-            evc_pdf=?
-        WHERE id=?
+
+SET
+
+status='Verified',
+
+verified_by=?,
+
+verified_at=GETDATE(),
+
+evc_pdf=?
+
+WHERE
+
+id=?
+
+AND assigned_to=?
     """,
-    (
-        session['user_id'],
-        filename,
-        id
-    ))
+                   (
+                       session['user_id'],
+                       filename,
+                       id,
+                       session['user_id']
+                   ))
 
     conn.commit()
 
@@ -949,6 +979,8 @@ def export_report_excel():
 @app.route('/admin/logout')
 def admin_logout():
     session.pop('templates/admin', None)
+    session.clear()
+
     return redirect('/admin/login')
 
 
