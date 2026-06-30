@@ -17,7 +17,7 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 
- 
+
 conn = pyodbc.connect(
     f"DRIVER={{ODBC Driver 18 for SQL Server}};"
     f"SERVER={os.getenv('DB_SERVER')};"
@@ -636,27 +636,32 @@ def user_dashboard():
 
     cursor = conn.cursor()
 
+    # Pending Clients
     cursor.execute("""
         SELECT COUNT(*)
         FROM evc_clients
-        WHERE
-        status='Pending'
+        WHERE status='Pending'
         AND assigned_to=?
-    """)
+    """, (session['user_id'],))
+
     pending_count = cursor.fetchone()[0]
 
+    # My Verified
     cursor.execute("""
         SELECT COUNT(*)
         FROM evc_clients
         WHERE verified_by=?
-    """,(session['user_id'],))
+    """, (session['user_id'],))
+
     my_verified = cursor.fetchone()[0]
 
+    # Total Verified
     cursor.execute("""
         SELECT COUNT(*)
         FROM evc_clients
         WHERE status='Verified'
     """)
+
     total_verified = cursor.fetchone()[0]
 
     return render_template(
@@ -1250,7 +1255,7 @@ def health():
 def hello():
     return "I Am here to Check", 200
 
-#
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=False)
+    app.run(host="0.0.0.0", port=5000, debug=True)
 # app.run(debug=True)
