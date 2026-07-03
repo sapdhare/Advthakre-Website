@@ -4,59 +4,27 @@
 {% block content %}
 
 
-<!-- FLASH MESSAGE -->
-
 {% with messages = get_flashed_messages(with_categories=true) %}
-
-{% if messages %}
 
 {% for category,message in messages %}
 
-<div class="alert alert-{{category}} alert-dismissible fade show">
-
-    {{ message }}
-
-    <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="alert">
-    </button>
-
+<div class="alert alert-{{category}}">
+    {{message}}
 </div>
 
 {% endfor %}
-
-{% endif %}
 
 {% endwith %}
 
 
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-
-    <div>
-
-        <h5 class="mb-0 fw-bold">
-
-            Pending EVC Clients
-
-        </h5>
-
-
-        <small class="text-muted">
-
-            View Pending Clients / Assign Users
-
-        </small>
-
-    </div>
-
-</div>
+<h4 class="fw-bold mb-3">
+Pending EVC Clients
+</h4>
 
 
 
-
-<div class="card shadow-sm border-0">
+<div class="card shadow border-0">
 
 
 <div class="card-body">
@@ -65,39 +33,36 @@
 <div class="table-responsive">
 
 
-
-<table class="table table-bordered table-hover align-middle">
+<table class="table table-bordered table-hover">
 
 
 <thead class="table-dark">
 
-
 <tr>
 
-    <th>#</th>
+<th>#</th>
 
-    <th>Client Name</th>
+<th>Name</th>
 
-    <th>PAN No</th>
+<th>PAN</th>
 
-    <th>Mobile</th>
+<th>Mobile</th>
 
-    <th>E-Filing Password</th>
+<th>Password</th>
 
-    <th>Current User</th>
+<th>Current User</th>
 
-    <th>Status</th>
+<th>Status</th>
 
-    <th>Assign User</th>
+<th>Assign</th>
 
-    <th>Action</th>
+<th>Action</th>
 
 
 </tr>
 
 
 </thead>
-
 
 
 
@@ -110,82 +75,60 @@
 <tr>
 
 
+<td>{{loop.index}}</td>
+
+
 <td>
 
-{{ loop.index }}
+{{c[1]}}
+
+</td>
+
+
+<td>
+
+{{c[2]}}
 
 </td>
 
 
 
-<!-- client_name -->
-
 <td>
 
-{{ c.client_name }}
+{{c[3]}}
 
 </td>
 
 
 
-<!-- PAN -->
-
 <td>
 
-{{ c.pan_no }}
-
-</td>
-
-
-
-<!-- MOBILE -->
-
-<td>
-
-{{ c.mobile_no }}
-
-</td>
-
-
-
-
-<!-- EFILING PASSWORD -->
-
-<td>
-
-{{ c.efiling_password }}
+{{c[4]}}
 
 </td>
 
 
 
 
-<!-- ASSIGNED USER -->
-
 <td>
-
 
 <span class="badge bg-primary">
 
-{{ c.assigned_user }}
+{{c[6]}}
 
 </span>
-
 
 </td>
 
 
 
-
-
-<!-- STATUS -->
 
 <td>
 
 
 <span class="badge bg-warning text-dark">
 
-{{ c.status }}
+{{c[5]}}
 
 </span>
 
@@ -195,21 +138,17 @@
 
 
 
-
-<form
-    method="POST"
-    action="/admin/assign-client/{{ c.id }}">
+<form method="POST"
+action="/admin/assign-client/{{c[0]}}">
 
 
 
 <td>
 
 
-<select
-    name="user_id"
-    class="form-select"
-    required>
-
+<select name="user_id"
+class="form-select"
+required>
 
 
 <option value="">
@@ -219,15 +158,12 @@ Select User
 </option>
 
 
-
 {% for u in users %}
 
 
-<option value="{{ u.id }}">
+<option value="{{u[0]}}">
 
-
-{{ u.fullname }}
-
+{{u[1]}}
 
 </option>
 
@@ -239,8 +175,8 @@ Select User
 </select>
 
 
-</td>
 
+</td>
 
 
 
@@ -248,14 +184,9 @@ Select User
 <td>
 
 
-<button
-    class="btn btn-success btn-sm">
-
-
-<i class="bi bi-check-circle"></i>
+<button class="btn btn-success btn-sm">
 
 Assign
-
 
 </button>
 
@@ -263,42 +194,29 @@ Assign
 </td>
 
 
-
 </form>
 
 
-
 </tr>
-
 
 
 
 {% else %}
 
 
-
 <tr>
 
-
 <td colspan="9"
-    class="text-center text-muted py-5">
+class="text-center text-muted">
 
 
-<i class="bi bi-inbox fs-3"></i>
-
-
-<br>
-
-
-No Pending Clients Available
+No Pending Clients
 
 
 </td>
 
 
-
 </tr>
-
 
 
 {% endfor %}
@@ -317,7 +235,6 @@ No Pending Clients Available
 
 
 </div>
-
 
 
 {% endblock %}

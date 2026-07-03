@@ -185,116 +185,229 @@ def admin_profile():
 @app.route('/admin/pending-clients')
 def admin_pending_clients():
 
-    if 'admin' not in session:
-        return redirect('/admin/login')
+    try:
+
+        print("========== ADMIN PENDING CLIENT START ==========")
 
 
-    cursor = conn.cursor()
+        if 'admin' not in session:
+
+            print("Admin Session Missing")
+
+            return redirect('/admin/login')
 
 
-    cursor.execute("""
-
-        SELECT
-
-            c.id,
-            c.client_name,
-            c.pan_no,
-            c.mobile_no,
-            c.efiling_password,
-            c.status,
-
-            ISNULL(u.fullname,'Not Assigned') AS assigned_user
-
-        FROM evc_clients c
-
-        LEFT JOIN users u
-        ON c.assigned_to = u.id
-
-        WHERE 
-        LTRIM(RTRIM(c.status))='Pending'
-
-        ORDER BY c.id DESC
-
-    """)
+        cursor = conn.cursor()
 
 
-    clients = cursor.fetchall()
+        print("Fetching pending clients...")
 
 
+        cursor.execute("""
 
-    cursor.execute("""
+            SELECT
 
-        SELECT
+                c.id,
+                c.client_name,
+                c.pan_no,
+                c.mobile_no,
+                c.efiling_password,
+                c.status,
 
-            id,
-            fullname
-
-        FROM users
-
-        WHERE
-        LTRIM(RTRIM(status))='Active'
-
-        ORDER BY fullname
-
-    """)
+                ISNULL(u.fullname,'Not Assigned') AS assigned_user
 
 
-    users = cursor.fetchall()
+            FROM evc_clients c
+
+
+            LEFT JOIN users u
+
+            ON c.assigned_to = u.id
+
+
+            WHERE
+
+            LTRIM(RTRIM(c.status))='Pending'
+
+
+            ORDER BY c.id DESC
+
+        """)
+
+
+        clients = cursor.fetchall()
+
+
+        print(
+            "TOTAL CLIENTS:",
+            len(clients)
+        )
 
 
 
-    return render_template(
+        print("Fetching active users...")
 
-        "admin/evc/pending_clients.html",
 
-        clients=clients,
+        cursor.execute("""
 
-        users=users
+            SELECT
 
-    )
+                id,
+                fullname
+
+            FROM users
+
+
+            WHERE
+
+            LTRIM(RTRIM(status))='Active'
+
+
+            ORDER BY fullname
+
+        """)
+
+
+        users = cursor.fetchall()
+
+
+        print(
+            "TOTAL USERS:",
+            len(users)
+        )
+
+
+
+        print("Rendering Template")
+
+
+        return render_template(
+
+            "admin/evc/pending_clients.html",
+
+            clients=clients,
+
+            users=users
+
+        )
+
+
+    except Exception as e:
+
+
+        print("========== ERROR ADMIN PENDING ==========")
+
+        print(e)
+
+        print("=========================================")
+
+
+        return str(e),500
+
+
+
+
+
+# ====================================
+# ASSIGN / REASSIGN CLIENT
+# ====================================
 
 @app.route('/admin/assign-client/<int:id>', methods=['POST'])
 def admin_assign_client(id):
 
-    if 'admin' not in session:
-        return redirect('/admin/login')
+    try:
+
+        print("========== ASSIGN CLIENT START ==========")
 
 
-    user_id = request.form['user_id']
+        if 'admin' not in session:
+
+            print("Admin Missing")
+
+            return redirect('/admin/login')
 
 
-    cursor = conn.cursor()
+
+        user_id = request.form.get(
+            'user_id'
+        )
 
 
-    cursor.execute("""
+        print(
+            "CLIENT ID:",
+            id
+        )
 
-        UPDATE evc_clients
-
-        SET
-
-            assigned_to=?,
-
-            assigned_date=GETDATE()
-
-        WHERE id=?
-
-    """,
-    (
-        user_id,
-        id
-    ))
+        print(
+            "NEW USER:",
+            user_id
+        )
 
 
-    conn.commit()
+
+        cursor = conn.cursor()
 
 
-    flash(
-        "Client Assigned Successfully",
-        "success"
-    )
+
+        cursor.execute("""
+
+            UPDATE evc_clients
 
 
-    return redirect('/admin/pending-clients')
+            SET
+
+                assigned_to=?,
+
+                assigned_date=GETDATE()
+
+
+            WHERE id=?
+
+        """,
+        (
+
+            user_id,
+
+            id
+
+        ))
+
+
+
+        conn.commit()
+
+
+
+        print("Client Assigned Successfully")
+
+
+
+        flash(
+
+            "Client Assigned Successfully",
+
+            "success"
+
+        )
+
+
+        return redirect(
+            '/admin/pending-clients'
+        )
+
+
+    except Exception as e:
+
+
+        print("========== ASSIGN ERROR ==========")
+
+        print(e)
+
+        print("===============================")
+
+
+        return str(e),500
+    
 
 @app.route('/admin/change-email', methods=['GET', 'POST'])
 def change_email():
