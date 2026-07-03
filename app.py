@@ -217,25 +217,41 @@ def assign_client(id):
         return redirect('/admin/login')
 
 
-    user_id = request.form['user_id']
+    user_id=request.form['user_id']
+
+    cursor=conn.cursor()
 
 
-    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT COUNT(*)
+        FROM evc_clients
+        WHERE assigned_to=?
+        AND status='Pending'
+    """,(user_id,))
+
+
+    count=cursor.fetchone()[0]
+
+
+    if count >= 20:
+
+        flash(
+        "User already has 20 pending clients",
+        "danger"
+        )
+
+        return redirect('/admin/pending-clients')
+
 
 
     cursor.execute("""
         UPDATE evc_clients
-
         SET assigned_to=?
-
         WHERE id=?
-
-        AND status='Pending'
-
     """,
     (
-        user_id,
-        id
+    user_id,
+    id
     ))
 
 
@@ -243,13 +259,12 @@ def assign_client(id):
 
 
     flash(
-        "Client Assigned Successfully",
-        "success"
+    "Client Assigned Successfully",
+    "success"
     )
 
 
     return redirect('/admin/pending-clients')
-
 
 @app.route('/admin/change-email', methods=['GET', 'POST'])
 def change_email():
@@ -557,14 +572,14 @@ def edit_user(id):
         status = request.form['status']
 
         cursor.execute("""
-            UPDATE users
-            SET
-                fullname=?,
-                email=?,
-                mobile=?,
-                password=?,
-                status=?
-            WHERE id=?
+        UPDATE users
+        SET
+        fullname=?,
+        email=?,
+        mobile=?,
+        password=?,
+        status=?
+        WHERE id=?
         """,
                        (
                            fullname,
@@ -575,7 +590,16 @@ def edit_user(id):
                            id
                        ))
 
+        if status == "Inactive":
+            cursor.execute("""
+                UPDATE evc_clients
+                SET assigned_to=NULL
+                WHERE assigned_to=?
+                AND status='Pending'
+            """, (id,))
+
         conn.commit()
+
 
         flash("User Updated Successfully")
 
