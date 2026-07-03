@@ -1,57 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <!-- HOME -->
     <url>
         <loc>https://advthakre.com/</loc>
         <priority>1.0</priority>
-        <changefreq>daily</changefreq>
+        <changefreq>weekly</changefreq>
     </url>
 
     <!-- MAIN PAGES -->
+
     <url>
         <loc>https://advthakre.com/about</loc>
-        <priority>0.8</priority>
+        <priority>0.9</priority>
         <changefreq>monthly</changefreq>
     </url>
 
     <url>
         <loc>https://advthakre.com/services</loc>
         <priority>0.9</priority>
+        <changefreq>weekly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://advthakre.com/gallery</loc>
+        <priority>0.8</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://advthakre.com/team</loc>
+        <priority>0.8</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://advthakre.com/why-us</loc>
+        <priority>0.8</priority>
         <changefreq>monthly</changefreq>
     </url>
 
     <url>
         <loc>https://advthakre.com/contact</loc>
-        <priority>0.7</priority>
-        <changefreq>monthly</changefreq>
-    </url>
-
-    <url>
-        <loc>https://advthakre.com/gallery</loc>
-        <priority>0.7</priority>
+        <priority>0.9</priority>
         <changefreq>monthly</changefreq>
     </url>
 
     <url>
         <loc>https://advthakre.com/blog</loc>
         <priority>0.9</priority>
-        <changefreq>daily</changefreq>
-    </url>
-
-    <!-- 🔥 BLOG POSTS (ADD DYNAMICALLY OR MANUALLY) -->
-
-    <!-- Example -->
-    <url>
-        <loc>https://advthakre.com/blog/1</loc>
-        <priority>0.8</priority>
         <changefreq>weekly</changefreq>
     </url>
 
+    <!-- SERVICE PAGES -->
+
     <url>
-        <loc>https://advthakre.com/blog/2</loc>
+        <loc>https://advthakre.com/services/income-tax</loc>
+        <priority>0.9</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://advthakre.com/services/gst</loc>
+        <priority>0.9</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://advthakre.com/services/epf</loc>
+        <priority>0.9</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://advthakre.com/services/esic</loc>
+        <priority>0.9</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://advthakre.com/services/civil-law</loc>
+        <priority>0.9</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://advthakre.com/services/consumer</loc>
+        <priority>0.9</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://advthakre.com/services/criminal-law</loc>
+        <priority>0.9</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://advthakre.com/services/documentation</loc>
+        <priority>0.9</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://advthakre.com/services/family</loc>
+        <priority>0.9</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://advthakre.com/services/others</loc>
         <priority>0.8</priority>
-        <changefreq>weekly</changefreq>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <!-- LEGAL PAGES -->
+
+    <url>
+        <loc>https://advthakre.com/privacy</loc>
+        <priority>0.4</priority>
+        <changefreq>yearly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://advthakre.com/terms-and-conditions</loc>
+        <priority>0.4</priority>
+        <changefreq>yearly</changefreq>
     </url>
 
 </urlset>
