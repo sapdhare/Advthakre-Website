@@ -69,6 +69,8 @@
 
 <th>PAN No</th>
 
+<th>Current User</th>
+
 <th>Status</th>
 
 <th>Assign User</th>
@@ -91,38 +93,18 @@
 
 <tr>
 
+<td>{{loop.index}}</td>
+
+<td>{{c[1]}}</td>
+
+<td>{{c[2]}}</td>
+
+<td>{{c[5]}}</td>
 
 <td>
-
-{{loop.index}}
-
-</td>
-
-
-
-<td>
-
-{{ c[1] }}
-
-</td>
-
-
-
-<td>
-
-{{ c[2] }}
-
-</td>
-
-
-<td>
-
-<span class="badge bg-warning text-dark">
-
+<span class="badge bg-warning">
 Pending
-
 </span>
-
 </td>
 
 

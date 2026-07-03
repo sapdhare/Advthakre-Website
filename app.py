@@ -186,19 +186,23 @@ def admin_pending_clients():
 
     cursor = conn.cursor()
 
-
     cursor.execute("""
         SELECT
-            id,
-            client_name,
-            pan_no,
-            status,
-            assigned_to
-        FROM evc_clients
-        WHERE 
-            status='Pending'
-            AND assigned_to IS NULL
-        ORDER BY id DESC
+            c.id,
+            c.client_name,
+            c.pan_no,
+            c.status,
+            c.assigned_to,
+            ISNULL(u.fullname,'Not Assigned')
+
+        FROM evc_clients c
+
+        LEFT JOIN users u
+        ON c.assigned_to = u.id
+
+        WHERE c.status='Pending'
+
+        ORDER BY c.id DESC
     """)
 
     clients = cursor.fetchall()
