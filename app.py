@@ -188,6 +188,7 @@ def admin_pending_clients():
     if 'admin' not in session:
         return redirect('/admin/login')
 
+
     cursor = conn.cursor()
 
 
@@ -207,7 +208,7 @@ def admin_pending_clients():
         FROM evc_clients c
 
         LEFT JOIN users u
-        ON c.assigned_user_id = u.id
+        ON c.assigned_to = u.id
 
         WHERE 
         LTRIM(RTRIM(c.status))='Pending'
@@ -220,9 +221,11 @@ def admin_pending_clients():
     clients = cursor.fetchall()
 
 
+
     cursor.execute("""
 
         SELECT
+
             id,
             fullname
 
@@ -239,6 +242,7 @@ def admin_pending_clients():
     users = cursor.fetchall()
 
 
+
     return render_template(
 
         "admin/evc/pending_clients.html",
@@ -249,115 +253,48 @@ def admin_pending_clients():
 
     )
 
-# # ====================================
-# # ASSIGN / REASSIGN CLIENT
-# # ====================================
-#
-#
-# @app.route('/admin/assign-client/<int:id>', methods=['POST'])
-# def assign_client(id):
-#
-#
-#     if 'admin' not in session:
-#
-#         return redirect('/admin/login')
-#
-#
-#
-#     user_id = request.form.get('user_id')
-#
-#
-#     if not user_id:
-#
-#         flash(
-#             "Please select user",
-#             "danger"
-#         )
-#
-#         return redirect('/admin/pending-clients')
-#
-#
-#
-#     cursor = conn.cursor()
-#
-#
-#
-#     # check selected user active or not
-#
-#     cursor.execute("""
-#             SELECT COUNT(*)
-#
-#             FROM evc_clients
-#
-#             WHERE assigned_to=?
-#
-#             AND LTRIM(RTRIM(status))='Pending'
-#
-#         """,
-#                    (
-#                        user_id,
-#                    ))
-#
-#
-#
-#     active_check = cursor.fetchone()[0]
-#
-#
-#
-#     if active_check == 0:
-#
-#
-#         flash(
-#             "Selected user is inactive",
-#             "danger"
-#         )
-#
-#
-#         return redirect('/admin/pending-clients')
-#
-#
-#
-#
-#
-#     # check pending allocation count
-#
-#     cursor.execute("""
-#         SELECT COUNT(*)
-#
-#         FROM evc_clients
-#
-#         WHERE TRY_CAST(assigned_to AS INT)=?
-#
-#         AND LTRIM(RTRIM(status))='Pending'
-#
-#     """,
-#                    (
-#                        int(user_id),
-#                    ))
-#
-#     count = cursor.fetchone()[0]
-#
-#     if count >= 20:
-#         flash(
-#             "This user already has 20 pending clients",
-#             "danger"
-#         )
-#         return redirect('/admin/pending-clients')
-#     # Assign / Reassign
-#     cursor.execute("""
-#         UPDATE evc_clients
-#         SET
-#             assigned_to=?,
-#             assigned_date=GETDATE()
-#         WHERE id=?
-#     """,
-#     (
-#         user_id,
-#         id
-#     ))
-#
-#     conn.commit()
-#     return redirect('/admin/pending-clients')
+@app.route('/admin/assign-client/<int:id>', methods=['POST'])
+def admin_assign_client(id):
+
+    if 'admin' not in session:
+        return redirect('/admin/login')
+
+
+    user_id = request.form['user_id']
+
+
+    cursor = conn.cursor()
+
+
+    cursor.execute("""
+
+        UPDATE evc_clients
+
+        SET
+
+            assigned_to=?,
+
+            assigned_date=GETDATE()
+
+        WHERE id=?
+
+    """,
+    (
+        user_id,
+        id
+    ))
+
+
+    conn.commit()
+
+
+    flash(
+        "Client Assigned Successfully",
+        "success"
+    )
+
+
+    return redirect('/admin/pending-clients')
 
 @app.route('/admin/change-email', methods=['GET', 'POST'])
 def change_email():
