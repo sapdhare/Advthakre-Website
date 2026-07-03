@@ -53,64 +53,64 @@
         <changefreq>weekly</changefreq>
     </url>
 
-    <!-- SERVICE PAGES -->
+    <!-- SERVICES -->
 
     <url>
-        <loc>https://advthakre.com/services/income-tax</loc>
+        <loc>https://advthakre.com/services/income-tax-litigation</loc>
         <priority>0.9</priority>
         <changefreq>monthly</changefreq>
     </url>
-
+    
     <url>
-        <loc>https://advthakre.com/services/gst</loc>
+        <loc>https://advthakre.com/services/gst-services</loc>
         <priority>0.9</priority>
         <changefreq>monthly</changefreq>
     </url>
-
+    
     <url>
         <loc>https://advthakre.com/services/epf</loc>
         <priority>0.9</priority>
         <changefreq>monthly</changefreq>
     </url>
-
+    
     <url>
         <loc>https://advthakre.com/services/esic</loc>
         <priority>0.9</priority>
         <changefreq>monthly</changefreq>
     </url>
-
+    
     <url>
         <loc>https://advthakre.com/services/civil-law</loc>
         <priority>0.9</priority>
         <changefreq>monthly</changefreq>
     </url>
-
-    <url>
-        <loc>https://advthakre.com/services/consumer</loc>
-        <priority>0.9</priority>
-        <changefreq>monthly</changefreq>
-    </url>
-
+    
     <url>
         <loc>https://advthakre.com/services/criminal-law</loc>
         <priority>0.9</priority>
         <changefreq>monthly</changefreq>
     </url>
-
+    
     <url>
-        <loc>https://advthakre.com/services/documentation</loc>
+        <loc>https://advthakre.com/services/family-divorce</loc>
         <priority>0.9</priority>
         <changefreq>monthly</changefreq>
     </url>
-
+    
     <url>
-        <loc>https://advthakre.com/services/family</loc>
+        <loc>https://advthakre.com/services/consumer-cases</loc>
         <priority>0.9</priority>
         <changefreq>monthly</changefreq>
     </url>
-
+    
     <url>
-        <loc>https://advthakre.com/services/others</loc>
+        <loc>https://advthakre.com/services/legal-documentation</loc>
+        <priority>0.9</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+    
+    <url>
+        <loc>https://advthakre.com/services/other</loc>
         <priority>0.8</priority>
         <changefreq>monthly</changefreq>
     </url>
