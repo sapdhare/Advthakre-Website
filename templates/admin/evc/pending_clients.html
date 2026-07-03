@@ -3,12 +3,21 @@
 
 {% block content %}
 
+
 {% with messages = get_flashed_messages(with_categories=true) %}
 
 {% for category,message in messages %}
 
-<div class="alert alert-{{category}}">
+<div class="alert alert-{{category}} alert-dismissible fade show">
+
     {{message}}
+
+    <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert">
+    </button>
+
 </div>
 
 {% endfor %}
@@ -16,9 +25,40 @@
 {% endwith %}
 
 
-<h4 class="fw-bold mb-3">
-Pending EVC Clients
-</h4>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+
+    <div>
+
+        <h4 class="fw-bold mb-0">
+            Pending EVC Clients
+        </h4>
+
+
+        <small class="text-muted">
+            Auto Allocated EVC Work Queue
+        </small>
+
+    </div>
+
+
+
+    <a href="/admin/auto-assign-clients"
+       class="btn btn-primary">
+
+
+        <i class="bi bi-arrow-repeat"></i>
+
+        Auto Allocate
+
+
+    </a>
+
+
+</div>
+
+
 
 
 
@@ -31,10 +71,11 @@ Pending EVC Clients
 <div class="table-responsive">
 
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover align-middle">
 
 
 <thead class="table-dark">
+
 
 <tr>
 
@@ -48,13 +89,9 @@ Pending EVC Clients
 
 <th>Password</th>
 
-<th>Current User</th>
+<th>Assigned User</th>
 
 <th>Status</th>
-
-<th>Assign</th>
-
-<th>Action</th>
 
 
 </tr>
@@ -64,7 +101,9 @@ Pending EVC Clients
 
 
 
+
 <tbody>
+
 
 
 {% for c in clients %}
@@ -73,7 +112,12 @@ Pending EVC Clients
 <tr>
 
 
-<td>{{loop.index}}</td>
+<td>
+
+{{loop.index}}
+
+</td>
+
 
 
 <td>
@@ -81,6 +125,7 @@ Pending EVC Clients
 {{c[1]}}
 
 </td>
+
 
 
 <td>
@@ -110,13 +155,32 @@ Pending EVC Clients
 
 <td>
 
-<span class="badge bg-primary">
+
+{% if c[6]=="Not Assigned" %}
+
+
+<span class="badge bg-danger">
+
+Not Assigned
+
+</span>
+
+
+{% else %}
+
+
+<span class="badge bg-success">
 
 {{c[6]}}
 
 </span>
 
+
+{% endif %}
+
+
 </td>
+
 
 
 
@@ -126,7 +190,9 @@ Pending EVC Clients
 
 <span class="badge bg-warning text-dark">
 
+
 {{c[5]}}
+
 
 </span>
 
@@ -136,65 +202,6 @@ Pending EVC Clients
 
 
 
-<form method="POST"
-action="/admin/assign-client/{{c[0]}}">
-
-
-
-<td>
-
-
-<select name="user_id"
-class="form-select"
-required>
-
-
-<option value="">
-
-Select User
-
-</option>
-
-
-{% for u in users %}
-
-
-<option value="{{u[0]}}">
-
-{{u[1]}}
-
-</option>
-
-
-{% endfor %}
-
-
-
-</select>
-
-
-
-</td>
-
-
-
-
-<td>
-
-
-<button class="btn btn-success btn-sm">
-
-Assign
-
-</button>
-
-
-</td>
-
-
-</form>
-
-
 </tr>
 
 
@@ -202,11 +209,17 @@ Assign
 {% else %}
 
 
+
 <tr>
 
-<td colspan="9"
-class="text-center text-muted">
 
+<td colspan="7"
+class="text-center text-muted py-4">
+
+
+<i class="bi bi-inbox fs-3"></i>
+
+<br>
 
 No Pending Clients
 
@@ -217,7 +230,9 @@ No Pending Clients
 </tr>
 
 
+
 {% endfor %}
+
 
 
 </tbody>
@@ -233,6 +248,7 @@ No Pending Clients
 
 
 </div>
+
 
 
 {% endblock %}
