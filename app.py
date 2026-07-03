@@ -30,7 +30,9 @@ conn = pyodbc.connect(
     autocommit=True
 )
 
-
+@app.route("/googlea350ecc17334a2e3.html")
+def google_verification():
+    return send_from_directory(".", "googlea350ecc17334a2e3.html")
 @app.route("/privacy-policy")
 def privacy_policy():
     return render_template("privacy.html")
@@ -40,11 +42,11 @@ def terms_and_conditions():
     return render_template("terms-and-conditions.html")
 
 @app.route("/robots.txt")
-def robots():
+def robots_txt():
     return send_from_directory("static", "robots.txt")
 
 @app.route("/sitemap.xml")
-def sitemap():
+def sitemap_xml():
     return send_from_directory("static", "sitemap.xml")
  
 @app.route('/')
