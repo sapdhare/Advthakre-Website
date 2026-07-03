@@ -230,21 +230,22 @@ def assign_client(id):
         return redirect('/admin/login')
 
 
-    user_id = request.form['user_id']
-
-    cursor = conn.cursor()
+    user_id=request.form['user_id']
 
 
-    # Check user pending limit
+    cursor=conn.cursor()
+
+
     cursor.execute("""
         SELECT COUNT(*)
         FROM evc_clients
-        WHERE assigned_user_id=?
+        WHERE assigned_to=?
         AND status='Pending'
-    """,(user_id,))
+    """,
+    (user_id,))
 
 
-    count = cursor.fetchone()[0]
+    count=cursor.fetchone()[0]
 
 
     if count >= 20:
@@ -256,29 +257,20 @@ def assign_client(id):
 
         return redirect('/admin/pending-clients')
 
-
     cursor.execute("""
         UPDATE evc_clients
-        SET 
-            assigned_user_id=?,
+
+        SET
+            assigned_to=?,
             assigned_date=GETDATE()
+
         WHERE id=?
     """,
     (
         user_id,
         id
     ))
-
-
     conn.commit()
-
-
-    flash(
-        "Client Assigned Successfully",
-        "success"
-    )
-
-
     return redirect('/admin/pending-clients')
 
 @app.route('/admin/change-email', methods=['GET', 'POST'])
