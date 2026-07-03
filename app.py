@@ -188,40 +188,49 @@ def admin_pending_clients():
     if 'admin' not in session:
         return redirect('/admin/login')
 
+
     cursor = conn.cursor()
 
 
     cursor.execute("""
         SELECT
+
             c.id,
             c.client_name,
             c.pan_no,
             c.status,
             c.assigned_to,
-            COALESCE(u.fullname,'Not Assigned')
+            ISNULL(u.fullname,'Not Assigned')
 
         FROM evc_clients c
 
         LEFT JOIN users u
-        ON TRY_CAST(c.assigned_to AS INT)=u.id
+        ON c.assigned_to = u.id
 
         WHERE 
-        c.status='Pending'
+        LTRIM(RTRIM(c.status))='Pending'
 
         ORDER BY c.id DESC
     """)
+
 
     clients = cursor.fetchall()
 
 
     cursor.execute("""
         SELECT
+
             id,
             fullname
+
         FROM users
-        WHERE status='Active'
+
+        WHERE 
+        LTRIM(RTRIM(status))='Active'
+
         ORDER BY fullname
     """)
+
 
     users = cursor.fetchall()
 
@@ -269,17 +278,18 @@ def assign_client(id):
     # check selected user active or not
 
     cursor.execute("""
-        SELECT COUNT(*)
+            SELECT COUNT(*)
 
-        FROM users
+            FROM evc_clients
 
-        WHERE id=?
+            WHERE assigned_to=?
 
-        AND LTRIM(RTRIM(status))='Active'
-    """,
-    (
-        user_id,
-    ))
+            AND LTRIM(RTRIM(status))='Pending'
+
+        """,
+                   (
+                       user_id,
+                   ))
 
 
 
@@ -301,7 +311,7 @@ def assign_client(id):
 
 
 
-      
+
     # check pending allocation count
 
     cursor.execute("""
