@@ -2,6 +2,176 @@
 
 {% extends "base.html" %}
 
+{% block title %}
+EPF Services in Amravati | EPF Registration, Filing, UAN & Compliance Support
+{% endblock %}
+
+{% block meta_description %}
+Advocate Thakre & Associates provides EPF services in Amravati including EPF registration, monthly EPF filing, UAN generation, contribution management, EPF notice handling, audit and compliance support.
+{% endblock %}
+
+{% block meta_keywords %}
+EPF Services Amravati,
+EPF Consultant in Amravati,
+EPF Registration Amravati,
+EPF Filing Services,
+Monthly EPF Filing,
+EPF Compliance Services,
+EPF Notice Handling,
+EPF Audit Support,
+EPF Litigation,
+UAN Generation,
+Employee Provident Fund,
+PF Consultant Amravati,
+PF Registration,
+PF Return Filing,
+Employer EPF Compliance,
+EPFO Consultant,
+EPF Act 1952,
+EPS Scheme,
+EDLI Scheme,
+Legal Compliance Amravati,
+Business Compliance Amravati,
+Advocate Thakre EPF Services,
+Advocate Thakre & Associates
+{% endblock %}
+
+{% block og_title %}
+EPF Consultant in Amravati | EPF Registration, Filing & Compliance
+{% endblock %}
+
+{% block og_description %}
+Get professional EPF registration, monthly filing, UAN generation, contribution management, EPF notice handling and compliance support in Amravati.
+{% endblock %}
+
+{% block twitter_title %}
+EPF Services in Amravati | Advocate Thakre
+{% endblock %}
+
+{% block twitter_description %}
+EPF registration, filing, UAN generation, contribution management, notice handling and compliance support in Amravati.
+{% endblock %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "EPF Services in Amravati",
+  "serviceType": "EPF Registration, Monthly EPF Filing, UAN Generation and EPF Compliance",
+  "url": "https://advthakre.com/services/epf",
+  "description": "Advocate Thakre & Associates provides EPF services including EPF registration, monthly return filing, UAN generation, contribution management, EPF notice handling, audit and compliance support in Amravati.",
+  "provider": {
+    "@type": "LegalService",
+    "name": "Advocate Thakre & Associates",
+    "url": "https://advthakre.com/",
+    "telephone": "+91-8888244176",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Amravati",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN"
+    }
+  },
+  "areaServed": [
+    "Amravati",
+    "Maharashtra",
+    "India"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "EPF Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "EPF Registration"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Monthly EPF Filing"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Contribution Management"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "EPF Audit Support"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "EPF Notice Handling"
+        }
+      }
+    ]
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is EPF and who is eligible?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EPF is a retirement benefit scheme under the Employees' Provident Funds and Miscellaneous Provisions Act, 1952. It applies to eligible employees working in registered establishments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is EPF registration mandatory for employers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Businesses employing 20 or more employees generally need to register under EPF as per statutory requirements."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is UAN?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "UAN, or Universal Account Number, is a unique number assigned to employees to manage EPF contributions across employers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are EPF contributions calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EPF contributions are generally calculated based on employee basic salary and dearness allowance as per EPFO guidelines."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if EPF compliance is not followed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non-compliance with EPF rules may lead to penalties, interest, notices and legal action under EPF Act provisions."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
 {% block content %}
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/services/service-detail.css') }}">
@@ -92,7 +262,7 @@
 
  <!-- SERVICE INCLUDES  -->
 
-<<section class="service-includes">
+<section class="service-includes">
 
   <div class="service-includes-grid">
 
