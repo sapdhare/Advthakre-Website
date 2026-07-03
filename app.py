@@ -38,6 +38,14 @@ def privacy_policy():
 @app.route("/terms-and-conditions")
 def terms_and_conditions():
     return render_template("terms-and-conditions.html")
+
+@app.route("/robots.txt")
+def robots():
+    return send_from_directory("static", "robots.txt")
+
+@app.route("/sitemap.xml")
+def sitemap():
+    return send_from_directory("static", "sitemap.xml")
  
 @app.route('/')
 def home():
