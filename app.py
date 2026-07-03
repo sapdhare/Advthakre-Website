@@ -40,11 +40,11 @@ def terms_and_conditions():
     return render_template("terms-and-conditions.html")
 
 @app.route("/robots.txt")
-def robots():
+def robots_txt():
     return send_from_directory("static", "robots.txt")
 
 @app.route("/sitemap.xml")
-def sitemap():
+def sitemap_xml():
     return send_from_directory("static", "sitemap.xml")
  
 @app.route('/')
