@@ -1,5 +1,119 @@
 {% extends "base.html" %}
 
+{% block title %}
+Family Lawyer in Amravati | Divorce, Child Custody, Alimony & Family Law Services
+{% endblock %}
+
+{% block meta_description %}
+Advocate Thakre & Associates provides family law services in Amravati including mutual divorce, contested divorce, child custody, alimony, maintenance, domestic disputes and family settlements.
+{% endblock %}
+
+{% block meta_keywords %}
+Family Lawyer Amravati,
+Divorce Lawyer Amravati,
+Family Law Services Amravati,
+Mutual Divorce Lawyer,
+Contested Divorce Lawyer,
+Child Custody Lawyer,
+Alimony Lawyer,
+Maintenance Case Lawyer,
+Domestic Violence Lawyer,
+Family Dispute Lawyer,
+Family Court Lawyer,
+Marriage Dispute Lawyer,
+Legal Separation Lawyer,
+CrPC 125 Maintenance,
+Hindu Marriage Act,
+Special Marriage Act,
+Domestic Violence Act,
+Best Divorce Lawyer in Amravati,
+Advocate Thakre Family Law,
+Advocate Thakre & Associates
+{% endblock %}
+
+{% block og_title %}
+Family & Divorce Lawyer in Amravati | Advocate Thakre
+{% endblock %}
+
+{% block og_description %}
+Legal support for divorce, child custody, alimony, maintenance, domestic disputes and family law matters in Amravati.
+{% endblock %}
+
+{% block twitter_title %}
+Family Lawyer in Amravati | Advocate Thakre
+{% endblock %}
+
+{% block twitter_description %}
+Divorce, child custody, alimony, maintenance and family dispute legal services in Amravati.
+{% endblock %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Service",
+  "name":"Family and Divorce Law Services in Amravati",
+  "serviceType":"Divorce, Child Custody, Alimony, Maintenance and Family Dispute Legal Services",
+  "url":"https://advthakre.com/services/family-divorce",
+  "description":"Advocate Thakre & Associates provides family law services including mutual divorce, contested divorce, child custody, maintenance, alimony and domestic dispute support in Amravati.",
+  "provider":{
+    "@type":"LegalService",
+    "name":"Advocate Thakre & Associates",
+    "url":"https://advthakre.com/",
+    "telephone":"+91-8888244176",
+    "address":{
+      "@type":"PostalAddress",
+      "addressLocality":"Amravati",
+      "addressRegion":"Maharashtra",
+      "addressCountry":"IN"
+    }
+  },
+  "areaServed":["Amravati","Maharashtra","India"]
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+   {
+     "@type":"Question",
+     "name":"What are the types of divorce in India?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"Divorce in India can be mutual divorce, where both parties agree, or contested divorce, where one party files based on legal grounds."
+     }
+   },
+   {
+     "@type":"Question",
+     "name":"Who gets child custody after divorce?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"Child custody is decided based on the best interest and welfare of the child."
+     }
+   },
+   {
+     "@type":"Question",
+     "name":"What is maintenance or alimony?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"Maintenance or alimony is financial support provided to a spouse or child under applicable family laws."
+     }
+   },
+   {
+     "@type":"Question",
+     "name":"Can divorce cases be settled without long court proceedings?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"Yes, mutual divorce and family settlements can often be resolved through agreement, documentation and proper legal process."
+     }
+   }
+ ]
+}
+</script>
+{% endblock %}
+
 {% block content %}
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/services/service-detail.css') }}">
