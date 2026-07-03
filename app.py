@@ -262,7 +262,6 @@ def assign_client(id):
     id
     ))
 
-
     conn.commit()
 
 
