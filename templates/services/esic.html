@@ -2,6 +2,175 @@
 
 {% extends "base.html" %}
 
+{% block title %}
+ESIC Services in Amravati | ESIC Registration, Filing, Employee Enrollment & Compliance
+{% endblock %}
+
+{% block meta_description %}
+Advocate Thakre & Associates provides ESIC services in Amravati including ESIC registration, employee enrollment, IP registration, contribution filing, ESIC notice handling, audit and compliance support.
+{% endblock %}
+
+{% block meta_keywords %}
+ESIC Services Amravati,
+ESIC Consultant in Amravati,
+ESIC Registration Amravati,
+ESIC Filing Services,
+ESIC Compliance Services,
+Employee State Insurance,
+ESI Registration,
+ESI Consultant Amravati,
+Employee Enrollment ESIC,
+IP Registration ESIC,
+ESIC Card Generation,
+ESIC Contribution Filing,
+ESIC Notice Handling,
+ESIC Audit Support,
+ESIC Litigation,
+Employer ESIC Compliance,
+ESI Act 1948,
+Employee Welfare Compliance,
+Business Compliance Amravati,
+Legal Compliance Amravati,
+Advocate Thakre ESIC Services,
+Advocate Thakre & Associates
+{% endblock %}
+
+{% block og_title %}
+ESIC Consultant in Amravati | ESIC Registration, Filing & Compliance
+{% endblock %}
+
+{% block og_description %}
+Get professional ESIC registration, employee enrollment, IP registration, contribution filing, notice handling and compliance support in Amravati.
+{% endblock %}
+
+{% block twitter_title %}
+ESIC Services in Amravati | Advocate Thakre
+{% endblock %}
+
+{% block twitter_description %}
+ESIC registration, employee enrollment, contribution filing, notice handling and compliance support in Amravati.
+{% endblock %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "ESIC Services in Amravati",
+  "serviceType": "ESIC Registration, Employee Enrollment, Contribution Filing and ESIC Compliance",
+  "url": "https://advthakre.com/services/esic",
+  "description": "Advocate Thakre & Associates provides ESIC services including ESIC registration, employee enrollment, IP registration, contribution filing, ESIC notice handling, audit and compliance support in Amravati.",
+  "provider": {
+    "@type": "LegalService",
+    "name": "Advocate Thakre & Associates",
+    "url": "https://advthakre.com/",
+    "telephone": "+91-8888244176",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Amravati",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN"
+    }
+  },
+  "areaServed": [
+    "Amravati",
+    "Maharashtra",
+    "India"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "ESIC Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "ESIC Registration"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Employee Enrollment"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "IP Registration"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Contribution Filing"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "ESIC Notice Handling"
+        }
+      }
+    ]
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is ESIC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ESIC is a social security scheme that provides medical and financial benefits to eligible employees."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who is eligible for ESIC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Employees earning within the prescribed salary limits are generally eligible for ESIC benefits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is ESIC mandatory?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ESIC registration is mandatory for establishments meeting the required employee threshold and statutory conditions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What benefits does ESIC provide?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ESIC provides medical care, maternity benefits, disability support, sickness benefits and insurance-related employee welfare support."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you handle ESIC notices?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Advocate Thakre & Associates provides support for ESIC notices, audits, contribution issues and compliance matters."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
 {% block content %}
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/services/service-detail.css') }}">
