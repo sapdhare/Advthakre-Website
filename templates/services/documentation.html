@@ -1,5 +1,132 @@
 {% extends "base.html" %}
 
+{% block title %}
+Legal Documentation Services in Amravati | Agreement Drafting, Legal Notice & Affidavit
+{% endblock %}
+
+{% block meta_description %}
+Advocate Thakre & Associates provides legal documentation services in Amravati including agreement drafting, property agreements, legal notices, affidavits, partnership deeds, employment contracts and declarations.
+{% endblock %}
+
+{% block meta_keywords %}
+Legal Documentation Amravati,
+Legal Documentation Services,
+Agreement Drafting Amravati,
+Legal Notice Drafting,
+Affidavit Drafting,
+Property Agreement Drafting,
+Rental Agreement Amravati,
+Sale Agreement Drafting,
+Partnership Deed Drafting,
+Employment Contract Drafting,
+Contract Drafting Lawyer,
+Legal Drafting Services,
+Document Registration,
+Stamp Duty Guidance,
+Indian Contract Act,
+Registration Act 1908,
+Property Documentation,
+Business Agreement Drafting,
+Legal Documents Lawyer Amravati,
+Advocate Thakre Documentation,
+Advocate Thakre & Associates
+{% endblock %}
+
+{% block og_title %}
+Legal Documentation Services in Amravati | Advocate Thakre
+{% endblock %}
+
+{% block og_description %}
+Professional drafting of agreements, legal notices, affidavits, property documents, partnership deeds and employment contracts in Amravati.
+{% endblock %}
+
+{% block twitter_title %}
+Legal Documentation in Amravati | Advocate Thakre
+{% endblock %}
+
+{% block twitter_description %}
+Agreement drafting, legal notice drafting, affidavits, property agreements and legal documents in Amravati.
+{% endblock %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Service",
+  "name":"Legal Documentation Services in Amravati",
+  "serviceType":"Agreement Drafting, Legal Notices, Affidavits, Property Agreements and Legal Documentation",
+  "url":"https://advthakre.com/services/legal-documentation",
+  "description":"Advocate Thakre & Associates provides legal documentation services including agreement drafting, partnership deeds, property agreements, employment contracts, legal notices, affidavits and declarations in Amravati.",
+  "provider":{
+    "@type":"LegalService",
+    "name":"Advocate Thakre & Associates",
+    "url":"https://advthakre.com/",
+    "telephone":"+91-8888244176",
+    "address":{
+      "@type":"PostalAddress",
+      "addressLocality":"Amravati",
+      "addressRegion":"Maharashtra",
+      "addressCountry":"IN"
+    }
+  },
+  "areaServed":["Amravati","Maharashtra","India"],
+  "hasOfferCatalog":{
+    "@type":"OfferCatalog",
+    "name":"Legal Documentation Services",
+    "itemListElement":[
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Agreement Drafting"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Partnership Deed Drafting"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Property Agreement Drafting"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Employment Contract Drafting"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Legal Notice Drafting"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Affidavits and Declarations"}}
+    ]
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+   {
+     "@type":"Question",
+     "name":"Why is legal documentation important?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"Legal documentation ensures clarity, enforceability and protection from future disputes."
+     }
+   },
+   {
+     "@type":"Question",
+     "name":"Are verbal agreements legally valid?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"Some verbal agreements may be valid, but written agreements are strongly recommended for proof, clarity and enforceability."
+     }
+   },
+   {
+     "@type":"Question",
+     "name":"Do all agreements need registration?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"Not all agreements need registration, but certain documents such as property-related agreements may require registration under law."
+     }
+   },
+   {
+     "@type":"Question",
+     "name":"Can I draft legal documents myself?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"It is possible, but professional drafting helps avoid unclear clauses, legal errors and future disputes."
+     }
+   }
+ ]
+}
+</script>
+{% endblock %}
+
 {% block content %}
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/services/service-detail.css') }}">
@@ -12,12 +139,12 @@
 
   <div class="hero-center-card">
 
-    <h1>Legal <span>Documentation</span></h1>
+    <h1>Legal Documentation & <span>Agreement Drafting</span></h1>
 
     <div class="breadcrumb">
       <a href="/">Home</a>
       <span>/</span>
-      <a href="/services servGrid">Services</a>
+      <a href="/services#servGrid">Services</a>
       <span>/</span>
       <span class="active">Legal Documentation</span>
     </div>
