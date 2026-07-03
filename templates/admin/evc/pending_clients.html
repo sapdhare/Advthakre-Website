@@ -1,40 +1,69 @@
 {% extends "admin/base.html" %}
 
-
 {% block content %}
 
 
-<h5>
-Pending EVC Clients
-</h5>
+<div class="d-flex justify-content-between mb-3">
+
+    <h5>
+        Pending EVC Clients
+    </h5>
+
+</div>
 
 
-<table class="table table-bordered">
+<table class="table table-bordered table-hover">
+
+<thead>
 
 <tr>
 
 <th>Client</th>
+
 <th>PAN</th>
+
 <th>Assign User</th>
 
 </tr>
 
+</thead>
+
+
+<tbody>
+
 
 {% for c in clients %}
 
+
 <tr>
 
-<td>
-{{c.client_name}}
-</td>
 
-<td>
-{{c.pan_no}}
-</td>
+<!-- client_name -->
 <td>
 
-<form method="POST"
-action="/admin/assign-client/{{c.id}}">
+{{ c[1] }}
+
+</td>
+
+
+
+<!-- pan_no -->
+<td>
+
+{{ c[2] }}
+
+</td>
+
+
+
+<td>
+
+
+<form
+method="POST"
+action="/admin/assign-client/{{ c[0] }}">
+
+
 
 <select
 name="user_id"
@@ -47,13 +76,16 @@ Select User
 </option>
 
 
+
 {% for u in users %}
 
-<option value="{{u.id}}">
 
-{{u.fullname}}
+<option value="{{ u[0] }}">
+
+{{ u[1] }}
 
 </option>
+
 
 {% endfor %}
 
@@ -61,11 +93,13 @@ Select User
 </select>
 
 
-<button class="btn btn-success btn-sm mt-2">
+<button
+class="btn btn-success btn-sm mt-2">
 
 Assign
 
 </button>
+
 
 
 </form>
@@ -76,9 +110,29 @@ Assign
 
 </tr>
 
+
+{% else %}
+
+
+<tr>
+
+<td colspan="3"
+class="text-center text-muted">
+
+No Pending Clients Available
+
+</td>
+
+</tr>
+
+
 {% endfor %}
 
 
+</tbody>
+
+
 </table>
+
 
 {% endblock %}

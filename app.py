@@ -181,34 +181,36 @@ def admin_pending_clients():
     if 'admin' not in session:
         return redirect('/admin/login')
 
-
     cursor = conn.cursor()
 
 
-    # unassigned clients
-
     cursor.execute("""
-        SELECT *
+        SELECT
+            id,
+            client_name,
+            pan_no,
+            status,
+            assigned_to
         FROM evc_clients
-        WHERE status='Pending'
-        AND assigned_to IS NULL
+        WHERE 
+            status='Pending'
+            AND assigned_to IS NULL
         ORDER BY id DESC
     """)
 
     clients = cursor.fetchall()
 
 
-
-    # active users only
-
     cursor.execute("""
-        SELECT *
+        SELECT 
+            id,
+            fullname
         FROM users
         WHERE status='Active'
+        ORDER BY fullname
     """)
 
     users = cursor.fetchall()
-
 
 
     return render_template(
@@ -251,7 +253,6 @@ def assign_client(id):
         return redirect('/admin/pending-clients')
 
 
-
     cursor.execute("""
         UPDATE evc_clients
         SET assigned_to=?
@@ -263,13 +264,6 @@ def assign_client(id):
     ))
 
     conn.commit()
-
-
-    flash(
-    "Client Assigned Successfully",
-    "success"
-    )
-
 
     return redirect('/admin/pending-clients')
 
