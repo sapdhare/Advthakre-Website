@@ -563,11 +563,21 @@ def evc_dashboard():
         latest_verifications=latest_verifications
     )
 
+# ============================
+# VIEW EVC PDF
+# ============================
+
 @app.route('/evc-pdf/<filename>')
 def evc_pdf(filename):
 
+    folder_path = os.path.join(
+        app.root_path,
+        "static",
+        "evc_pdfs"
+    )
+
     return send_from_directory(
-        EVC_UPLOAD_FOLDER,
+        folder_path,
         filename,
         as_attachment=False
     )
