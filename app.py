@@ -166,6 +166,91 @@ def admin_profile():
 
     return render_template('admin/profile.html', admin=admin_data)
 
+
+@app.route('/admin/pending-clients')
+def admin_pending_clients():
+
+    if 'admin' not in session:
+        return redirect('/admin/login')
+
+
+    cursor = conn.cursor()
+
+
+    # unassigned clients
+
+    cursor.execute("""
+        SELECT *
+        FROM evc_clients
+        WHERE status='Pending'
+        AND assigned_to IS NULL
+        ORDER BY id DESC
+    """)
+
+    clients = cursor.fetchall()
+
+
+
+    # active users only
+
+    cursor.execute("""
+        SELECT *
+        FROM users
+        WHERE status='Active'
+    """)
+
+    users = cursor.fetchall()
+
+
+
+    return render_template(
+        "admin/evc/pending_clients.html",
+        clients=clients,
+        users=users
+    )
+
+
+@app.route('/admin/assign-client/<int:id>', methods=['POST'])
+def assign_client(id):
+
+    if 'admin' not in session:
+        return redirect('/admin/login')
+
+
+    user_id = request.form['user_id']
+
+
+    cursor = conn.cursor()
+
+
+    cursor.execute("""
+        UPDATE evc_clients
+
+        SET assigned_to=?
+
+        WHERE id=?
+
+        AND status='Pending'
+
+    """,
+    (
+        user_id,
+        id
+    ))
+
+
+    conn.commit()
+
+
+    flash(
+        "Client Assigned Successfully",
+        "success"
+    )
+
+
+    return redirect('/admin/pending-clients')
+
+
 @app.route('/admin/change-email', methods=['GET', 'POST'])
 def change_email():
     if 'admin' not in session:

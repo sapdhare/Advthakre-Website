@@ -1,0 +1,92 @@
+{% extends "admin/base.html" %}
+
+
+{% block content %}
+
+
+<h5>
+Pending EVC Clients
+</h5>
+
+
+<table class="table table-bordered">
+
+<tr>
+
+<th>Client</th>
+
+<th>PAN</th>
+
+<th>Assign User</th>
+
+</tr>
+
+
+{% for c in clients %}
+
+<tr>
+
+<td>
+{{c.client_name}}
+</td>
+
+
+<td>
+{{c.pan_no}}
+</td>
+
+
+<td>
+
+
+<form method="POST"
+action="/admin/assign-client/{{c.id}}">
+
+
+<select 
+name="user_id"
+class="form-select"
+required>
+
+
+<option value="">
+Select User
+</option>
+
+
+{% for u in users %}
+
+<option value="{{u.id}}">
+
+{{u.fullname}}
+
+</option>
+
+{% endfor %}
+
+
+</select>
+
+
+<button class="btn btn-success btn-sm mt-2">
+
+Assign
+
+</button>
+
+
+</form>
+
+
+</td>
+
+
+</tr>
+
+{% endfor %}
+
+
+</table>
+
+
+{% endblock %}
