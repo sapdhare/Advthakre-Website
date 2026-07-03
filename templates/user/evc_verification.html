@@ -12,11 +12,12 @@
             <th>PAN</th>
             <th>Name</th>
             <th>Mobile</th>
-            <th>Date</th>
+            <th>E-Filing Password</th>
             <th>Action</th>
         </tr>
 
     </thead>
+
 
     <tbody>
 
@@ -24,21 +25,38 @@
 
         <tr>
 
-            <td>{{ client.pan_no }}</td>
-            <td>{{ client.client_name }}</td>
-            <td>{{ client.mobile_no }}</td>
-            <td>{{ client.date_of_file }}</td>
+            <td>
+                {{ client.pan_no }}
+            </td>
+
+
+            <td>
+                {{ client.client_name }}
+            </td>
+
+
+            <td>
+                {{ client.mobile_no }}
+            </td>
+
+
+            <td>
+                {{ client.efiling_password }}
+            </td>
+
 
             <td>
 
-                <a href="/user/verify/{{ client.id }}"
-                   class="btn btn-success btn-sm">
+                <a
+                href="/user/verify/{{ client.id }}"
+                class="btn btn-success btn-sm">
 
                     Verify
 
                 </a>
 
             </td>
+
 
         </tr>
 

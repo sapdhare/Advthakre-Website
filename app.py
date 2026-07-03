@@ -701,113 +701,235 @@ def verify_client(id):
     if 'user_id' not in session:
         return redirect('/user/login')
 
+
     cursor = conn.cursor()
 
+
     cursor.execute("""
+
         SELECT *
 
         FROM evc_clients
-        
+
         WHERE
-        
-        id=?
-        
-        AND assigned_to=?
-            """, (
+
+            id=?
+
+            AND assigned_to=?
+
+    """,
+    (
+
         id,
+
         session['user_id']
-        ))
+
+    ))
+
 
     client = cursor.fetchone()
 
+
     if not client:
-        flash("Client not found")
+
+        flash(
+            "Client not found",
+            "danger"
+        )
+
         return redirect('/user/evc-verification')
 
+
     return render_template(
+
         'user/verify_client.html',
+
         client=client
+
     )
 
-UPLOAD_FOLDER = os.path.join(
-    app.root_path,
-    "static",
-    "evc_pdfs"
-)
 
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
 
-print("PDF Upload Folder:", UPLOAD_FOLDER)
+
+# ============================
+# PDF FOLDER
+# ============================
+
 
 EVC_UPLOAD_FOLDER = os.path.join(
+
     app.root_path,
+
     "static",
+
     "evc_pdfs"
+
 )
 
-os.makedirs(EVC_UPLOAD_FOLDER, exist_ok=True)
+
+os.makedirs(
+
+    EVC_UPLOAD_FOLDER,
+
+    exist_ok=True
+
+)
+
+
+print(
+
+    "PDF Upload Folder:",
+
+    EVC_UPLOAD_FOLDER
+
+)
+
+
+# ============================
+# VERIFY SUBMIT
+# ============================
+
 
 @app.route('/user/verify-submit/<int:id>', methods=['POST'])
 def verify_submit(id):
 
+
     if 'user_id' not in session:
+
         return redirect('/user/login')
 
-    pdf = request.files.get('evc_pdf')
+    # =========================
+    # REMARK SAVE
+    # =========================
+
+    remark_type = request.form.get(
+
+        "remark_type"
+
+    )
+
+    other_remark = request.form.get(
+
+        "other_remark"
+
+    )
+
+    if remark_type == "4":
+
+
+        final_remark = other_remark
+
+    else:
+
+
+        final_remark = remark_type
+
+
+    # =========================
+    # PDF UPLOAD
+    # =========================
+
+    pdf = request.files.get(
+
+        "evc_pdf"
+
+    )
+
 
     filename = None
 
     if pdf and pdf.filename:
 
+
         filename = f"{id}_{pdf.filename}"
 
+
         file_path = os.path.join(
+
             EVC_UPLOAD_FOLDER,
+
             filename
+
         )
 
-        pdf.save(file_path)
 
-        print("PDF SAVED TO:", file_path)
+        pdf.save(
+
+            file_path
+
+        )
+
+
+        print(
+
+            "PDF SAVED TO:",
+
+            file_path
+
+        )
 
     cursor = conn.cursor()
 
+
+
     cursor.execute("""
+
         UPDATE evc_clients
+        SET
+        status='Verified',
 
-SET
+            verified_by=?,
 
-status='Verified',
+            verified_at=GETDATE(),
 
-verified_by=?,
+            evc_pdf=?,
 
-verified_at=GETDATE(),
+            user_remarks=?
 
-evc_pdf=?
 
-WHERE
+        WHERE
 
-id=?
+            id=?
 
-AND assigned_to=?
+            AND assigned_to=?
+
+
     """,
-                   (
-                       session['user_id'],
-                       filename,
-                       id,
-                       session['user_id']
-                   ))
+    (
+
+        session['user_id'],
+
+        filename,
+
+        final_remark,
+
+        id,
+
+        session['user_id']
+
+    ))
+
+
 
     conn.commit()
 
+
+
     flash(
-        "EVC Verified Successfully",
+
+        "EVC Verification Updated Successfully",
+
         "success"
+
     )
 
-    return redirect('/user/my-verifications')
 
+
+    return redirect(
+
+        "/user/my-verifications"
+
+    )
 
 @app.route('/user/my-verifications')
 def my_verifications():
