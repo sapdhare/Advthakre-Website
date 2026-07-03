@@ -4,75 +4,139 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!--  PRIMARY SEO -->
-    <title>Advocate Thakre & Associates | Best Lawyer in Amravati | Tax & Legal Services</title>
+   <!-- PRIMARY SEO -->
+  <title>{% block title %}Advocate Thakre & Associates | Tax Consultant & Legal Services in Amravati{% endblock %}</title>
 
-    <meta name="description" content="Advocate Thakre & Associates provides expert legal and tax services in Amravati including Income Tax, GST, Civil, Criminal, Family Law & Legal Documentation. Trusted legal solutions with 15+ years experience.">
+  <meta name="description" content="{% block meta_description %}Advocate Thakre & Associates provides legal, taxation, GST, civil, criminal, family law, EPF, ESIC and documentation services in Amravati, Maharashtra.{% endblock %}">
 
-    <meta name="keywords" content="
+  <meta name="keywords" content="{% block meta_keywords %}
     Advocate in Amravati,
+    Best Taxation and Consultation in Amravati,
+    Best Advocate in Amravati,
     Best Lawyer in Amravati,
-    Tax Consultant Amravati,
-    GST Consultant Amravati,
-    Income Tax Lawyer India,
-    Civil Lawyer Amravati,
-    Criminal Lawyer Amravati,
-    Family Lawyer Amravati,
-    Divorce Lawyer Amravati,
-    Legal Services Maharashtra,
-    Tax Planning Experts India,
-    Legal Documentation Services,
-    EPF ESIC Consultant,
-    Advocate Thakre and Associates
-    ">
+    Tax Consultant in Amravati,
+    Income Tax Consultant Amravati,
+    Income Tax Lawyer Amravati,
+    Income Tax Services,
+    Income Tax Filing,
+    ITR Filing,
+    ITR Filing Services,
+    Income Tax Return Filing,
+    Tax Planning Services,
+    Tax Consultation,
+    Legal Tax Consultation,
+    Tax Advisor,
+    GST Consultant,
+    GST Registration,
+    GST Return Filing,
+    TDS Services,
+    TDS Return Filing,
+    TDS Compliance,
+    PAN Card Services,
+    PAN Card Application,
+    PAN Card Correction,
+    Civil Lawyer,
+    Civil Law Services,
+    Criminal Lawyer,
+    Criminal Law Services,
+    Family Lawyer,
+    Divorce Lawyer,
+    Consumer Court Lawyer,
+    Legal Documentation,
+    Property Documentation,
+    Legal Notice Drafting,
+    EPF Consultant,
+    EPF Services,
+    ESIC Consultant,
+    ESIC Registration,
+    Business Compliance,
+    Legal Services,
+    Corporate Legal Services,
+    Legal Advisor,
+    Legal Consultancy,
+    Financial Compliance,
+    Tax Compliance,
+    Professional Tax Consultant,
+    Advocate Thakre,
+    Advocate Thakre & Associates,
+    Law Firm in Amravati,
+    Top Tax Consultant,
+    Top Legal Services,
+    Best Tax Consultant in Amravati,
+    Best Legal Services in Amravati,
+    Maharashtra Advocate
+{% endblock %}">
 
-    <meta name="author" content="Advocate Thakre & Associates">
+  <meta name="author" content="Advocate Thakre & Associates">
+  <meta name="robots" content="{% block robots %}index, follow{% endblock %}">
+  <meta name="theme-color" content="#d4af37">
 
-    <!--  GOOGLE -->
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://advthakre.com/">
+  <!-- CANONICAL -->
+  <link rel="canonical" href="{{ request.url }}">
 
-    <!--  OPEN GRAPH (WHATSAPP / FACEBOOK) -->
-    <meta property="og:title" content="Advocate Thakre & Associates | Legal & Tax Experts">
-    <meta property="og:description" content="Expert legal and taxation services in Amravati. Income Tax, GST, Civil, Criminal & Family Law specialists.">
-    <meta property="og:image" content="{{ url_for('static', filename='images/logo1.png') }}">
-    <meta property="og:url" content="https://advthakre.com/">
-    <meta property="og:type" content="website">
+   <!-- OPEN GRAPH -->
+  <meta property="og:site_name" content="Advocate Thakre & Associates">
+  <meta property="og:title" content="{% block og_title %}Advocate Thakre & Associates | Legal & Tax Experts in Amravati{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Trusted legal and taxation services in Amravati including income tax, GST, civil law, criminal law, family law and legal documentation.{% endblock %}">
+  <meta property="og:image" content="{{ url_for('static', filename='images/logo.png', _external=True) }}">
+  <meta property="og:url" content="{{ request.url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_IN">
 
-    <!--  TWITTER -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Advocate Thakre & Associates">
-    <meta name="twitter:description" content="Top legal and tax consultancy services in Amravati.">
-    <meta name="twitter:image" content="{{ url_for('static', filename='images/logo1.png') }}">
+ <!-- TWITTER -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% block twitter_title %}Advocate Thakre & Associates{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}Legal and tax consultancy services in Amravati, Maharashtra.{% endblock %}">
+  <meta name="twitter:image" content="{{ url_for('static', filename='images/logo.png', _external=True) }}">
 
-    <!--  FAVICON -->
-    <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}">
+  <!-- FAVICON -->
+  <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logo.png') }}">
 
-    <!--  LOCAL SEO (VERY IMPORTANT) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LegalService",
-      "name": "Advocate Thakre & Associates",
-      "image": "https://advthakre.com/static/images/logo1.png",
-      "url": "https://advthakre.com",
-      "telephone": "+918888244176",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Amravati",
-        "addressRegion": "Maharashtra",
-        "addressCountry": "India"
-      },
-      "areaServed": "India",
-      "priceRange": "₹₹",
-      "description": "Providing expert legal and tax services including Income Tax, GST, Civil, Criminal, Family Law and documentation services.",
-      "sameAs": [
-        "https://www.facebook.com/",
-        "https://www.instagram.com/",
-        "https://www.linkedin.com/"
-      ]
-    }
-    </script>
+  <!-- LOCAL BUSINESS SCHEMA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LegalService",
+    "name": "Advocate Thakre & Associates",
+    "url": "https://advthakre.com/",
+    "image": "https://advthakre.com/static/images/logo.png",
+    "logo": "https://advthakre.com/static/images/logo.png",
+    "telephone": "+91-8888244176",
+    "email": "adv.thakre@gmail.com",
+    "priceRange": "₹₹",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Shree Prabhu Krupa, 2nd Floor, Dastur Nagar Road",
+      "addressLocality": "Amravati",
+      "addressRegion": "Maharashtra",
+      "postalCode": "444606",
+      "addressCountry": "IN"
+    },
+    "areaServed": [
+      "Amravati",
+      "Maharashtra",
+      "India"
+    ],
+    "description": "Advocate Thakre & Associates provides legal, taxation, GST, civil, criminal, family law, EPF, ESIC and documentation services in Amravati.",
+    "sameAs": [
+      "https://www.facebook.com/p/Adv-Thakre-Tax-Consultant-61560064247830/",
+      "https://www.instagram.com/thakre_and_associates/",
+      "https://www.linkedin.com/company/thakreandassociate/",
+      "https://www.youtube.com/@shriprabhusoftlink"
+    ]
+  }
+  </script>
+
+     <!-- WEBSITE SCHEMA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Advocate Thakre & Associates",
+    "url": "https://advthakre.com/"
+  }
+  </script>
 
     <!-- CSS FILES  -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -390,7 +454,7 @@
 <a href="{{ url_for('home') }}" class="logo">
 
   <img 
-    src="{{ url_for('static', filename='images/logo1.png') }}" 
+    src="{{ url_for('static', filename='images/logo.png') }}" 
     alt="Thakre Logo" 
     class="logo-img"
   >
@@ -566,7 +630,7 @@
 
     <div class="footer-brand">
       <div class="footer-logo">
-        <img src="{{ url_for('static', filename='images/logo1.png') }}" alt="Logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
         <div class="footer-logo-text">
           <h3>Advocate Thakre & Associates</h3>
           <p>Tax & Legal Services</p>
