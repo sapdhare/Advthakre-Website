@@ -2,6 +2,131 @@
 
 {% extends "base.html" %}
 
+{% block title %}
+Business Registration & Legal Consultancy in Amravati | Other Legal Services
+{% endblock %}
+
+{% block meta_description %}
+Advocate Thakre & Associates provides business registration, legal consultancy, compliance services, licensing, agreement review, company registration, LLP registration, legal documentation and regulatory advisory services in Amravati, Maharashtra.
+{% endblock %}
+
+{% block meta_keywords %}
+Business Registration Amravati,
+Company Registration Amravati,
+LLP Registration Amravati,
+Startup Registration,
+Legal Consultancy Amravati,
+Legal Consultant,
+Business Legal Advisor,
+Business Compliance Services,
+Legal Compliance,
+Company Compliance,
+Trade License Services,
+Licensing Services,
+Agreement Review,
+Contract Review,
+Legal Documentation,
+Legal Advisory,
+Professional Legal Services,
+Regulatory Compliance,
+Corporate Legal Services,
+Business Law Services,
+MSME Registration,
+Partnership Firm Registration,
+Shop Act Registration,
+Legal Consultant Maharashtra,
+Best Legal Consultant Amravati,
+Advocate Thakre,
+Advocate Thakre & Associates
+{% endblock %}
+
+{% block og_title %}
+Business Registration & Legal Consultancy | Advocate Thakre
+{% endblock %}
+
+{% block og_description %}
+Professional business registration, licensing, legal consultancy, compliance and documentation services in Amravati.
+{% endblock %}
+
+{% block twitter_title %}
+Business Registration & Legal Consultancy | Advocate Thakre
+{% endblock %}
+
+{% block twitter_description %}
+Company registration, compliance, licensing, legal advisory and documentation services in Amravati.
+{% endblock %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Service",
+  "name":"Business Registration & Legal Consultancy Services",
+  "serviceType":"Business Registration, Legal Consultancy, Licensing, Compliance and Documentation",
+  "url":"https://advthakre.com/services/other",
+  "description":"Advocate Thakre & Associates provides company registration, LLP registration, business licensing, compliance management, agreement review and legal consultancy services in Amravati.",
+  "provider":{
+    "@type":"LegalService",
+    "name":"Advocate Thakre & Associates",
+    "url":"https://advthakre.com/",
+    "telephone":"+91-8888244176",
+    "address":{
+      "@type":"PostalAddress",
+      "addressLocality":"Amravati",
+      "addressRegion":"Maharashtra",
+      "addressCountry":"IN"
+    }
+  },
+  "areaServed":[
+    "Amravati",
+    "Maharashtra",
+    "India"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+   {
+     "@type":"Question",
+     "name":"Do you provide business registration services?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"Yes. We assist with company registration, LLP registration, partnership firms and other business registrations."
+     }
+   },
+   {
+     "@type":"Question",
+     "name":"Do you provide legal compliance services?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"Yes. We provide business compliance, licensing, legal documentation and regulatory advisory services."
+     }
+   },
+   {
+     "@type":"Question",
+     "name":"Can you review agreements and contracts?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"Yes. We review agreements, contracts and legal documents to ensure legal compliance and protect your interests."
+     }
+   },
+   {
+     "@type":"Question",
+     "name":"Do you provide legal consultation for businesses?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"Yes. We provide legal consultation for startups, businesses, professionals and individuals across various legal matters."
+     }
+   }
+ ]
+}
+</script>
+{% endblock %}
+
 {% block content %}
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/services/service-detail.css') }}">
