@@ -192,11 +192,11 @@ def admin_pending_clients():
             client_name,
             pan_no,
             status,
-            assigned_to
+            assigned_user_id
         FROM evc_clients
         WHERE 
             status='Pending'
-            AND assigned_to IS NULL
+            AND assigned_user_id IS NULL
         ORDER BY id DESC
     """)
 
@@ -204,7 +204,7 @@ def admin_pending_clients():
 
 
     cursor.execute("""
-        SELECT 
+        SELECT
             id,
             fullname
         FROM users
@@ -229,27 +229,28 @@ def assign_client(id):
         return redirect('/admin/login')
 
 
-    user_id=request.form['user_id']
+    user_id = request.form['user_id']
 
-    cursor=conn.cursor()
+    cursor = conn.cursor()
 
 
+    # Check user pending limit
     cursor.execute("""
         SELECT COUNT(*)
         FROM evc_clients
-        WHERE assigned_to=?
+        WHERE assigned_user_id=?
         AND status='Pending'
     """,(user_id,))
 
 
-    count=cursor.fetchone()[0]
+    count = cursor.fetchone()[0]
 
 
     if count >= 20:
 
         flash(
-        "User already has 20 pending clients",
-        "danger"
+            "User already has 20 pending clients",
+            "danger"
         )
 
         return redirect('/admin/pending-clients')
@@ -257,15 +258,25 @@ def assign_client(id):
 
     cursor.execute("""
         UPDATE evc_clients
-        SET assigned_to=?
+        SET 
+            assigned_user_id=?,
+            assigned_date=GETDATE()
         WHERE id=?
     """,
     (
-    user_id,
-    id
+        user_id,
+        id
     ))
 
+
     conn.commit()
+
+
+    flash(
+        "Client Assigned Successfully",
+        "success"
+    )
+
 
     return redirect('/admin/pending-clients')
 
