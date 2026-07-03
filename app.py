@@ -430,8 +430,7 @@ def auto_assign_clients():
         print("=========== AUTO ASSIGN START ===========")
 
 
-
-        # Get active users with current pending count
+        # ACTIVE USERS WITH LOWEST WORK FIRST
 
         cursor.execute("""
 
@@ -442,24 +441,47 @@ def auto_assign_clients():
 
                 COUNT(c.id) AS pending_count
 
+
             FROM users u
+
+
             LEFT JOIN evc_clients c
+
             ON u.id = c.assigned_to
+
             AND c.status='Pending'
+
+
             WHERE
+
             u.status='Active'
+
+
             GROUP BY
-            u.id,
-            u.fullname
+
+                u.id,
+                u.fullname
+
+
             HAVING COUNT(c.id) < 20
-            ORDER BY u.id
+
+
+            ORDER BY
+
+            COUNT(c.id) ASC
+
         """)
+
+
         users = cursor.fetchall()
 
 
-        print("Available Users:", len(users))
+        print(
+            "Available Users:",
+            len(users)
+        )
 
-        # Get unassigned pending clients
+        # Pending without user
         cursor.execute("""
             SELECT id
             FROM evc_clients
@@ -469,62 +491,60 @@ def auto_assign_clients():
             ORDER BY id ASC
         """)
         clients = cursor.fetchall()
-
-        print("Pending Unassigned:", len(clients))
+        print(
+            "Unassigned Clients:",
+            len(clients)
+        )
         client_index = 0
         for user in users:
-            user_id = user.id
             current_count = user.pending_count
-            remaining_space = 20 - current_count
+            available_space = 20 - current_count
 
             print(
                 user.fullname,
-                "Already:",
+                "Current:",
                 current_count,
-                "Can Take:",
-                remaining_space
+                "Space:",
+                available_space
             )
-
-            for i in range(remaining_space):
+            while available_space > 0:
                 if client_index >= len(clients):
                     break
                 client_id = clients[client_index].id
-
                 cursor.execute("""
                     UPDATE evc_clients
                     SET
                     assigned_to=?,
                     assigned_date=GETDATE()
-
                     WHERE id=?
-
                 """,
                 (
-
-                    user_id,
-
+                    user.id,
                     client_id
-
                 ))
 
                 print(
-                    "Client",
+                    "Assigned Client",
                     client_id,
-                    "Assigned To",
+                    "TO",
                     user.fullname
                 )
-
                 client_index += 1
-        conn.commit()
+                available_space -= 1
 
-        print("=========== AUTO ASSIGN DONE ===========")
+        conn.commit()
+        print(
+            "TOTAL ASSIGNED:",
+            client_index
+        )
+
+        print("=========== AUTO ASSIGN END ===========")
         return redirect('/admin/pending-clients')
 
     except Exception as e:
         print("AUTO ASSIGN ERROR")
         print(e)
         return str(e),500
-
 
 
 @app.route('/admin/change-email', methods=['GET', 'POST'])
