@@ -183,6 +183,7 @@ def admin_pending_clients():
     if 'admin' not in session:
         return redirect('/admin/login')
 
+
     cursor = conn.cursor()
 
 
@@ -192,11 +193,11 @@ def admin_pending_clients():
             client_name,
             pan_no,
             status,
-            assigned_user_id
+            assigned_to
         FROM evc_clients
         WHERE 
             status='Pending'
-            AND assigned_user_id IS NULL
+            AND assigned_to IS NULL
         ORDER BY id DESC
     """)
 
@@ -212,6 +213,7 @@ def admin_pending_clients():
         ORDER BY fullname
     """)
 
+
     users = cursor.fetchall()
 
 
@@ -220,7 +222,6 @@ def admin_pending_clients():
         clients=clients,
         users=users
     )
-
 
 @app.route('/admin/assign-client/<int:id>', methods=['POST'])
 def assign_client(id):
