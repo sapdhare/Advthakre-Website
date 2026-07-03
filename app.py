@@ -188,83 +188,49 @@ def admin_pending_clients():
     if 'admin' not in session:
         return redirect('/admin/login')
 
-
     cursor = conn.cursor()
 
 
-    # All pending clients
-    # Assigned + Not Assigned
     cursor.execute("""
         SELECT
-
             c.id,
-
             c.client_name,
-
             c.pan_no,
-
             c.status,
-
             c.assigned_to,
-
-            ISNULL(
-                u.fullname,
-                'Not Assigned'
-            ) AS assigned_user
-
+            COALESCE(u.fullname,'Not Assigned')
 
         FROM evc_clients c
 
-
         LEFT JOIN users u
-        ON c.assigned_to = u.id
-
+        ON TRY_CAST(c.assigned_to AS INT)=u.id
 
         WHERE 
-        LTRIM(RTRIM(c.status))='Pending'
-
+        c.status='Pending'
 
         ORDER BY c.id DESC
-
     """)
-
 
     clients = cursor.fetchall()
 
 
-
-    # Active users dropdown
-
     cursor.execute("""
         SELECT
-
             id,
-
             fullname
-
         FROM users
-
-        WHERE
-        LTRIM(RTRIM(status))='Active'
-
+        WHERE status='Active'
         ORDER BY fullname
-
     """)
-
 
     users = cursor.fetchall()
 
 
-
     return render_template(
-
         "admin/evc/pending_clients.html",
-
         clients=clients,
-
         users=users
     )
-
 
 
 # ====================================
@@ -335,6 +301,7 @@ def assign_client(id):
 
 
 
+      
     # check pending allocation count
 
     cursor.execute("""
@@ -342,14 +309,14 @@ def assign_client(id):
 
         FROM evc_clients
 
-        WHERE assigned_to=?
+        WHERE TRY_CAST(assigned_to AS INT)=?
 
         AND LTRIM(RTRIM(status))='Pending'
 
     """,
-    (
-        user_id,
-    ))
+                   (
+                       int(user_id),
+                   ))
 
     count = cursor.fetchone()[0]
 
