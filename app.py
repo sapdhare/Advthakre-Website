@@ -177,6 +177,11 @@ def admin_profile():
     return render_template('admin/profile.html', admin=admin_data)
 
 
+# ====================================
+# ADMIN PENDING CLIENTS
+# ASSIGN / REASSIGN PAGE
+# ====================================
+
 @app.route('/admin/pending-clients')
 def admin_pending_clients():
 
@@ -186,94 +191,187 @@ def admin_pending_clients():
 
     cursor = conn.cursor()
 
+
+    # All pending clients
+    # Assigned + Not Assigned
     cursor.execute("""
         SELECT
+
             c.id,
+
             c.client_name,
+
             c.pan_no,
+
             c.status,
+
             c.assigned_to,
-            ISNULL(u.fullname,'Not Assigned')
+
+            ISNULL(
+                u.fullname,
+                'Not Assigned'
+            ) AS assigned_user
+
 
         FROM evc_clients c
+
 
         LEFT JOIN users u
         ON c.assigned_to = u.id
 
-        WHERE c.status='Pending'
+
+        WHERE 
+        LTRIM(RTRIM(c.status))='Pending'
+
 
         ORDER BY c.id DESC
+
     """)
+
 
     clients = cursor.fetchall()
 
 
+
+    # Active users dropdown
+
     cursor.execute("""
         SELECT
+
             id,
+
             fullname
+
         FROM users
-        WHERE status='Active'
+
+        WHERE
+        LTRIM(RTRIM(status))='Active'
+
         ORDER BY fullname
+
     """)
 
 
     users = cursor.fetchall()
 
 
+
     return render_template(
+
         "admin/evc/pending_clients.html",
+
         clients=clients,
+
         users=users
     )
+
+
+
+# ====================================
+# ASSIGN / REASSIGN CLIENT
+# ====================================
+
 
 @app.route('/admin/assign-client/<int:id>', methods=['POST'])
 def assign_client(id):
 
+
     if 'admin' not in session:
+
         return redirect('/admin/login')
 
 
-    user_id=request.form['user_id']
+
+    user_id = request.form.get('user_id')
 
 
-    cursor=conn.cursor()
-
-
-    cursor.execute("""
-        SELECT COUNT(*)
-        FROM evc_clients
-        WHERE assigned_to=?
-        AND status='Pending'
-    """,
-    (user_id,))
-
-
-    count=cursor.fetchone()[0]
-
-
-    if count >= 20:
+    if not user_id:
 
         flash(
-            "User already has 20 pending clients",
+            "Please select user",
             "danger"
         )
 
         return redirect('/admin/pending-clients')
 
+
+
+    cursor = conn.cursor()
+
+
+
+    # check selected user active or not
+
+    cursor.execute("""
+        SELECT COUNT(*)
+
+        FROM users
+
+        WHERE id=?
+
+        AND LTRIM(RTRIM(status))='Active'
+    """,
+    (
+        user_id,
+    ))
+
+
+
+    active_check = cursor.fetchone()[0]
+
+
+
+    if active_check == 0:
+
+
+        flash(
+            "Selected user is inactive",
+            "danger"
+        )
+
+
+        return redirect('/admin/pending-clients')
+
+
+
+
+    # check pending allocation count
+
+    cursor.execute("""
+        SELECT COUNT(*)
+
+        FROM evc_clients
+
+        WHERE assigned_to=?
+
+        AND LTRIM(RTRIM(status))='Pending'
+
+    """,
+    (
+        user_id,
+    ))
+
+    count = cursor.fetchone()[0]
+
+    if count >= 20:
+        flash(
+            "This user already has 20 pending clients",
+            "danger"
+        )
+        return redirect('/admin/pending-clients')
+    # Assign / Reassign
     cursor.execute("""
         UPDATE evc_clients
-
         SET
             assigned_to=?,
             assigned_date=GETDATE()
-
         WHERE id=?
     """,
     (
         user_id,
         id
     ))
+
     conn.commit()
     return redirect('/admin/pending-clients')
 
