@@ -1,5 +1,127 @@
 {% extends "base.html" %}
+{% block title %}
+Criminal Lawyer in Amravati | Bail, FIR, Criminal Defense & Court Representation
+{% endblock %}
 
+{% block meta_description %}
+Advocate Thakre & Associates provides criminal law services in Amravati including criminal defense, FIR assistance, bail matters, police complaints, trial representation and legal rights protection.
+{% endblock %}
+
+{% block meta_keywords %}
+Criminal Lawyer Amravati,
+Criminal Law Services Amravati,
+Criminal Advocate Amravati,
+Bail Lawyer Amravati,
+Anticipatory Bail Lawyer,
+Regular Bail Lawyer,
+FIR Assistance,
+Police Complaint Lawyer,
+Criminal Defense Lawyer,
+Trial Representation,
+Criminal Court Lawyer,
+IPC Lawyer,
+CrPC Lawyer,
+Cybercrime Lawyer Amravati,
+Fraud Case Lawyer,
+Assault Case Lawyer,
+Legal Defense Amravati,
+Best Criminal Lawyer in Amravati,
+Advocate Thakre Criminal Law,
+Advocate Thakre & Associates
+{% endblock %}
+
+{% block og_title %}
+Criminal Lawyer in Amravati | Bail, FIR & Criminal Defense
+{% endblock %}
+
+{% block og_description %}
+Get legal support for criminal defense, bail matters, FIR assistance, police complaints and court representation from Advocate Thakre & Associates in Amravati.
+{% endblock %}
+
+{% block twitter_title %}
+Criminal Law Services in Amravati | Advocate Thakre
+{% endblock %}
+
+{% block twitter_description %}
+Criminal defense, bail matters, FIR assistance and court representation in Amravati.
+{% endblock %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Service",
+  "name":"Criminal Law Services in Amravati",
+  "serviceType":"Criminal Defense, Bail Matters, FIR Assistance and Court Representation",
+  "url":"https://advthakre.com/services/criminal-law",
+  "description":"Advocate Thakre & Associates provides criminal law services including criminal defense, FIR assistance, bail matters, trial representation and legal rights protection in Amravati.",
+  "provider":{
+    "@type":"LegalService",
+    "name":"Advocate Thakre & Associates",
+    "url":"https://advthakre.com/",
+    "telephone":"+91-8888244176",
+    "address":{
+      "@type":"PostalAddress",
+      "addressLocality":"Amravati",
+      "addressRegion":"Maharashtra",
+      "addressCountry":"IN"
+    }
+  },
+  "areaServed":["Amravati","Maharashtra","India"],
+  "hasOfferCatalog":{
+    "@type":"OfferCatalog",
+    "name":"Criminal Law Services",
+    "itemListElement":[
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Criminal Defense"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"FIR and Police Complaint Assistance"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Bail Matters"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Trial Representation"}}
+    ]
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+   {
+     "@type":"Question",
+     "name":"What is criminal law?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"Criminal law deals with offenses against individuals or the state and includes investigation, defense, trial and punishment-related proceedings."
+     }
+   },
+   {
+     "@type":"Question",
+     "name":"What should I do if I am arrested?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"You should remain calm and contact a lawyer immediately. Every person has the right to legal representation."
+     }
+   },
+   {
+     "@type":"Question",
+     "name":"What is bail?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"Bail allows temporary release from custody while the case continues, subject to conditions imposed by the court."
+     }
+   },
+   {
+     "@type":"Question",
+     "name":"Do you handle bail matters in Amravati?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"Yes. Advocate Thakre & Associates provides legal assistance for regular bail, anticipatory bail, FIR matters and criminal court representation in Amravati."
+     }
+   }
+ ]
+}
+</script>
+{% endblock %}
 {% block content %}
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/services/service-detail.css') }}">
