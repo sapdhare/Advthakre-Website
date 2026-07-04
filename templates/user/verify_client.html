@@ -101,62 +101,31 @@
 
 
 
-        <!-- VERIFY FORM -->
+ <!-- VERIFY FORM -->
+
+<form
+action="/user/verify-submit/{{ client.id }}"
+method="POST"
+enctype="multipart/form-data">
 
 
-        <form
-            action="/user/verify-submit/{{ client.id }}"
-            method="POST"
-            enctype="multipart/form-data">
+<!-- REMARK STATUS FIRST -->
 
 
+<div class="mb-3">
 
-            <!-- PDF UPLOAD -->
+<label class="form-label fw-bold">
 
+Verification Remarks
 
-            <div class="mb-3">
-
-
-                <label class="form-label fw-bold">
-
-                    Upload EVC PDF
-
-                </label>
+</label>
 
 
-                <input
-                    type="file"
-                    name="evc_pdf"
-                    accept=".pdf"
-                    required
-                    class="form-control">
-
-
-            </div>
-
-
-
-
-
-            <!-- REMARK STATUS -->
-
-
-            <div class="mb-3">
-
-
-                <label class="form-label fw-bold">
-
-                    Verification Remarks
-
-                </label>
-
-
-
-                <select
+<select
 class="form-select"
 name="remark_type"
 id="remark_type"
-onchange="showOtherRemark()"
+onchange="handleRemark()"
 required>
 
 
@@ -180,11 +149,18 @@ Wrong / Invalid Number
 </option>
 
 
-<option value ="4"> Visit to Office
+<option value="4">
+Will Visit to Office
 </option>
 
 
-<option value ="5"> OTP not shared
+<option value="5">
+OTP not shared
+</option>
+
+
+<option value="7">
+Send To Admin
 </option>
 
 <option value="6">
@@ -192,76 +168,34 @@ Other
 </option>
 
 
+
 </select>
-            </div>
 
-            <!-- OTHER REMARK BOX -->
-
-
-            <div
-                class="mb-3"
-                id="otherBox"
-                style="display:none;">
+</div>
 
 
 
-                <label class="form-label fw-bold">
-
-                    Enter Other Reason
-
-                </label>
+<!-- OTHER REMARK -->
 
 
-
-                <textarea
-                    name="other_remark"
-                    rows="3"
-                    class="form-control"
-                    placeholder="Enter reason here"></textarea>
+<div
+class="mb-3"
+id="otherBox"
+style="display:none;">
 
 
+<label class="form-label fw-bold">
 
-            </div>
+Enter Other Reason
 
-
-
-
-
-            <!-- BUTTONS -->
+</label>
 
 
-            <button
-                type="submit"
-                class="btn btn-success">
-
-
-                <i class="bi bi-check-circle"></i>
-
-                Submit Verification
-
-
-            </button>
-
-
-
-
-            <a
-                href="/user/evc-verification"
-                class="btn btn-secondary">
-
-
-                Back
-
-
-            </a>
-
-
-
-
-        </form>
-
-
-    </div>
+<textarea
+name="other_remark"
+rows="3"
+class="form-control"
+placeholder="Enter reason here"></textarea>
 
 
 </div>
@@ -269,28 +203,139 @@ Other
 
 
 
+<!-- PDF UPLOAD AFTER REMARK -->
+
+
+<div class="mb-3">
+
+
+<label class="form-label fw-bold">
+
+Upload EVC PDF
+
+</label>
+
+
+<input
+type="file"
+name="evc_pdf"
+id="evc_pdf"
+accept=".pdf"
+disabled
+class="form-control">
+
+
+<small class="text-danger">
+
+PDF upload enabled only after Verification Done
+
+</small>
+
+
+</div>
+
+
+
+
+<button
+type="submit"
+class="btn btn-success">
+
+
+<i class="bi bi-check-circle"></i>
+
+Submit Verification
+
+</button>
+
+
+
+<a
+href="/user/evc-verification"
+class="btn btn-secondary">
+
+Back
+
+</a>
+
+
+</form>
+
+
+
 
 <script>
 
 
-function showOtherRemark(){
+function handleRemark(){
 
-let value =
+
+let remark =
 document.getElementById("remark_type").value;
 
 
-if(value=="6"){
+let pdf =
+document.getElementById("evc_pdf");
 
-document.getElementById("otherBox").style.display="block";
+
+let other =
+document.getElementById("otherBox");
+
+
+
+
+// OTHER BOX
+
+
+if(remark=="6"){
+
+
+other.style.display="block";
+
 
 }
+
 else{
 
-document.getElementById("otherBox").style.display="none";
+
+other.style.display="none";
+
 
 }
 
+
+
+// PDF ENABLE ONLY VERIFICATION DONE
+
+
+if(remark=="1"){
+
+
+pdf.disabled=false;
+
+
+pdf.required=true;
+
+
 }
+
+else{
+
+
+pdf.disabled=true;
+
+
+pdf.required=false;
+
+
+pdf.value="";
+
+
+}
+
+
+}
+
 
 </script>
 

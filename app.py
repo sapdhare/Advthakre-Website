@@ -1149,6 +1149,119 @@ def verify_client(id):
     )
 
 
+@app.route('/admin/review-clients')
+def admin_review_clients():
+
+
+    if 'admin' not in session:
+
+        return redirect('/admin/login')
+
+
+    cursor = conn.cursor()
+
+
+    cursor.execute("""
+
+        SELECT
+
+        c.id,
+        c.client_name,
+        c.pan_no,
+        c.mobile_no,
+        c.user_remarks,
+        u.fullname
+
+
+        FROM evc_clients c
+
+
+        LEFT JOIN users u
+
+        ON c.assigned_to=u.id
+
+
+        WHERE
+
+        c.status='Admin Review'
+
+
+        ORDER BY c.id DESC
+
+
+    """)
+
+
+    clients = cursor.fetchall()
+
+
+    return render_template(
+
+        "admin/evc/review_clients.html",
+
+        clients=clients
+
+    )
+
+# ====================================
+# ADMIN SPECIAL REMARKS CLIENTS
+# ====================================
+
+@app.route('/admin/special-remarks')
+def special_remarks():
+
+
+    if 'admin' not in session:
+
+        return redirect('/admin/login')
+
+
+    cursor = conn.cursor()
+
+
+    cursor.execute("""
+
+        SELECT
+
+            c.id,
+            c.client_name,
+            c.pan_no,
+            c.mobile_no,
+            c.user_remarks,
+            c.assigned_date,
+
+            ISNULL(u.fullname,'Unknown')
+
+
+        FROM evc_clients c
+
+
+        LEFT JOIN users u
+
+        ON c.assigned_to = u.id
+
+
+        WHERE
+
+        c.status='Admin Review'
+
+
+        ORDER BY c.id DESC
+
+
+    """)
+
+
+    clients = cursor.fetchall()
+
+
+    return render_template(
+
+        "admin/evc/special_remarks.html",
+
+        clients=clients
+
+    )
 
 
 # ============================
@@ -1203,27 +1316,38 @@ def verify_submit(id):
     # =========================
 
     remark_type = request.form.get(
-
         "remark_type"
-
     )
 
     other_remark = request.form.get(
-
         "other_remark"
-
     )
 
-    if remark_type == "4":
-
+    if remark_type == "6":
 
         final_remark = other_remark
 
     else:
 
-
         final_remark = remark_type
 
+    # =====================
+    # STATUS DECISION
+    # =====================
+
+    if remark_type == "1":
+
+        final_status = "Verified"
+
+
+    elif remark_type == "7":
+
+        final_status = "Admin Review"
+
+
+    else:
+
+        final_status = "Pending"
 
     # =========================
     # PDF UPLOAD
@@ -1270,45 +1394,44 @@ def verify_submit(id):
 
     cursor = conn.cursor()
 
-
-
     cursor.execute("""
 
-        UPDATE evc_clients
-        SET
-        status='Verified',
+    UPDATE evc_clients
 
-            verified_by=?,
+    SET
 
-            verified_at=GETDATE(),
+    status=?,
 
-            evc_pdf=?,
+    verified_by=?,
 
-            user_remarks=?
+    verified_at=GETDATE(),
 
+    evc_pdf=?,
 
-        WHERE
+    user_remarks=?
 
-            id=?
+    WHERE
 
-            AND assigned_to=?
+    id=?
 
+    AND assigned_to=?
 
     """,
-    (
+                   (
 
-        session['user_id'],
+                       final_status,
 
-        filename,
+                       session['user_id'],
 
-        final_remark,
+                       filename,
 
-        id,
+                       final_remark,
 
-        session['user_id']
+                       id,
 
-    ))
+                       session['user_id']
 
+                   ))
 
 
     conn.commit()
@@ -1330,6 +1453,8 @@ def verify_submit(id):
         "/user/my-verifications"
 
     )
+
+
 
 @app.route('/user/my-verifications')
 def my_verifications():
@@ -1376,6 +1501,7 @@ def user_pending_clients():
         'user/pending_clients.html',
         clients=clients
     )
+
 
 
 

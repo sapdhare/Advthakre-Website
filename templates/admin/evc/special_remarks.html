@@ -1,0 +1,123 @@
+{% extends "admin/admin-layout.html" %}
+
+
+{% block content %}
+
+
+<h4 class="fw-bold mb-3">
+
+Special Remarks Clients
+
+</h4>
+
+
+<div class="table-responsive">
+
+
+<table class="table table-bordered table-hover">
+
+
+<thead class="table-dark">
+
+<tr>
+
+<th>#</th>
+
+<th>Name</th>
+
+<th>PAN</th>
+
+<th>Mobile</th>
+
+<th>Remark</th>
+
+<th>User</th>
+
+<th>Date</th>
+
+
+</tr>
+
+
+</thead>
+
+
+<tbody>
+
+
+{% for c in clients %}
+
+
+<tr>
+
+
+<td>{{loop.index}}</td>
+
+
+<td>{{c[1]}}</td>
+
+
+<td>{{c[2]}}</td>
+
+
+<td>{{c[3]}}</td>
+
+
+<td>
+
+
+<span class="badge bg-danger">
+
+{{c[4]}}
+
+</span>
+
+
+</td>
+
+
+<td>
+
+{{c[6]}}
+
+</td>
+
+
+<td>
+
+{{c[5]}}
+
+</td>
+
+
+</tr>
+
+
+{% else %}
+
+
+<tr>
+
+<td colspan="7"
+class="text-center text-muted">
+
+No Special Remarks
+
+</td>
+
+</tr>
+
+
+{% endfor %}
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+{% endblock %}
