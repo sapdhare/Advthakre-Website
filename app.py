@@ -1323,13 +1323,33 @@ def verify_submit(id):
         "other_remark"
     )
 
+    # =========================
+    # REMARK SAVE
+    # =========================
+
+    remark_names = {
+
+        "1": "Verification Done",
+
+        "2": "Call Not Received",
+
+        "3": "Wrong / Invalid Number",
+
+        "4": "Will Visit to Office",
+
+        "5": "OTP Not Shared"
+
+    }
+
     if remark_type == "6":
 
         final_remark = other_remark
 
     else:
 
-        final_remark = remark_type
+        final_remark = remark_names.get(
+            remark_type
+        )
 
     # =====================
     # STATUS DECISION
