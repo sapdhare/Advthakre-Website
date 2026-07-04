@@ -1337,19 +1337,12 @@ def verify_submit(id):
 
         "4": "Will Visit to Office",
 
-        "5": "OTP Not Shared"
+        "5": "OTP Not Shared",
+
+        "6": "Unable to  Connect"
 
     }
 
-    if remark_type == "6":
-
-        final_remark = other_remark
-
-    else:
-
-        final_remark = remark_names.get(
-            remark_type
-        )
 
     # =====================
     # STATUS DECISION
