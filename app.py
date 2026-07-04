@@ -1492,20 +1492,49 @@ def my_verifications():
     if 'user_id' not in session:
         return redirect('/user/login')
 
+
     cursor = conn.cursor()
 
+
     cursor.execute("""
-        SELECT *
+
+        SELECT
+
+            id,
+            client_name,
+            pan_no,
+            mobile_no,
+            efiling_password,
+            status,
+            assigned_to,
+            verified_by,
+
+            FORMAT(
+                verified_at,
+                'dd-MM-yyyy hh:mm tt'
+            ) AS verified_date
+
         FROM evc_clients
+
         WHERE verified_by=?
+
         ORDER BY verified_at DESC
-    """,(session['user_id'],))
+
+    """,
+    (
+        session['user_id'],
+    ))
+
 
     clients = cursor.fetchall()
 
+
     return render_template(
+
         'user/my_verifications.html',
+
         clients=clients
+
     )
 
 @app.route('/user/pending-clients')
