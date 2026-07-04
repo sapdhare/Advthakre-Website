@@ -1337,15 +1337,23 @@ def verify_submit(id):
 
     if remark_type == "1":
 
+        # Verification Done
         final_status = "Verified"
 
 
-    elif remark_type == "7":
+    elif remark_type in ["2", "5"]:
+
+        # 2 = Call Not Received
+        # 5 = OTP Not Shared
 
         final_status = "Admin Review"
 
 
     else:
+
+        # Wrong Number
+        # Visit Office
+        # Other
 
         final_status = "Pending"
 
