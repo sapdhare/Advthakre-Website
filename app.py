@@ -1339,10 +1339,13 @@ def verify_submit(id):
 
         "5": "OTP Not Shared",
 
-        "6": "Unable to  Connect"
+        "6": "Unable to Connect"
 
     }
 
+    final_remark = remark_names.get(
+        remark_type
+    )
 
     # =====================
     # STATUS DECISION
@@ -1354,7 +1357,7 @@ def verify_submit(id):
         final_status = "Verified"
 
 
-    elif remark_type in ["2", "5"]:
+    elif remark_type in ["2", "5", "6"]:
 
         # 2 = Call Not Received
         # 5 = OTP Not Shared
