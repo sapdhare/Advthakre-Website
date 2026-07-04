@@ -13,6 +13,7 @@
             <th>Name</th>
             <th>Mobile</th>
             <th>E-Filing Password</th>
+            <th>Remark</th>
             <th>Action</th>
         </tr>
 
@@ -44,6 +45,27 @@
                 {{ client.efiling_password }}
             </td>
 
+            <td>
+
+            {% if client.user_remarks %}
+
+            <span class="badge bg-warning text-dark">
+
+            {{ client.user_remarks }}
+
+            </span>
+
+            {% else %}
+
+            <span class="badge bg-secondary">
+
+            New
+
+            </span>
+
+            {% endif %}
+
+            </td>
 
             <td>
 
