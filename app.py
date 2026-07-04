@@ -1207,12 +1207,14 @@ def admin_review_clients():
 # ADMIN SPECIAL REMARKS CLIENTS
 # ====================================
 
-@app.route('/admin/special-remarks')
-def special_remarks():
+# ================================
+# ADMIN SPECIAL REMARKS
+# ================================
 
+@app.route('/admin/special-remarks')
+def admin_special_remarks():
 
     if 'admin' not in session:
-
         return redirect('/admin/login')
 
 
@@ -1228,22 +1230,23 @@ def special_remarks():
             c.pan_no,
             c.mobile_no,
             c.user_remarks,
-            c.assigned_date,
-
-            ISNULL(u.fullname,'Unknown')
-
+            c.verified_at,
+            u.fullname
 
         FROM evc_clients c
 
-
         LEFT JOIN users u
-
         ON c.assigned_to = u.id
 
 
         WHERE
 
-        c.status='Admin Review'
+        c.user_remarks IN
+        (
+            'Call Not Received',
+            'OTP Not Shared',
+            'Unable to Connect'
+        )
 
 
         ORDER BY c.id DESC
@@ -1256,13 +1259,9 @@ def special_remarks():
 
 
     return render_template(
-
         "admin/evc/special_remarks.html",
-
         clients=clients
-
     )
-
 
 # ============================
 # PDF FOLDER
@@ -1306,26 +1305,16 @@ print(
 @app.route('/user/verify-submit/<int:id>', methods=['POST'])
 def verify_submit(id):
 
-
     if 'user_id' not in session:
-
         return redirect('/user/login')
 
-    # =========================
-    # REMARK SAVE
-    # =========================
-
-    remark_type = request.form.get(
-        "remark_type"
-    )
-
-    other_remark = request.form.get(
-        "other_remark"
-    )
 
     # =========================
-    # REMARK SAVE
+    # GET REMARK
     # =========================
+
+    remark_type = request.form.get("remark_type")
+
 
     remark_names = {
 
@@ -1343,141 +1332,157 @@ def verify_submit(id):
 
     }
 
+
     final_remark = remark_names.get(
         remark_type
     )
 
-    # =====================
-    # STATUS DECISION
-    # =====================
-
-    if remark_type == "1":
-
-        # Verification Done
-        final_status = "Verified"
-
-
-    elif remark_type in ["2", "5", "6"]:
-
-        # 2 = Call Not Received
-        # 5 = OTP Not Shared
-
-        final_status = "Admin Review"
-
-
-
-    else:
-
-        # Wrong Number
-        # Visit Office
-        # Other
-
-        final_status = "Pending"
 
     # =========================
-    # PDF UPLOAD
+    # PDF UPLOAD ONLY VERIFIED
     # =========================
 
     pdf = request.files.get(
-
         "evc_pdf"
-
     )
 
 
     filename = None
 
-    if pdf and pdf.filename:
+
+    if remark_type == "1":
+
+        if pdf and pdf.filename:
+
+            filename = f"{id}_{pdf.filename}"
+
+            file_path = os.path.join(
+                EVC_UPLOAD_FOLDER,
+                filename
+            )
+
+            pdf.save(file_path)
+
+            print(
+                "PDF SAVED:",
+                file_path
+            )
 
 
-        filename = f"{id}_{pdf.filename}"
+    # =========================
+    # DATABASE UPDATE
+    # =========================
 
-
-        file_path = os.path.join(
-
-            EVC_UPLOAD_FOLDER,
-
-            filename
-
-        )
-
-
-        pdf.save(
-
-            file_path
-
-        )
-
-
-        print(
-
-            "PDF SAVED TO:",
-
-            file_path
-
-        )
 
     cursor = conn.cursor()
 
-    cursor.execute("""
 
-    UPDATE evc_clients
+    # ONLY VERIFICATION DONE
+    # GOES TO VERIFIED
 
-    SET
+    if remark_type == "1":
 
-    status=?,
 
-    verified_by=?,
+        cursor.execute("""
 
-    verified_at=GETDATE(),
+            UPDATE evc_clients
 
-    evc_pdf=?,
+            SET
 
-    user_remarks=?
+            status='Verified',
 
-    WHERE
+            verified_by=?,
 
-    id=?
+            verified_at=GETDATE(),
 
-    AND assigned_to=?
+            evc_pdf=?,
 
-    """,
-                   (
+            user_remarks=?
 
-                       final_status,
+            WHERE id=?
 
-                       session['user_id'],
+            AND assigned_to=?
 
-                       filename,
+        """,
+        (
 
-                       final_remark,
+            session['user_id'],
 
-                       id,
+            filename,
 
-                       session['user_id']
+            final_remark,
 
-                   ))
+            id,
+
+            session['user_id']
+
+        ))
+
+
+    else:
+
+
+        # ANY REASON SELECTED
+        # REMAIN PENDING
+
+
+        cursor.execute("""
+
+            UPDATE evc_clients
+
+            SET
+
+            status='Pending',
+
+            verified_by=NULL,
+
+            verified_at=NULL,
+
+            evc_pdf=NULL,
+
+            user_remarks=?
+
+            WHERE id=?
+
+            AND assigned_to=?
+
+
+        """,
+        (
+
+            final_remark,
+
+            id,
+
+            session['user_id']
+
+        ))
+
 
 
     conn.commit()
 
 
-
     flash(
-
-        "EVC Verification Updated Successfully",
-
+        "EVC Status Updated Successfully",
         "success"
-
     )
 
 
+    # REDIRECT LOGIC
 
-    return redirect(
+    if remark_type == "1":
 
-        "/user/my-verifications"
+        return redirect(
+            "/user/my-verifications"
+        )
 
-    )
+
+    else:
+
+        return redirect(
+            "/user/evc-verification"
+        )
 
 
 
