@@ -1328,7 +1328,10 @@ def verify_submit(id):
 
         "5": "OTP Not Shared",
 
-        "6": "Unable to Connect"
+        "6": "Unable to Connect",
+        "7": "send to bangalore",
+        "8": "Do Not Call",
+        "9": "Call Later"
 
     }
 
