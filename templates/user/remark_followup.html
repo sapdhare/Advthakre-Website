@@ -1,0 +1,156 @@
+{% extends 'user/user-layout.html' %}
+
+
+{% block content %}
+
+
+<h3 class="fw-bold mb-4">
+
+    Remark Follow Up Clients
+
+</h3>
+
+
+
+<div class="table-responsive">
+
+
+<table class="table table-hover">
+
+
+<thead>
+
+
+<tr>
+
+    <th>PAN</th>
+
+    <th>Name</th>
+
+    <th>Mobile</th>
+
+    <th>E-Filing Password</th>
+
+    <th>Remark</th>
+
+    <th>Action</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody>
+
+
+{% for client in clients %}
+
+
+<tr>
+
+
+<td>
+
+{{ client.pan_no }}
+
+</td>
+
+
+
+<td>
+
+{{ client.client_name }}
+
+</td>
+
+
+
+<td>
+
+{{ client.mobile_no }}
+
+</td>
+
+
+
+<td>
+
+{{ client.efiling_password }}
+
+</td>
+
+
+
+
+<td>
+
+
+<span class="badge bg-warning text-dark">
+
+{{ client.user_remarks }}
+
+</span>
+
+
+</td>
+
+
+
+<td>
+
+
+<a href="/user/verify/{{ client.id }}"
+class="btn btn-success btn-sm">
+
+
+Verify Again
+
+
+</a>
+
+
+</td>
+
+
+
+</tr>
+
+
+
+{% else %}
+
+
+<tr>
+
+
+<td colspan="6"
+class="text-center text-muted">
+
+
+No Remark Follow Up Clients
+
+
+</td>
+
+
+</tr>
+
+
+
+{% endfor %}
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+
+{% endblock %}
