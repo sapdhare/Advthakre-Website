@@ -1042,6 +1042,7 @@ def user_dashboard():
         FROM evc_clients
         WHERE status='Pending'
         AND assigned_to=?
+        AND user_remarks IS NULL
     """, (session['user_id'],))
 
     pending_count = cursor.fetchone()[0]
@@ -1085,9 +1086,9 @@ def user_evc_verification():
         WHERE
             status='Pending'
             AND assigned_to=?
+            AND user_remarks IS NULL
         ORDER BY id ASC
     """, (session['user_id'],))
-
     clients = cursor.fetchall()
  
     return render_template(
@@ -1487,7 +1488,39 @@ def verify_submit(id):
             "/user/evc-verification"
         )
 
+@app.route('/user/remark-followup')
+def remark_followup():
 
+    if 'user_id' not in session:
+        return redirect('/user/login')
+
+
+    cursor = conn.cursor()
+
+
+    cursor.execute("""
+        SELECT *
+        FROM evc_clients
+
+        WHERE
+        status='Pending'
+        AND assigned_to=?
+        AND user_remarks IS NOT NULL
+
+        ORDER BY id DESC
+    """,
+    (
+        session['user_id'],
+    ))
+
+
+    clients = cursor.fetchall()
+
+
+    return render_template(
+        "user/remark_followup.html",
+        clients=clients
+    )
 
 @app.route('/user/my-verifications')
 def my_verifications():
